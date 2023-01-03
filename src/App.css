@@ -1,38 +1,161 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+}
+
+.border{
+  border: 5px solid black;
+}
+
+.container{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 90vh;
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+.centered{
+  display: flex;
+  justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.vertical-centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.column{
+  flex-direction: column;
+  justify-content: flex-start;
 }
+
+.map {
+  max-width: 100%;
+  width: 100%;
+  height:90%;
+}
+
+.city{
+  width: 7%;
+  height: 15%;
+  position: absolute;
+  /* left: 31%;
+  top: 60%; */
+  z-index: 1;
+  user-select: none;
+}
+
+.city:hover {
+  animation-name: hovered;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+ @keyframes hovered {
+   0% {
+    scale:100%;
+   }
+
+   100% {
+    scale:120%;
+   }
+ }
+
+ .city:click{
+  
+ }
+ 
+ .mapSpace-size{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(190, 190, 190);
+   user-select: none;
+   overflow:hidden;
+   flex-grow: 100;
+   height: 98vh;
+   position: relative;
+  }
+
+  
+  .leftColumn {
+    width:10%;
+    background-color: darkgray;
+  }
+  
+  .rightColumn {
+    width:20vw;
+    height:98vh;
+    background-color: darkgray;
+  }
+  
+  .navBar {
+    display: flex;
+  }
+  .navBar > div {
+    flex-grow: 1;
+    aspect-ratio: 1;
+  }
+  
+  .back-arrow {
+   scale: 200%;
+   align-self: flex-start;
+   left: 2%;
+   top: 2%;
+   position: absolute;
+   z-index: 1;
+  }
+
+  .expander {
+    scale: 200%;
+   align-self: flex-start;
+   left: 97%;
+   top: 2%;
+   position: absolute;
+   z-index: 1;
+  }
+
+  .thumbnail{
+    width: 7vw;
+    margin:1vw;
+  }
+
+  .flex{
+    display: flex;
+  }
+
+  .library-item{
+    border: 2px solid grey;
+    background-color: rgb(153, 153, 153);
+  }
+
+  .library-item > img{
+    /* cursor: ; */
+  }
+
+  .dragging {
+    opacity: 50%;
+  }
+
+  .absolute{
+    position: absolute;
+  }
+
+  .add-button-size{
+    height:100%;
+    aspect-ratio: 1;
+  }
+
+  .editing {
+    width: 7%;
+    height: 15%;
+    position: absolute;
+    z-index: 1;
+    user-select: none;
+    animation-name: hovered;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }

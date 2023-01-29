@@ -1,34 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import city from './Photos/download__2_-removebg-preview (1).png'
 import newMap from './Photos/9a395773c4b7be60643e352523f40596.jpg'
 
 const Map: any = (props: any) => {
 
-    const {currentMap, switchMaps, newCity } = props;
+    const {currentMap, switchMaps, newCity, mapDictionary } = props;
 
     const [currentlyEditing, setCurrentlyEditing] = useState(newCity)
+
+    useEffect(() => {
+      
+    },[mapDictionary])
 
     const container = document.querySelectorAll<HTMLElement>('.container')
     
     async function changeMap (clickedItem: any) {
+      // console.log(clickedItem)
       switchMaps(clickedItem)
     }
 
     const handleDragEnd = (e: any) => {
       const dragable:any = document.querySelector('.editing')
       dragable.classList.add('absolute')
-      console.log(container[0].offsetWidth)
       let x = (100 * e.clientX) / container[0].offsetWidth
-      console.log(x)
       let y = (100 * e.clientY / container[0].offsetHeight)
-      console.log(y)
       dragable.style.left = `${x}%`
       dragable.style.top = `${y}%`
       container[0].appendChild(dragable)
     }
-
-
 
     return(
         <div className="container">

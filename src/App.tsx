@@ -15,7 +15,7 @@ import shopMap from './Photos/shopMap.png'
 
 function App() {
 
-  let allMaps = {
+  let allMaps:any = {
     worldMap: {
         icon: null,
         iconLocation: [0,0],
@@ -51,6 +51,8 @@ function App() {
   }
   const [isExpanded, setIsExpanded] = useState(false)
   const [newCity, setNewCity] = useState(null)
+  const [currentMap, setCurrentMap] = useState()
+  const [mapDictionary, setMapDictionary] = useState(allMaps)
 
 
   const toggle:React.FC = (toggle: any):any => {
@@ -62,11 +64,21 @@ const swapNewCity:React.FC = (newCity: any):any => {
   setNewCity(newCity)
 }
 
+const swapCurrentMap:React.FC = (currentMap: any):any => {
+  console.log('app',currentMap)
+  setCurrentMap(currentMap)
+}
+
+const updateMapDictionary:React.FC = (toAdd:any,name:any):any => {
+  allMaps[name] = toAdd;
+  setMapDictionary(allMaps)
+}
+
   return (
     <div className="App">
-      <MapSpace toggle={toggle} newCity={newCity}/>
+      <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} mapDictionary={mapDictionary}/>
       <div>
-      {isExpanded ? <RightColumn allMaps={allMaps} swapNewCity={swapNewCity}/> : null}
+      {isExpanded ? <RightColumn allMaps={mapDictionary} swapNewCity={swapNewCity} currentMap={currentMap} updateMapDictionary={updateMapDictionary}/> : null}
       </div>
     </div>
   );

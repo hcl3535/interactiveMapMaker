@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useEffect, useState } from "react"; 
 import CreateClickable from "./createClickable";
 import Library from "./Library";
 import NavBar from "./navBar";
@@ -7,7 +7,11 @@ import Options from "./Options";
  
 const RightColumn = (props: any) => {
 
-    const {allMaps, swapNewCity } = props;
+    const {allMaps, swapNewCity, currentMap, updateMapDictionary } = props;
+
+    useEffect(()=>{
+        console.log("change detected on right column",currentMap)
+    },[currentMap])
 
     const switchActiveTab:React.FC = (tab: any):any => {
         switch(tab){
@@ -15,7 +19,7 @@ const RightColumn = (props: any) => {
                 setActiveTab(<Library allMaps={allMaps} swapNewCity={swapNewCity} switchActiveTab={switchActiveTab}/>)
                 break;
             case 'addClickable' :
-                setActiveTab(<CreateClickable/>)
+                setActiveTab(<CreateClickable currentMap={currentMap} allMaps={allMaps} updateMapDictionary={updateMapDictionary} swapNewCity={swapNewCity} switchActiveTab={switchActiveTab}/>)
                 break;  
             case 'options' :
                 setActiveTab(<Options/>)

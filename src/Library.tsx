@@ -29,7 +29,3 @@ const Library = (props: any) => {
 }
 
 export default Library;
-
-function componentDidMount() {
-  throw new Error("Function not implemented.");
-}

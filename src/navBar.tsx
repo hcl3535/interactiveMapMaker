@@ -23,7 +23,7 @@ const NavBar = (props:any) => {
     return(
         <div className="navBar">
             <div className="border" onClick={switchToLibrary}></div>
-            <div className="border" onClick={switchToAddClickable}></div>
+            <div className="border" onClick={switchToBlank}></div>
             <div className="border" onClick={switchToBlank}></div>
             <div className="border" onClick={switchToOptions}></div>
         </div>

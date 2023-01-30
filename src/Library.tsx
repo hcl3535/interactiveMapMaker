@@ -11,9 +11,13 @@ const Library = (props: any) => {
       swapNewCity(allMaps[newCity])
     }
 
+    const switchToCreateClickable = () => {
+      switchActiveTab()
+    }
 
     return(
         <div>
+          <button className="createClickableButton" onClick={switchToCreateClickable}> create a clickable</button>
            <> {Object.keys(allMaps).map(function(key, index) {
               return(
                 <div key={index} className="flex library-item">

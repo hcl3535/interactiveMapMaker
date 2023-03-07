@@ -108,6 +108,7 @@ const swapNewCity:React.FC = (newCity: any):any => {
 
 const swapCurrentMap:React.FC = (currentMap: any):any => {
   setCurrentMap(currentMap)
+  console.log(currentMap)
 }
 
 const updateMapDictionary:React.FC = (toAdd:any,name:any):any => {
@@ -124,7 +125,7 @@ const updateMapDictionary:React.FC = (toAdd:any,name:any):any => {
             <div className='App'>
               <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} mapDictionary={mapDictionary}/>
               <div>
-                {isExpanded ? <RightColumn allMaps={mapDictionary} swapNewCity={swapNewCity} currentMap={currentMap} updateMapDictionary={updateMapDictionary} setToken={setToken} token={token} setUser={setUser} user={user}/> : null}
+                {isExpanded ? <RightColumn allMaps={mapDictionary} swapNewCity={swapNewCity} currentMap={currentMap} updateMapDictionary={updateMapDictionary} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap}/> : null}
               </div>
             </div>
           </div>

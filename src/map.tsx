@@ -16,7 +16,6 @@ const Map: any = (props: any) => {
     const container = document.querySelectorAll<HTMLElement>('.container')
     
     async function changeMap (clickedItem: any) {
-      // console.log(clickedItem)
       switchMaps(clickedItem)
     }
 

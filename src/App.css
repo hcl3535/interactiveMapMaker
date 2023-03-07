@@ -92,7 +92,8 @@
   }
 
   .libraryContainer{
-    overflow: scroll;
+    overflow: hidden;
+    height: 100%
   }
   
   .navBar {
@@ -133,10 +134,7 @@
   .library-item{
     border: 2px solid grey;
     background-color: rgb(153, 153, 153);
-  }
-
-  .library-item > img{
-    /* cursor: ; */
+    
   }
 
   .dragging {

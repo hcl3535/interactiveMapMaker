@@ -10,25 +10,22 @@ const NavBar = (props:any) => {
       switchActiveTab("library")
     }
 
-    const switchToAddClickable = () => {
-      switchActiveTab("addClickable")
-    }
-
     const switchToOptions = () => {
       switchActiveTab("options")
     }
 
+    const switchToWorldEdit = async () => {
+      switchActiveTab('worldEdit')
+    }
+
     const switchToBlank = async () => {
-      const test = await getAllUsers()
-      console.log(test)
-      
-      
+
     }
 
     return(
         <div className="navBar">
+            <div className="border" onClick={switchToWorldEdit}></div>
             <div className="border" onClick={switchToLibrary}></div>
-            <div className="border" onClick={switchToBlank}></div>
             <div className="border" onClick={switchToBlank}></div>
             <div className="border" onClick={switchToOptions}></div>
         </div>

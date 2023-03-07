@@ -1,6 +1,8 @@
 const {client} = require('./');
 const { getAllIcons, createIcon, getIconsByUser, getIconsByUsername, getIconsByUserId } = require('./models/icons');
+const { createMaps, getAllMaps } = require('./models/maps');
 const {createUser, getAllUsers, getUserByUsername} = require('./models/users')
+
 
 
 async function buildTables() {
@@ -8,6 +10,7 @@ async function buildTables() {
         await client.connect();
 
         await client.query(`
+          DROP TABLE IF EXISTS maps;
           DROP TABLE IF EXISTS icons;
           DROP TABLE IF EXISTS users;
         `)
@@ -26,7 +29,19 @@ async function buildTables() {
             iconimageurl VARCHAR(255),
             userid INTEGER REFERENCES users(id),
             s3key VARCHAR(255)
-          )
+          );
+
+          CREATE TABLE maps (
+            id SERIAL PRIMARY KEY,
+            initialmap BOOLEAN,
+            name VARCHAR(255),
+            mapurl VARCHAR(255),
+            icon INTEGER REFERENCES icons(id),
+            iconx INTEGER,
+            icony INTEGER,
+            children VARCHAR ARRAY,
+            userid INTEGER REFERENCES users(id)
+          );
         `)
         
     } catch (error) {
@@ -61,6 +76,19 @@ async function buildTables() {
       console.log('allIcons', await getAllIcons())
 
       console.log('all Icons by user 1', await getIconsByUserId(1))
+
+
+      const mapsToCreate = [
+        {'initialmap': true,'name': 'dorphil', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/worldMap.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1},
+        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 31, 'icony': 60, 'children': ['shop'], 'userid': 1},
+        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 60, 'icony': 60, 'children': [], 'userid': 1},
+        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 60, 'icony': 60, 'children': [], 'userid': 1},
+        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1},
+      ]
+
+      await Promise.all(mapsToCreate.map(createMaps))
+      
+      console.log('allMaps',await getAllMaps())
       
     } catch (error) {
       

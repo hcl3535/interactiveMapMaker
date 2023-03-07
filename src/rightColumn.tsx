@@ -4,11 +4,12 @@ import CreateIcon from "./createIcon";
 import Library from "./Library";
 import NavBar from "./navBar";
 import Options from "./Options";
+import WorldEdit from "./worldEdit";
 
  
 const RightColumn = (props: any) => {
 
-    const {allMaps, swapNewCity, currentMap, updateMapDictionary, setToken, token, setUser, user } = props;
+    const {allMaps, swapNewCity, currentMap, updateMapDictionary, setToken, token, setUser, user, swapCurrentMap } = props;
 
     const [activeTab, setActiveTab] = useState('library')
 
@@ -29,6 +30,7 @@ const RightColumn = (props: any) => {
             {activeTab === 'options' ? <Options setToken={setToken} token={token} setUser={setUser}/> : null}
             {activeTab === 'createClickable' ? <CreateClickable/> : null}
             {activeTab === 'createIcon'? <CreateIcon user={user} switchActiveTab={switchActiveTab}/> : null}
+            {activeTab === 'worldEdit'? <WorldEdit user={user} swapCurrentMap={swapCurrentMap}/> : null}
         </div>
     )
 }

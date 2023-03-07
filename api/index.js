@@ -20,4 +20,7 @@ apiRouter.use('/users', userRouter);
 const iconRouter = require('./icons')
 apiRouter.use('/icons', iconRouter)
 
+const mapRouter = require('./maps')
+apiRouter.use('/maps', mapRouter)
+
 module.exports = apiRouter;

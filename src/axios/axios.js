@@ -98,3 +98,12 @@ export async function deleteIcon(iconId) {
         console.error(error)
     }
 }
+
+export async function getAllUserWorlds(userId) {
+    try {
+        const {data} = await axios.get(`/maps/${userId}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}

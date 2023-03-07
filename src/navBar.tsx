@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getAllUsers } from "./axios/axios";
 
 const NavBar = (props:any) => {
  
@@ -17,7 +18,11 @@ const NavBar = (props:any) => {
       switchActiveTab("options")
     }
 
-    const switchToBlank = () => {
+    const switchToBlank = async () => {
+      const test = await getAllUsers()
+      console.log(test)
+      
+      
     }
 
     return(

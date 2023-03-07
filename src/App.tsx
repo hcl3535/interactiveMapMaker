@@ -12,8 +12,19 @@ import city2 from './Photos/city2Icon.png'
 import cityMap2 from './Photos/city2Map.jpg'
 import shop from './Photos/shopIcon.png'
 import shopMap from './Photos/shopMap.png'
+import ProfileInfo from './profileinfo';
+import { getAllUsers, getMe } from './axios/axios';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './login';
+import Register from './register';
 
 function App() {
+
+  let icons:any = {
+    1: city,
+    2: city2,
+    3: shop
+  }
 
   let allMaps:any = {
     worldMap: {
@@ -25,7 +36,7 @@ function App() {
         }
     },
     city1: {
-        icon: city,
+        icon: icons[1],
         iconLocation: [31,60],
         map: newMap,
         clickables: function() {
@@ -33,7 +44,7 @@ function App() {
         }
     },
     city2: {
-        icon: city2,
+        icon: icons[2],
         iconLocation: [60,60],
         map: cityMap2,
         clickables: function() {
@@ -41,7 +52,7 @@ function App() {
         }
     },
     shop: {
-        icon: shop,
+        icon: icons[3],
         iconLocation: [60,60],
         map: shopMap,
         clickables: function() {
@@ -49,7 +60,12 @@ function App() {
         }
     },
   }
+
+  const tokenFromStorage = localStorage.getItem('token');
+
   const [isExpanded, setIsExpanded] = useState(false)
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(tokenFromStorage)
   const [newCity, setNewCity] = useState(null)
   const [currentMap, setCurrentMap] = useState()
   const [mapDictionary, setMapDictionary] = useState(allMaps)
@@ -60,12 +76,37 @@ function App() {
     if(!isExpanded) setIsExpanded(true)
 }
 
+const openOptions:React.FC = ():any => {
+  setIsExpanded(true)
+  
+}
+
+
+useEffect(() => {
+
+  const fetchData = async () => {
+    
+  }
+
+  fetchData()
+},[])
+
+useEffect(() => {
+  const getUserInfo = async () => {
+    if(token){
+      const userInfo = await getMe(token)
+      setUser(userInfo)
+    }
+  }
+
+  getUserInfo()
+},[token])
+
 const swapNewCity:React.FC = (newCity: any):any => {
   setNewCity(newCity)
 }
 
 const swapCurrentMap:React.FC = (currentMap: any):any => {
-  console.log('app',currentMap)
   setCurrentMap(currentMap)
 }
 
@@ -75,12 +116,23 @@ const updateMapDictionary:React.FC = (toAdd:any,name:any):any => {
 }
 
   return (
-    <div className="App">
-      <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} mapDictionary={mapDictionary}/>
-      <div>
-      {isExpanded ? <RightColumn allMaps={mapDictionary} swapNewCity={swapNewCity} currentMap={currentMap} updateMapDictionary={updateMapDictionary}/> : null}
-      </div>
-    </div>
+    <BrowserRouter>
+      <ProfileInfo user={user} openOptions={openOptions} token={token}/>
+      <Routes>
+        <Route path='/' element={
+          <div>
+            <div className='App'>
+              <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} mapDictionary={mapDictionary}/>
+              <div>
+                {isExpanded ? <RightColumn allMaps={mapDictionary} swapNewCity={swapNewCity} currentMap={currentMap} updateMapDictionary={updateMapDictionary} setToken={setToken} token={token} setUser={setUser} user={user}/> : null}
+              </div>
+            </div>
+          </div>
+        }/>
+        <Route path="/login" element={<Login setToken={setToken} token={token}/>}/>
+        <Route path="/register" element={<Register setToken={setToken}/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

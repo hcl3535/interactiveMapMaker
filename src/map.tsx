@@ -54,7 +54,7 @@ const Map: any = (props: any) => {
           {
             newCity !== null ?
                 <img
-                  src={newCity.icon}
+                  src={newCity}
                   alt=''
                   className="editing"
                   onDragEnd={handleDragEnd}

@@ -1,0 +1,42 @@
+require('dotenv').config()
+const fs = require('fs')
+const s3 = require('aws-sdk/clients/s3')
+
+const bucketName = process.env.AWS_ICON_BUCKET_NAME
+const region = process.env.AWS_ICON_BUCKET_REGION
+const accessKeyId = process.env.ICON_ACCESS_KEY
+const secretAccessKey = process.env.ICON_SECRET_ACCESS_KEY
+
+const S3 = new s3({
+  region,
+  accessKeyId,
+  secretAccessKey
+})
+
+//uploads a file to icon s3
+
+function uploadIconFile(file) {
+    const fileStream = fs.createReadStream(file.path)
+
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileStream,
+        Key: file.filename
+    }
+
+    return S3.upload(uploadParams).promise()
+}
+exports.uploadIconFile = uploadIconFile
+
+//deletes a file from icon s3
+
+function deleteIconFile(key) {
+  console.log('key',key)
+
+  const deleteParams = {
+      Bucket: bucketName,
+      Key: key
+  }
+  S3.deleteObject(deleteParams).promise()
+}
+exports.deleteIconFile = deleteIconFile

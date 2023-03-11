@@ -59,7 +59,7 @@ async function deleteIconById(iconId) {
 async function getIconById(id) {
     try {
 
-        const {rows: icon} = await client.query(`
+        const {rows: [icon]} = await client.query(`
             SELECT *
             FROM icons
             WHERE id = $1;

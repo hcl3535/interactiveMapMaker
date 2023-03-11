@@ -18,8 +18,8 @@ const WorldEdit = (props:any) => {
 
 
     function changeWorld(e:any) {
-        console.log(e.target.value)
-        swapCurrentMap(e.target.value)
+        // console.log(e.target.value)
+        // swapCurrentMap(e.target.value)
     }  
 
     return(

@@ -68,13 +68,22 @@ export async function registerUser(username, password, email) {
 
 export async function getIconsByUserId(id) {
     try {
-      const {data} = await axios.get(`/icons/${id}`) 
+      const {data} = await axios.get(`/icons/user/${id}`) 
       return data
     } catch (error) {
         console.error(error)
     }
 }
 
+export async function getIconById(iconId) {
+    try {
+        const {data} = await axios.get(`/icons/${iconId}`)
+
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
 export async function uploadIcon(formData) {
     try{
         const {data} = await axios.post(`/icons`,formData,{
@@ -103,6 +112,23 @@ export async function getAllUserWorlds(userId) {
     try {
         const {data} = await axios.get(`/maps/${userId}`)
         return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getMapByName(name,userId) {
+    try {
+        const {data} = await axios.get(`/maps/${userId}/${name}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function createMap({initialmap, name, mapurl, icon, iconx, icony, children, userid}) {
+    try {
+        const {data} = await axios.post(`/maps/${userid}`,)
     } catch (error) {
         console.log(error)
     }

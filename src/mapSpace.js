@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Map from "./map";
 import mapImg from "./Photos/worldMap.png"
 import city from './Photos/city1Icon.png'
@@ -7,67 +7,36 @@ import city2 from './Photos/city2Icon.png'
 import cityMap2 from './Photos/city2Map.jpg'
 import shop from './Photos/shopIcon.png'
 import shopMap from './Photos/shopMap.png'
+import { getChildren } from "./helper";
 
 
 
-export const MapSpace = (props: any) => {
+export const MapSpace = (props) => { 
 
-    const {toggle, newCity, swapCurrentMap, mapDictionary} = props
+    const {toggle, newCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user} = props
     
-    let allMaps = {
-        worldMap: {
-            icon: null,
-            iconLocation: [0,0],
-            map: mapImg,
-            clickables: function(){
-                return [allMaps.city1, allMaps.city2]
-            }
-        },
-        city1: {
-            icon: city,
-            iconLocation: [31,60],
-            map: newMap,
-            clickables: function() {
-                return [allMaps.shop]
-            }
-        },
-        city2: {
-            icon: city2,
-            iconLocation: [60,60],
-            map: cityMap2,
-            clickables: function() {
-                return []
-            }
-        },
-        shop: {
-            icon: shop,
-            iconLocation: [60,60],
-            map: shopMap,
-            clickables: function() {
-                return []
-            }
-        },
-    }
-
-    const [currentMap, setCurrentMap] = useState(allMaps.worldMap)
-    const [history, setHistory] = useState([allMaps.worldMap])
+    const [history, setHistory] = useState([currentWorld])
     
 
-    swapCurrentMap(currentMap)
-
-    const switchMaps:React.FC = (clicked: any, fromHistory: boolean):any => {
+    const switchMaps= async (clicked, fromHistory) => {
 
         let tempHistory = history
         tempHistory.push(currentMap)
         setHistory(tempHistory)
-          
         setCurrentMap(clicked)
+        
+        const children = await getChildren(clicked, user)
+        setChildren(children)
+        
     }
 
-    const handleBackButton = () => {
+    const handleBackButton = async () => {
         if(history.length > 1){
         let tempHistory = history
         setCurrentMap(tempHistory[tempHistory.length-1])
+        console.log(tempHistory[tempHistory.length-1])
+        const children = await getChildren(tempHistory[tempHistory.length-1], user)
+        setChildren(children)
         tempHistory.pop()
         setHistory(tempHistory)
         }
@@ -87,7 +56,7 @@ export const MapSpace = (props: any) => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list expander" viewBox="0 0 16 16" onClick={handleExpander}>
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg>
-          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} mapDictionary={mapDictionary}/>
+          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children}/>
         </div> 
     )
 }

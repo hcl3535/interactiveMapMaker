@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import city from './Photos/download__2_-removebg-preview (1).png'
-import newMap from './Photos/9a395773c4b7be60643e352523f40596.jpg'
-
 const Map: any = (props: any) => {
 
-    const {currentMap, switchMaps, newCity, mapDictionary } = props;
+    const {currentMap, switchMaps, newCity, mapDictionary, currentWorld ,children} = props;
+    console.log(currentMap)
 
     const [currentlyEditing, setCurrentlyEditing] = useState(newCity)
 
     useEffect(() => {
       
-    },[mapDictionary])
+    },[children])
+    
 
     const container = document.querySelectorAll<HTMLElement>('.container')
     
@@ -32,18 +31,20 @@ const Map: any = (props: any) => {
     return(
         <div className="container">
           <img 
-            src={currentMap.map} 
+            src={currentMap?.mapurl} 
             alt=""
             className="centered map "
           />
-          <>{currentMap.clickables ? (
-            currentMap.clickables().map((value: any, index: number) =>{
+          <>
+          </>
+          <>{children ? (
+            children.map((value: any, index: number) => {
               return (<img 
-                src={value.icon} 
+                src={value.icon.iconimageurl} 
                 key={index}
                 alt=""
                 className='city'
-                style={{top: `${value.iconLocation[1]}%`, left: `${value.iconLocation[0]}%`} }
+                style={{top: `${value.icony}%`, left: `${value.iconx}%`} }
                 onClick={ () => changeMap(value)}
               />)
             })) : (null)

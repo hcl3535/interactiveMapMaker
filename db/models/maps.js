@@ -44,8 +44,22 @@ async function getAllUserWorldMaps(userId) {
     }
 }
 
+async function getMapByUserAndName(userId,name) {
+    try {
+        const {rows: [map]} = await client.query(`
+            SELECT *
+            FROM maps
+            WHERE userid = $1 AND name = $2
+        `,[userId, name])
+        return map
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
   createMaps,
   getAllMaps,
-  getAllUserWorldMaps
+  getAllUserWorldMaps,
+  getMapByUserAndName
 }

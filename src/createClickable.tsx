@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
  
 const CreateClickable = (props: any) => {
 
-    const {currentMap, allMaps, updateMapDictionary, swapNewCity, switchActiveTab} = props;
+    const {currentMap, allMaps, updateMapDictionary, swapNewCity, switchActiveTab, user} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
@@ -17,21 +17,25 @@ const CreateClickable = (props: any) => {
         const dragable:any = document.querySelector('.editing')
         let y = (Number(dragable.style.top.slice(0, -1)))
         let x = (Number(dragable.style.left.slice(0, -1)))
+        
         const toAdd = {
-            icon: dragable.src ,
-            iconLocation: [x,y],
-            map: map,
-            clickables: function() {
-                return []
-            }
+            initialmap: false, 
+            name: name, 
+            mapurl: map, 
+            icon: dragable.src, 
+            iconx: x, 
+            icony: y, 
+            children:[], 
+            userid: user.id
         }
-        updateMapDictionary(toAdd, name)
-        dragable.classList.remove('editing')
-        let currentClickables = currentMap.clickables()
-        currentClickables.push(toAdd)
-        currentMap.clickables = function(){
-            return currentClickables
-        }
+        console.log(toAdd)
+        // updateMapDictionary(toAdd, name)
+        // dragable.classList.remove('editing')
+        // let currentClickables = currentMap.clickables()
+        // currentClickables.push(toAdd)
+        // currentMap.clickables = function(){
+        //     return currentClickables
+        // }
         swapNewCity(null)
         switchActiveTab('library')
     }

@@ -26,7 +26,7 @@ const RightColumn = (props: any) => {
         <div className="rightColumn border centered column">
             <NavBar switchActiveTab={switchActiveTab}/>
             {activeTab === 'library' ? <Library allMaps={allMaps} swapNewCity={swapNewCity} switchActiveTab={switchActiveTab} user={user} /> : null}
-            {activeTab === 'addClickable' ? <CreateClickable currentMap={currentMap} allMaps={allMaps} updateMapDictionary={updateMapDictionary} swapNewCity={swapNewCity} switchActiveTab={switchActiveTab}/> : null}
+            {activeTab === 'addClickable' ? <CreateClickable currentMap={currentMap} allMaps={allMaps} updateMapDictionary={updateMapDictionary} swapNewCity={swapNewCity} switchActiveTab={switchActiveTab} user={user}/> : null}
             {activeTab === 'options' ? <Options setToken={setToken} token={token} setUser={setUser}/> : null}
             {activeTab === 'createClickable' ? <CreateClickable/> : null}
             {activeTab === 'createIcon'? <CreateIcon user={user} switchActiveTab={switchActiveTab}/> : null}

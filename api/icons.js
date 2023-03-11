@@ -20,7 +20,7 @@ const iconRouter = require('express').Router();
 //     }
 // })
 
-iconRouter.get('/:userId',async (req,res,next) => {
+iconRouter.get('/user/:userId',async (req,res,next) => {
     try {
         
       const {userId} = req.params;
@@ -30,6 +30,18 @@ iconRouter.get('/:userId',async (req,res,next) => {
       res.send(icons)
 
 
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+iconRouter.get('/:iconId', async (req,res,next) => {
+    try {
+        const {iconId} = req.params;
+
+        const icon = await getIconById(iconId)
+        
+        res.send(icon)
     } catch (error) {
         console.error(error)
     }

@@ -1,43 +1,51 @@
-import React, { useEffect, useState } from "react";
+import { NetworkManager } from "aws-sdk";
+import React, { Children, useEffect, useState } from "react";
+import { createMap, getIconById } from "./axios/axios";
 
  
 const CreateClickable = (props: any) => {
 
-    const {currentMap, allMaps, updateMapDictionary, swapNewCity, switchActiveTab, user} = props;
+    const {currentMap, allMaps, updateMapDictionary, swapNewCity, switchActiveTab, user, setChildren,children, setCurrentMap} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
+    const [file, setFile] = useState<any>()
 
-    useEffect(()=>{
-        console.log("change detected on create clickable", currentMap)
-    },[currentMap])
+    const createNewClickable = async () => {
 
-    const createNewClickable = () => {
-        console.log('createClickable',currentMap)
         const dragable:any = document.querySelector('.editing')
         let y = (Number(dragable.style.top.slice(0, -1)))
         let x = (Number(dragable.style.left.slice(0, -1)))
         
+        
         const toAdd = {
             initialmap: false, 
-            name: name, 
-            mapurl: map, 
+            name: name,
             icon: dragable.src, 
             iconx: x, 
             icony: y, 
             children:[], 
             userid: user.id
         }
-        console.log(toAdd)
-        // updateMapDictionary(toAdd, name)
-        // dragable.classList.remove('editing')
-        // let currentClickables = currentMap.clickables()
-        // currentClickables.push(toAdd)
-        // currentMap.clickables = function(){
-        //     return currentClickables
-        // }
+ 
+        console.log(currentMap)
+        const formData = new FormData();
+        formData.append('image',file)
+        formData.append('fileProps',JSON.stringify(toAdd))
+        formData.append('currentMap',JSON.stringify(currentMap))
+
+        const newMap = await createMap(formData, user.id)
+
+        newMap.icon = await getIconById(newMap.icon)
+
+        let newChildren = children;
+        newChildren.push(newMap)
+        setChildren(newChildren)
+
+        dragable.classList.remove('editing')
         swapNewCity(null)
         switchActiveTab('library')
+
     }
 
     const handleName = (e: any) => {
@@ -51,7 +59,9 @@ const CreateClickable = (props: any) => {
             setMap(reader.result)
         })
         
+        setFile(imageInput?.files?.[0])
         reader.readAsDataURL(imageInput?.files?.[0])
+
         
       })
       

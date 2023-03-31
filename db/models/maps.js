@@ -1,6 +1,6 @@
 const client = require('../client')
 
-async function createMaps(map) {
+async function createMap(map) {
     try {
         
         const {initialmap, name, mapurl, icon, iconx, icony, children, userid} = map;
@@ -57,9 +57,23 @@ async function getMapByUserAndName(userId,name) {
     }
 }
 
+async function updateChildren(id,updatedChildren){
+    try {
+        const {rows: [map]} = await client.query(`
+            UPDATE maps
+            SET children = $2
+            WHERE id = $1
+        `,[id, updatedChildren])
+        return map
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
-  createMaps,
+  createMap,
   getAllMaps,
   getAllUserWorldMaps,
-  getMapByUserAndName
+  getMapByUserAndName,
+  updateChildren
 }

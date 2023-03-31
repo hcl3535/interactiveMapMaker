@@ -27,7 +27,6 @@ const Library = (props: any) => {
 
     const fetchData = async () => {
       const icons = await getIconsByUserId(user.id)
-      console.log(icons)
       setAllIcons(icons)
     }
 

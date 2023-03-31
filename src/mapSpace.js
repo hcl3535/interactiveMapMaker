@@ -8,14 +8,32 @@ import cityMap2 from './Photos/city2Map.jpg'
 import shop from './Photos/shopIcon.png'
 import shopMap from './Photos/shopMap.png'
 import { getChildren } from "./helper";
+import { useParams } from "react-router-dom";
+import { getMapByName } from "./axios/axios";
 
 
 
 export const MapSpace = (props) => { 
 
-    const {toggle, newCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user} = props
+    const {toggle, newCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld} = props
     
     const [history, setHistory] = useState([currentWorld])
+    const {mapName} = useParams();
+    
+    useEffect(() => {
+
+      const fetchData = async () => {
+        if(mapName && user.id){
+        const map = await getMapByName(mapName, user.id)
+        setCurrentWorld(map)
+        setCurrentMap(map)
+        const children = await getChildren(map, user)
+        setChildren(children)
+        }
+      }
+    
+      fetchData()
+    },[user, mapName])
     
 
     const switchMaps= async (clicked, fromHistory) => {
@@ -23,9 +41,11 @@ export const MapSpace = (props) => {
         let tempHistory = history
         tempHistory.push(currentMap)
         setHistory(tempHistory)
+        console.log(clicked)
         setCurrentMap(clicked)
         
         const children = await getChildren(clicked, user)
+        console.log(children)
         setChildren(children)
         
     }
@@ -33,10 +53,14 @@ export const MapSpace = (props) => {
     const handleBackButton = async () => {
         if(history.length > 1){
         let tempHistory = history
-        setCurrentMap(tempHistory[tempHistory.length-1])
-        console.log(tempHistory[tempHistory.length-1])
-        const children = await getChildren(tempHistory[tempHistory.length-1], user)
-        setChildren(children)
+
+        const map = await getMapByName(tempHistory[tempHistory.length-1].name, user.id)
+        
+        setCurrentMap(map)
+
+        const newchildren = await getChildren(map, user)
+
+        setChildren(newchildren)
         tempHistory.pop()
         setHistory(tempHistory)
         }

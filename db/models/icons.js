@@ -71,10 +71,24 @@ async function getIconById(id) {
     }
 }
 
+async function getIconbyIconImageUrl(url) {
+    try {
+        const {rows: [icon]} = await client.query(`
+            SELECT *
+            FROM icons
+            WHERE iconimageurl = $1;
+        `,[url])
+        return icon
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     createIcon,
     getAllIcons,
     getIconsByUserId,
     deleteIconById,
-    getIconById
+    getIconById,
+    getIconbyIconImageUrl
 }

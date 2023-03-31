@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 
 const Map: any = (props: any) => {
 
-    const {currentMap, switchMaps, newCity, mapDictionary, currentWorld ,children} = props;
-    console.log(currentMap)
+    const {currentMap, switchMaps, newCity, currentWorld ,children} = props;
 
     const [currentlyEditing, setCurrentlyEditing] = useState(newCity)
-
-    useEffect(() => {
-      
-    },[children])
     
 
     const container = document.querySelectorAll<HTMLElement>('.container')
@@ -27,7 +22,7 @@ const Map: any = (props: any) => {
       dragable.style.top = `${y}%`
       container[0].appendChild(dragable)
     }
-
+    
     return(
         <div className="container">
           <img 

@@ -2,7 +2,6 @@ import { getAllUsers, getAllUserWorlds, getIconById, getMapByName, getMe } from 
 
 export async function getChildren(map, userInfo) {
 
-
 const childrenNames = map.children
       let temp = []
       await Promise.all(childrenNames?.map( async (value,index) => {

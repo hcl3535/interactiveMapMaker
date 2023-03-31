@@ -126,9 +126,14 @@ export async function getMapByName(name,userId) {
     }
 }
 
-export async function createMap({initialmap, name, mapurl, icon, iconx, icony, children, userid}) {
+export async function createMap(formData, userid) {
     try {
-        const {data} = await axios.post(`/maps/${userid}`,)
+        const {data} = await axios.post(`/maps/${userid}`,formData,{
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+        return data
     } catch (error) {
         console.log(error)
     }

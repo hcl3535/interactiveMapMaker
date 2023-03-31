@@ -40,3 +40,20 @@ function deleteIconFile(key) {
   S3.deleteObject(deleteParams).promise()
 }
 exports.deleteIconFile = deleteIconFile
+
+const mapBucketName = process.env.AWS_MAP_BUCKET_NAME
+
+function uploadMapFile(file) {
+  const fileStream = fs.createReadStream(file.path)
+
+  const uploadParams = {
+      Bucket: mapBucketName,
+      Body: fileStream,
+      Key: file.filename
+  }
+
+  return S3.upload(uploadParams).promise()
+}
+exports.uploadMapFile = uploadMapFile
+
+

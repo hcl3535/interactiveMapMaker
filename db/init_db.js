@@ -1,6 +1,6 @@
 const {client} = require('./');
 const { getAllIcons, createIcon, getIconsByUser, getIconsByUsername, getIconsByUserId } = require('./models/icons');
-const { createMaps, getAllMaps } = require('./models/maps');
+const { createMap, getAllMaps } = require('./models/maps');
 const {createUser, getAllUsers, getUserByUsername} = require('./models/users')
 
 
@@ -37,8 +37,8 @@ async function buildTables() {
             name VARCHAR(255),
             mapurl VARCHAR(255),
             icon INTEGER REFERENCES icons(id),
-            iconx INTEGER,
-            icony INTEGER,
+            iconx FLOAT,
+            icony FLOAT,
             children VARCHAR ARRAY,
             userid INTEGER REFERENCES users(id)
           );
@@ -83,10 +83,10 @@ async function buildTables() {
         {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 31, 'icony': 60, 'children': ['shop'], 'userid': 1},
         {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 60, 'icony': 60, 'children': [], 'userid': 1},
         {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 60, 'icony': 60, 'children': [], 'userid': 1},
-        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1},
+        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': [], 'userid': 1},
       ]
 
-      await Promise.all(mapsToCreate.map(createMaps))
+      await Promise.all(mapsToCreate.map(createMap))
       
       console.log('allMaps',await getAllMaps())
       

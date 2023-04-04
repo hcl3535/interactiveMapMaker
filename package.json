@@ -40,6 +40,7 @@
     "db:build": "node ./db/init_db.js",
     "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
     "start": "node index.js",
+    "build": "CI=false && react-scripts build",
     "test": "jest --runInBand"
   },
   "eslintConfig": {

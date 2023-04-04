@@ -18,6 +18,8 @@ import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
 import Login from './login';
 import Register from './register';
 import { getChildren } from './helper';
+import HomePage from './homePage';
+import AllMaps from './AllMaps';
 
 function App() {
 
@@ -27,10 +29,13 @@ function App() {
   const [user, setUser] = useState()
   const [token, setToken] = useState(tokenFromStorage)
   const [newCity, setNewCity] = useState(null)
+  const [activeTab, setActiveTab] = useState('worldEdit')
   
   const [currentWorld, setCurrentWorld] = useState()
   const [currentMap, setCurrentMap] = useState()
   const [children, setChildren] = useState<any>()
+  const [worldHistory, setWorldHistory] = useState([])
+  const [editmode, setEditMode] = useState(false)
 
   
 
@@ -45,6 +50,9 @@ const openOptions:React.FC = ():any => {
   setIsExpanded(true)
   
 }
+
+useEffect(() => {
+})
 
 
 
@@ -74,7 +82,6 @@ const swapNewCity:React.FC = (newCity: any):any => {
 
 const swapCurrentMap:React.FC = (currentMap: any):any => {
   setCurrentMap(currentMap)
-  console.log(currentMap)
 }
 
   return (
@@ -86,13 +93,15 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
         <Route path="/map/:mapName" element={
           <div>
             <div className='App'>
-              <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld}/>
+              <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode}/>
               <div>
-                {isExpanded ? <RightColumn swapNewCity={swapNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap}/> : null}
+                {isExpanded ? <RightColumn swapNewCity={swapNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap} setActiveTab={setActiveTab} activeTab={activeTab} setEditMode={setEditMode} editMode={editmode}/> : null}
               </div>
             </div>
           </div>
         }/>
+        <Route path="/" element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>}/>
+        <Route path="/allMaps" element={<AllMaps user={user} setActiveTab={setActiveTab} setIsExpanded={setIsExpanded}/>}/>
       </Routes>
     </BrowserRouter>
   );

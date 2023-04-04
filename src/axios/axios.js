@@ -20,6 +20,24 @@ export async function getAllUsers() {
     }
 }
 
+export async function getWorldHistoryByUserId(userId) {
+    try {
+        const {data} = await axios.get(`/users/${userId}/worldhistory`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function updateUserWorldHistory(userId,newWorldHistory) {
+    try {
+        const {data} = await axios.patch(`users/${userId}/worldhistory`,{newWorldHistory: newWorldHistory})
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export async function logInUser(username,password) {
     try {
         const {data} = await axios.post(`/users/login`,
@@ -138,3 +156,15 @@ export async function createMap(formData, userid) {
         console.log(error)
     }
 }
+
+export async function updateCityIconLocation(city) {
+    try {
+        console.log(city)
+        const {id} = city;
+        const {data} = await axios.patch(`/maps/${id}`,{city: city})
+        return data
+    } catch (error) {
+        
+    }
+}
+

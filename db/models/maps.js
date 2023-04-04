@@ -70,10 +70,27 @@ async function updateChildren(id,updatedChildren){
     }
 }
 
+async function updateMap(id, iconx, icony) {
+    try {
+        console.log(id, iconx, icony)
+        const {rows : [map]} = await client.query(`
+            UPDATE maps
+            SET iconx = $2, icony =$3
+            WHERE id = $1
+        `, [id, iconx, icony])
+
+        console.log(map)
+        return map
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
   createMap,
   getAllMaps,
   getAllUserWorldMaps,
   getMapByUserAndName,
-  updateChildren
+  updateChildren,
+  updateMap
 }

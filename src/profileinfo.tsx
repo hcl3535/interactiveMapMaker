@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileInfo = (props:any) => {
 
     const {user, openOptions,token} = props;
+
+    const navigate = useNavigate()
 
     const switchToOptions = () => {
         openOptions()
@@ -12,10 +15,19 @@ const ProfileInfo = (props:any) => {
 
     },[token])
 
+    const goHome = () => {
+        navigate(`/`)
+    }
+
+    const goToLogin = () => {
+        navigate('/login')
+    }
+
     return(
-        
-        user ?
         <div className="profileInfo">
+            <h1 className='profileHome' onClick={goHome}>home</h1>
+          {user ?
+          <div className="flex">
             <h1 className="profileName">{user.username}</h1>
             <div className="profilePicBorder">
               <img 
@@ -24,9 +36,14 @@ const ProfileInfo = (props:any) => {
                 onClick={switchToOptions}
                 />
             </div>
+          </div>
+          :
+          <div>
+          <h1 className="profileName" onClick={goToLogin}>login</h1>
+          </div>
+          }
         </div>
-        :
-        <div className="profileInfo"/>
+
     )
 }
 

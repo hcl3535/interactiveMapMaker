@@ -52,7 +52,6 @@ iconRouter.post('/',upload.single('image'), async (req, res, next) => {
         const {userId} = req.body
         const file = req.file
         const result = await uploadIconFile(file)
-        console.log(result)
         const icon = createIcon({iconimageurl: result.Location, userid: userId, s3key: result.key})
         await unlinkFile(file.path)
         res.send(icon)

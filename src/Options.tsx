@@ -5,7 +5,6 @@ const Options = (props:any) => {
 
   const {setToken, token, setUser} = props;
   const navigate = useNavigate()
-  console.log(token)
 
   useEffect(() => {
 
@@ -15,6 +14,7 @@ const Options = (props:any) => {
       setToken(null)
       localStorage.removeItem('token');
       setUser(null)
+      navigate('/')
     }
 
     const logInUser = () => {

@@ -15,7 +15,7 @@ import { getMapByName } from "./axios/axios";
 
 export const MapSpace = (props) => { 
 
-    const {toggle, newCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld} = props
+    const {toggle, newCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode} = props
     
     const [history, setHistory] = useState([currentWorld])
     const {mapName} = useParams();
@@ -23,7 +23,7 @@ export const MapSpace = (props) => {
     useEffect(() => {
 
       const fetchData = async () => {
-        if(mapName && user.id){
+        if(mapName && user){
         const map = await getMapByName(mapName, user.id)
         setCurrentWorld(map)
         setCurrentMap(map)
@@ -36,16 +36,14 @@ export const MapSpace = (props) => {
     },[user, mapName])
     
 
-    const switchMaps= async (clicked, fromHistory) => {
+    const switchMaps = async (clicked, fromHistory) => {
 
         let tempHistory = history
         tempHistory.push(currentMap)
         setHistory(tempHistory)
-        console.log(clicked)
         setCurrentMap(clicked)
         
         const children = await getChildren(clicked, user)
-        console.log(children)
         setChildren(children)
         
     }
@@ -80,7 +78,7 @@ export const MapSpace = (props) => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list expander" viewBox="0 0 16 16" onClick={handleExpander}>
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg>
-          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children}/>
+          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode}/>
         </div> 
     )
 }

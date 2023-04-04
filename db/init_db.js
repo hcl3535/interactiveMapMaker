@@ -21,7 +21,8 @@ async function buildTables() {
             username VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255),
             email VARCHAR(255) UNIQUE NOT NULL,
-            profileimageurl VARCHAR(255)
+            profileimageurl VARCHAR(255),
+            worldhistory VARCHAR ARRAY
           );
           
           CREATE TABLE icons (
@@ -55,8 +56,8 @@ async function buildTables() {
       console.log("starting to create users")
 
       const usersToCreate = [
-        {'username':'hunter', password:'Cartman35',email:'hunterl3535@yahoo.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/72678382_2718600728191984_7548284394268524544_n.jpg'},
-        {'username':'autumn', password:'bleh', email:'aes.strange@gmail.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/61648932_2113245415465494_7449850590022074368_n.jpg'}
+        {'username':'hunter', password:'Cartman35',email:'hunterl3535@yahoo.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/72678382_2718600728191984_7548284394268524544_n.jpg', 'worldhistory' : ['dorphil','peentrap']},
+        {'username':'autumn', password:'bleh', email:'aes.strange@gmail.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/61648932_2113245415465494_7449850590022074368_n.jpg','worldhistory' : []}
       ]
 
       await Promise.all(usersToCreate.map(createUser))

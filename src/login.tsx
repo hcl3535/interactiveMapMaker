@@ -28,6 +28,10 @@ const Login = (props:any) => {
         navigate('/')
     }
 
+    const goToRegister = () => {
+        navigate('/register')
+    }
+
     return (
         <form className="centered" onSubmit={submitHandler}>
             <div className="loginForm centered vertical-centered border">
@@ -47,6 +51,8 @@ const Login = (props:any) => {
                 <button
                 type="submit"
                 >login</button>
+                <h4 className="centered">dont have an account?</h4>
+                <h4 className="centered register" onClick={goToRegister}>Register</h4>
             </div>
         </form>
     )

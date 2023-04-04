@@ -1,5 +1,6 @@
-const { getAllUsers, getUserByUserAndPassword, getUserById, createUser } = require('../db/models/users');
-const jwt = require('jsonwebtoken')
+const { getAllUsers, getUserByUserAndPassword, getUserById, createUser, updateUserWorldHistory } = require('../db/models/users');
+const jwt = require('jsonwebtoken');
+const { getMapByUserAndName } = require('../db/models/maps');
 const secret = process.env.JWT_SECRET;
 
 const userRouter = require('express').Router();
@@ -35,6 +36,38 @@ userRouter.post('/login', async (req,res,next) => {
     }
 })
 
+userRouter.get('/:userId/worldhistory', async (req,res,next) => {
+    try {
+        const {userId} = req.params
+
+        const user = await getUserById(userId)
+
+        const userWorldHistoryNames = user.worldhistory
+
+        let userWorldHistory = await Promise.all(userWorldHistoryNames.map(async (value) => {
+
+            return(await getMapByUserAndName(userId, value))
+        }))
+
+        res.send(userWorldHistory)
+    } catch (error) {
+        next(error)
+    }
+})
+
+userRouter.patch('/:userId/worldhistory', async (req,res,next) => {
+    try {
+        const {newWorldHistory} = req.body
+        const {userId} = req.params
+        
+        const updatedWorldHistory = await updateUserWorldHistory(userId, newWorldHistory)
+        
+        res.send(updatedWorldHistory)
+    } catch (error) {
+        next(error)
+    }
+})
+
 userRouter.get('/me', async (req, res, next) => {
     const prefix = 'bearer '
 
@@ -58,7 +91,6 @@ userRouter.post('/register',async (req,res,next) => {
     const {username, password, email} = req.body;
     
     const newUser = await createUser({username, password, email})
-    console.log('newUser', newUser)
 
     const token = jwt.sign({
         username: newUser.username,

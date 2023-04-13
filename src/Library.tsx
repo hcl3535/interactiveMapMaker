@@ -59,22 +59,6 @@ const Library = (props: any) => {
             </>
         </div>
     )
-
-    // return(
-    //     <div className="libraryContainer">
-    //       <button className="createClickableButton" onClick={switchToCreateClickable}> create a clickable</button>
-    //        <> {Object.keys(allMaps).map(function(key, index) {
-    //           return(
-    //             <div key={index} className="flex library-item">
-    //               <button className="add-button-size" onClick={addCity}></button>
-    //               <img src={allMaps[key].icon} alt='N/A' className='thumbnail'></img>
-    //               <h1 className="vertical-centered">{key}</h1>
-    //             </div>
-    //           )
-    //         })}
-    //         </>
-    //     </div>
-    // )
 }
 
 export default Library;

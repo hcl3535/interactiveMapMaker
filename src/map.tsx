@@ -24,28 +24,22 @@ const Map: any = (props: any) => {
       const dragable = e.target
       
       dragable.classList.add('absolute')
+      console.log(e)
 
-      const dragablePosition = dragable.getBoundingClientRect();
-      const mapPosition = map[0].getBoundingClientRect();
-      const containerPosition = container[0].getBoundingClientRect();
-      console.log(dragablePosition)
-      console.log(mapPosition)
-      console.log(containerPosition)
-      let heightdiffrence = containerPosition.height - mapPosition.height
-      let widthdiffrence = containerPosition.width - mapPosition.width
-      console.log(heightdiffrence)
-      console.log(widthdiffrence)
+      let x = e.clientX
+      let y = e.clientY
+      
+      
       
 
   
       
       
-      let x = (100 * e.clientX ) / map[0].clientWidth
-      let y = (100 * e.clientY) / map[0].clientHeight
+      
 
       console.log(x,y)
-      dragable.style.left = `${x}%`
-      dragable.style.top = `${y}%`
+      dragable.style.left = `${x}px`
+      dragable.style.top = `${y}px`
       container[0].appendChild(dragable)
 
       if(editMode){

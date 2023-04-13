@@ -28,7 +28,6 @@ const CreateClickable = (props: any) => {
             userid: user.id
         }
  
-        console.log(currentMap)
         const formData = new FormData();
         formData.append('image',file)
         formData.append('fileProps',JSON.stringify(toAdd))

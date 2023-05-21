@@ -81,9 +81,9 @@ async function buildTables() {
 
       const mapsToCreate = [
         {'initialmap': true,'name': 'dorphil', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/worldMap.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1},
-        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 31, 'icony': 60, 'children': ['shop'], 'userid': 1},
-        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 60, 'icony': 60, 'children': [], 'userid': 1},
-        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 60, 'icony': 60, 'children': [], 'userid': 1},
+        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 14, 'icony': 3, 'children': ['shop'], 'userid': 1},
+        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 13, 'icony': 12, 'children': [], 'userid': 1},
+        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 5, 'icony': 10, 'children': [], 'userid': 1},
         {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': [], 'userid': 1},
       ]
 

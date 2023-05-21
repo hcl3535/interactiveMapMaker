@@ -15,7 +15,7 @@ import { getMapByName } from "./axios/axios";
 
 export const MapSpace = (props) => { 
 
-    const {toggle, newCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode} = props
+    const {toggle, newCity, setNewCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode} = props
     
     const [history, setHistory] = useState([currentWorld])
     const {mapName} = useParams();
@@ -78,7 +78,7 @@ export const MapSpace = (props) => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list expander" viewBox="0 0 16 16" onClick={handleExpander}>
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg>
-          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode}/>
+          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode}/>
         </div> 
     )
 }

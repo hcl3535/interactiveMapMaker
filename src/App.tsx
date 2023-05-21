@@ -93,7 +93,7 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
         <Route path="/map/:mapName" element={
           <div>
             <div className='App'>
-              <MapSpace toggle={toggle} newCity={newCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode}/>
+              <MapSpace toggle={toggle} newCity={newCity} setNewCity={setNewCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode}/>
               <div>
                 {isExpanded ? <RightColumn swapNewCity={swapNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap} setActiveTab={setActiveTab} activeTab={activeTab} setEditMode={setEditMode} editMode={editmode}/> : null}
               </div>

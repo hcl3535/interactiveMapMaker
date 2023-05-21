@@ -159,7 +159,6 @@ export async function createMap(formData, userid) {
 
 export async function updateCityIconLocation(city) {
     try {
-        console.log(city)
         const {id} = city;
         const {data} = await axios.patch(`/maps/${id}`,{city: city})
         return data

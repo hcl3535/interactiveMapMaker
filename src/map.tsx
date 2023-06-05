@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { updateCityIconLocation, updateUserWorldHistory } from "./axios/axios";
-import { waitFor } from "@testing-library/react";
+import React, {useState } from "react";
+import { updateUserWorldHistory } from "./axios/axios";
 import Grid from "./grid";
 
 const Map: any = (props: any) => {
 
-    const {currentMap, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren, worldHistory, setWorldHistory, user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props;
+    const {currentMap, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props;
 
-    const [grid, setGrid] = useState([])
-    // const [newCityLocation, setNewCityLoaction] = useState({})
-    
-    const container = document.querySelectorAll<HTMLElement>('.container')
-    const map = document.querySelectorAll<HTMLElement>('.map')
-    const editables = document.querySelectorAll<HTMLElement>('.editing')
 
     // changing world history
       

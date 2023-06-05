@@ -1,12 +1,12 @@
-import { match } from "assert";
+
 import React, { useEffect, useState} from "react";
 import { deleteCity, removeChild, updateCityIconLocation } from "./axios/axios";
 import { getChildren } from "./helper";
-import { concurrently } from "concurrently";
+
 
 const Grid = (props:any) => {
     
-    const {children, setChildren,user, switchMaps,newCity,setNewCity,editMode, setEditMode, newCityLocation, setNewCityLocation, currentMap, setCurrentlyEditing, currentlyEditing} = props
+    const {children, setChildren,user, switchMaps,newCity,setNewCity,editMode,newCityLocation, setNewCityLocation, currentMap, setCurrentlyEditing, currentlyEditing} = props
 
     const [grid, setGrid] = useState([])
     // const [newCityLocation, setNewCityLoaction] = useState<any>(null)

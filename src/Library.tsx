@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getEffectiveConstraintOfTypeParameter } from "typescript";
 import { deleteIcon, getIconsByUserId} from "./axios/axios";
 
 const Library = (props: any) => {
 
-    const {allMaps, swapNewCity, switchActiveTab, user} = props;
+    const {swapNewCity, switchActiveTab, user} = props;
 
     const [AllIcons, setAllIcons] = useState([])
     

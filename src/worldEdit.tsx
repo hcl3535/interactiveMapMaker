@@ -8,7 +8,6 @@ const WorldEdit = (props:any) => {
     const {user, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing } = props;
 
     const [userWorlds, setUserWorlds] = useState<any>()
-    const [width, setWidth] = useState(1)
 
     const navigate = useNavigate()
 
@@ -45,7 +44,7 @@ const WorldEdit = (props:any) => {
       width = Number(width)
       width--
       currentEditingElement.style.width = `${width}%`
-      setWidth(width)
+      
       await changeCitySize(currentlyEditing, width)
 
       const copy = currentlyEditing
@@ -60,7 +59,7 @@ const WorldEdit = (props:any) => {
       width = Number(width)
       width++
       currentEditingElement.style.width = `${width}%`
-      setWidth(width)
+      
       await changeCitySize(currentlyEditing, width)
 
       const copy = currentlyEditing

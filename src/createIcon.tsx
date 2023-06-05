@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { uploadIcon } from "./axios/axios";
-import city from './Photos/city1Icon.png'
 
 const CreateIcon = (props:any) => {
 

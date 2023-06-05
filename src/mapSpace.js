@@ -1,11 +1,4 @@
 import React, { useEffect, useState } from "react";
-import mapImg from "./Photos/worldMap.png"
-import city from './Photos/city1Icon.png'
-import newMap from './Photos/city1map.jpg'
-import city2 from './Photos/city2Icon.png'
-import cityMap2 from './Photos/city2Map.jpg'
-import shop from './Photos/shopIcon.png'
-import shopMap from './Photos/shopMap.png'
 import { getChildren } from "./helper";
 import { useParams } from "react-router-dom";
 import { getMapByName } from "./axios/axios";
@@ -15,7 +8,7 @@ import Map from "./map";
 
 export const MapSpace = (props) => { 
 
-    const {toggle, newCity, setNewCity, swapCurrentMap, mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props
+    const {toggle, newCity, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props
     
     const [history, setHistory] = useState([currentWorld])
     const {mapName} = useParams();

@@ -1,11 +1,10 @@
-import { NetworkManager } from "aws-sdk";
-import React, { Children, useEffect, useState } from "react";
-import { changeCitySize, createMap, getIconById } from "./axios/axios";
+import React, {useState } from "react";
+import {createMap, getIconById } from "./axios/axios";
 
  
 const CreateClickable = (props: any) => {
 
-    const {currentMap, setNewCity, allMaps, updateMapDictionary, swapNewCity, switchActiveTab, user, setChildren,children, setCurrentMap, newCityLocation, currentlyEditing, setCurrentlyEditing} = props;
+    const {currentMap, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')

@@ -1,12 +1,12 @@
-import { NetworkManager } from "aws-sdk";
-import React, { Children, useEffect, useState } from "react";
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createMap, getIconById } from "./axios/axios";
+import { createMap} from "./axios/axios";
 
  
 const CreateWorld = (props: any) => {
 
-    const {currentMap, allMaps, updateMapDictionary, swapNewCity, switchActiveTab, user, setChildren,children, setCurrentMap,setActiveTab} = props;
+    const {user,setActiveTab} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')

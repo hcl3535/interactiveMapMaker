@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { getAllUsers } from "./axios/axios";
+import React from "react";
+
 
 const NavBar = (props:any) => {
  

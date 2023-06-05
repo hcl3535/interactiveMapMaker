@@ -1,4 +1,4 @@
-import { getAllUsers, getAllUserWorlds, getIconById, getMapByName, getMe } from './axios/axios';
+import {getIconById, getMapByName} from './axios/axios';
 
 export async function getChildren(map, userInfo) {
 

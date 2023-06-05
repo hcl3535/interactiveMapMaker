@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MapSpace from './mapSpace.js';
-import LeftColumn from './leftColumn';
 import RightColumn from './rightColumn';
-import mapImg from "./Photos/worldMap.png"
-import city from './Photos/city1Icon.png'
-import newMap from './Photos/city1map.jpg'
-import city2 from './Photos/city2Icon.png'
-import cityMap2 from './Photos/city2Map.jpg'
-import shop from './Photos/shopIcon.png'
-import shopMap from './Photos/shopMap.png'
 import ProfileInfo from './profileinfo';
-import { getAllUsers, getAllUserWorlds, getIconById, getMapByName, getMe } from './axios/axios';
-import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
+import {getAllUserWorlds,getMe } from './axios/axios';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Login from './login';
 import Register from './register';
 import { getChildren } from './helper';

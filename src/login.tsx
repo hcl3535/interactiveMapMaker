@@ -30,7 +30,7 @@ const Login = (props:any) => {
 
           setUserName("");
           setPassword("");
-          navigate('/')
+          navigate('/home')
         }
     }
 

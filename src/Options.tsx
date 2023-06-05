@@ -14,7 +14,7 @@ const Options = (props:any) => {
       setToken(null)
       localStorage.removeItem('token');
       setUser(null)
-      navigate('/')
+      navigate('/home')
     }
 
     const logInUser = () => {

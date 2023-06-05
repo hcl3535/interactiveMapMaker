@@ -32,7 +32,7 @@ const Register = (props:any) => {
         setPassword('')
         setEmail('')
 
-        navigate('/')
+        navigate('/home')
         }
     }
 

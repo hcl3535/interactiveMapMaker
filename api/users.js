@@ -19,7 +19,7 @@ userRouter.post('/login', async (req,res,next) => {
     const {username, password} = req.body;
 
     try {
-        console.log(username,password)
+        
         const user = await getUserByUserAndPassword(username, password)
 
         if(user === undefined){
@@ -48,7 +48,7 @@ userRouter.get('/:userId/worldhistory', async (req,res,next) => {
         const {userId} = req.params
 
         const user = await getUserById(userId)
-        console.log('user',user)
+        
         
         const userWorldHistoryNames = user.worldhistory
         
@@ -104,7 +104,7 @@ userRouter.post('/register',async (req,res,next) => {
 
     const userNameIsTaken = await getUserByUsername(username)
     
-    console.log('bhwdhb',userNameIsTaken)
+    
     if(userNameIsTaken !== undefined){
         res.send(confirmation = {
             message: "username is allready taken",

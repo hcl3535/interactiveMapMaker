@@ -96,7 +96,7 @@ const WorldEdit = (props:any) => {
           <div>
             <h2>currenty editing</h2>
             <div className="preview-window flex vertical-centered">
-              <img className="preview" src={currentlyEditing.icon.iconimageurl}></img>
+              <img className="preview" src={currentlyEditing.icon.iconimageurl} alt=""></img>
             </div>
             <h2>change size</h2>
             <div onClick={decreeseIconSize}>

@@ -15,7 +15,6 @@ const CreateIcon = (props:any) => {
           reader.addEventListener('load', () => {
               
               setIcon(reader.result)
-              console.log()
           })
           setFile(imageInput?.files?.[0])
           reader.readAsDataURL(imageInput?.files?.[0])
@@ -36,7 +35,7 @@ const CreateIcon = (props:any) => {
     return (
         <form onSubmit={createNewIcon}>
           <h1>create a Icon</h1>
-          <img className="preview" id='preview' src={icon}></img>
+          <img className="preview" id='preview' src={icon} alt=""></img>
           <input 
             type='file'
             id="image-input" 

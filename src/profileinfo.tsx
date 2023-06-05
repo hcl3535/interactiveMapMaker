@@ -35,6 +35,7 @@ const ProfileInfo = (props:any) => {
             <div className="profilePicBorder">
               <img 
                 src={user.profileimageurl}
+                alt=""
                 className="profilePic"
                 onClick={switchToOptions}
                 />

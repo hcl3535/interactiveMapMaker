@@ -150,6 +150,7 @@ const Grid = (props:any) => {
                       >
                         <img
                           src={matchedChild.icon.iconimageurl}
+                          alt=""
                           className="city editing currentlyEditing"
                           key={index}
                           style={{width:`${matchedChild.iconwidth}%`}}
@@ -170,6 +171,7 @@ const Grid = (props:any) => {
                     >
                       <img
                         src={matchedChild.icon.iconimageurl}
+                        alt=""
                         className="city editing"
                         key={index}
                         style={{width:`${matchedChild.iconwidth}%`}}
@@ -192,6 +194,7 @@ const Grid = (props:any) => {
                   >
                     <img
                       src={matchedChild.icon.iconimageurl}
+                      alt=""
                       className="city"
                       key={index}
                       style={{width:`${matchedChild.iconwidth}%`}}

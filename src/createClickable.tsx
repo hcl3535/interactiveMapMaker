@@ -110,7 +110,7 @@ const CreateClickable = (props: any) => {
             <input type='text' onChange={handleName}></input>
             <h1 className="">map</h1>
             {map ?
-              <img className="preview" src={map}></img>
+              <img className="preview" src={map} alt=""></img>
               : <div className="preview-window flex vertical-centered">
                   <h2 className="">upload image</h2>
               </div>

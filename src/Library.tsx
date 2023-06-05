@@ -20,7 +20,7 @@ const Library = (props: any) => {
     }
 
     const deleteCity = async (key:any) => {
-      console.log(key)
+      
       await deleteIcon(key.id)
     }
 

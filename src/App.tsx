@@ -92,7 +92,7 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
             </div>
           </div>
         }/>
-        <Route path="/home" element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>}/>
+        <Route path="" element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>}/>
         <Route path="/allMaps" element={<AllMaps user={user} setActiveTab={setActiveTab} setIsExpanded={setIsExpanded}/>}/>
       </Routes>
     </BrowserRouter>

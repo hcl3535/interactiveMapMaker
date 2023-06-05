@@ -19,7 +19,7 @@ const ProfileInfo = (props:any) => {
       setNewCity(null)
       setActiveTab('library')
       setEditMode(false)
-      navigate(`/home`)
+      navigate(``)
     }
 
     const goToLogin = () => {

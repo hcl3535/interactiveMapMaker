@@ -18,7 +18,7 @@ const AllMaps = (props:any) => {
     },[user])
 
     return(
-        <div className="homePage border">
+        <div className="homePage">
             <h1>All Maps</h1>
             <div className="mapSelectorContainer">
         {userWorlds?

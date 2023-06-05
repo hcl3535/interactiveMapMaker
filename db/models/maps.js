@@ -3,13 +3,13 @@ const client = require('../client')
 async function createMap(map) {
     try {
         
-        const {initialmap, name, mapurl, icon, iconx, icony, children, userid} = map;
+        const {initialmap, name, mapurl, icon, iconx, icony, children, userid, iconwidth} = map;
 
         const {rows: [addedmap]} = await client.query(`
-            INSERT INTO maps (initialmap, name, mapurl, icon, iconx, icony, children, userid)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            INSERT INTO maps (initialmap, name, mapurl, icon, iconx, icony, children, userid, iconwidth)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             RETURNING *;
-        `,[initialmap, name, mapurl, icon, iconx, icony, children, userid])
+        `,[initialmap, name, mapurl, icon, iconx, icony, children, userid,iconwidth])
 
         return addedmap
     } catch (error) {
@@ -37,7 +37,7 @@ async function getAllUserWorldMaps(userId) {
             FROM maps
             WHERE userid = $1 AND initialmap = true
         `,[userId])
-        console.log(rows)
+        
         return rows
     } catch (error) {
         console.log(error)
@@ -63,7 +63,24 @@ async function updateChildren(id,updatedChildren){
             UPDATE maps
             SET children = $2
             WHERE id = $1
+            RETURNING *
         `,[id, updatedChildren])
+        
+        return map
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function updateCitySize(id,width){
+    try {
+        const {rows: [map]} = await client.query(`
+            UPDATE maps
+            SET iconwidth = $2
+            WHERE id = $1
+            RETURNING *
+        `, [id, width])
+
         return map
     } catch (error) {
         console.log(error)
@@ -72,15 +89,27 @@ async function updateChildren(id,updatedChildren){
 
 async function updateMap(id, iconx, icony) {
     try {
-        console.log(id, iconx, icony)
-        const {rows : [map]} = await client.query(`
+        const {rows} = await client.query(`
             UPDATE maps
             SET iconx = $2, icony =$3
             WHERE id = $1
+            RETURNING *
         `, [id, iconx, icony])
 
-        console.log(map)
-        return map
+        return rows
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function deleteMap(mapId){
+    try {
+        const {rows: deletedCity} = await client.query(`
+          DELETE FROM maps
+          WHERE id = $1
+          Returning *
+        `,[mapId])
+        return deletedCity
     } catch (error) {
         console.log(error)
     }
@@ -92,5 +121,7 @@ module.exports = {
   getAllUserWorldMaps,
   getMapByUserAndName,
   updateChildren,
-  updateMap
+  updateMap,
+  deleteMap,
+  updateCitySize
 }

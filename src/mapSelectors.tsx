@@ -26,7 +26,9 @@ const MapSelector = (props:any) => {
     }
 
     if(user){
+      if(userWorlds){
       world = userWorlds[containerNumber - 1]
+    }
     }
 
     if(!user){
@@ -49,7 +51,7 @@ const MapSelector = (props:any) => {
 
     return(
         <div className="mapSelector" onClick={goToClickedWorld}>
-          <h1>{world?.name}</h1>
+          <h1 className="worldName">{world?.name}</h1>
           <img src={world?.mapurl} alt=''></img>
         </div>
     )

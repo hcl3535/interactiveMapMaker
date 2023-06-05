@@ -8,6 +8,7 @@ const Register = (props:any) => {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [email,setEmail] = useState('')
+    const [message,setMessage] = useState('')
     const navigate = useNavigate()
 
     const submitHandler = async (e:any) => {
@@ -20,6 +21,10 @@ const Register = (props:any) => {
 
         const response = await registerUser(username,password,email)
 
+        if(response.message !== "new user registered!"){
+            setMessage(response.message)
+        }else{
+
         setToken(response.token)
         localStorage.setItem('token',response.token)
 
@@ -28,33 +33,38 @@ const Register = (props:any) => {
         setEmail('')
 
         navigate('/')
+        }
     }
 
     return (
-        <form className="centered" onSubmit={submitHandler}>
-            <div className="loginForm centered vertical-centered border">
-              <h1 className="centered">register</h1>
-                <label className="centered">username</label>
+        <form className="" onSubmit={submitHandler}>
+            <div className="loginForm">
+              <h1 className="centered">Register</h1>
+                <h2 className="centered">username</h2>
                 <input
                 type='text'
                 value={username}
                 onChange={({target: {value}}) => setUserName(value)}
                 />
-                <label className="centered">password</label>
+                <h2 className="centered">password</h2>
                 <input
                 type='text'
                 value={password}
                 onChange={({target: {value}}) => setPassword(value)}
                 />
-                <label className="centered">E-Mail</label>
+                <h2 className="centered">E-Mail</h2>
                 <input
                 type='text'
                 value={email}
                 onChange={({target: {value}}) => setEmail(value)}
                 />
+                <h2>{message}</h2>
                 <button
                 type="submit"
-                >login</button>
+                className="login-button"
+                >
+                  <h2>Register</h2>    
+                </button>
             </div>
         </form>
     )

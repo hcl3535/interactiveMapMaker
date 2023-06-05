@@ -2,13 +2,13 @@ const client = require('../client')
 
 async function createIcon (newIcon) {
     try {
-        console.log(newIcon)
+        
         const {rows: [icon]} = await client.query(`
         INSERT INTO icons (iconimageurl, userid, s3key)
         VALUES ($1, $2, $3)
         RETURNING *;
         `,[newIcon.iconimageurl, newIcon.userid, newIcon.s3key]);
-        console.log(icon)
+        
 
         return icon
     } catch (error) {

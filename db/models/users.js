@@ -38,7 +38,9 @@ async function getAllUsers () {
 async function getUserByUserAndPassword (username, password) {
     try {
         const user = await getUserByUsername(username)
-
+        if(user === undefined){
+            return user
+        }
         if(password === user.password){
             return user
         } else {
@@ -73,13 +75,13 @@ async function getUserById(id) {
 }
 
 async function updateUserWorldHistory(id, newWorldHistory){
-    console.log('passed info',id,newWorldHistory)
+    
     const {rows: [user]} = await client.query(`
     UPDATE users
     SET worldhistory = $2
     WHERE id = $1
     `,[id, newWorldHistory])
-    console.log('updated',user)
+    
     return user
 }
 

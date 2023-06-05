@@ -22,6 +22,7 @@ export async function getAllUsers() {
 
 export async function getWorldHistoryByUserId(userId) {
     try {
+        
         const {data} = await axios.get(`/users/${userId}/worldhistory`)
         return data
     } catch (error) {
@@ -75,9 +76,10 @@ export async function registerUser(username, password, email) {
         {
             username:username,
             password:password,
-            email:email
+            email:email,
+            profileimageurl:'',
+            worldhistory:[]
         })
-        console.log(data)
         return data
     } catch (error) {
         console.error(error)
@@ -118,7 +120,6 @@ export async function uploadIcon(formData) {
 
 export async function deleteIcon(iconId) {
     try {
-        console.log(iconId)
         const {data} = await axios.delete(`/icons/${iconId}`)
         return data
     } catch (error) {
@@ -146,6 +147,7 @@ export async function getMapByName(name,userId) {
 
 export async function createMap(formData, userid) {
     try {
+        console.log(formData)
         const {data} = await axios.post(`/maps/${userid}`,formData,{
             headers: {
               "Content-Type": "multipart/form-data",
@@ -163,7 +165,42 @@ export async function updateCityIconLocation(city) {
         const {data} = await axios.patch(`/maps/${id}`,{city: city})
         return data
     } catch (error) {
-        
+        console.log(error)
     }
 }
 
+export async function deleteCity(city) {
+    try {
+        const {id} = city;
+        const {data} = await axios.delete(`maps/${id}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function removeChild(parrentMap,childToRemove){
+
+    try {
+        const {id} = parrentMap
+        const {data} = await axios.patch(`maps/removeChild/${id}`,{parrentMap: parrentMap,childToRemove:childToRemove})
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function changeCitySize(city,width) {
+    
+    try {
+
+        const {id} = city;
+        console.log(id, width)
+        const {data} = await axios.patch(`maps/changeCitySize/${id}`,{width:width})
+
+        return data
+            
+    } catch (error) {
+        console.log(error)
+    }
+}

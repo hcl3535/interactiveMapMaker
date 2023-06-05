@@ -10,7 +10,12 @@ const Library = (props: any) => {
     
     const addCity = (key: any) => {
       switchActiveTab('addClickable')
-      let newCity = key.iconimageurl
+      let newCity = {
+        iconimageurl: key.iconimageurl,
+        iconx: 1,
+        icony: 1
+      }
+      
       swapNewCity(newCity)
     }
 
@@ -35,16 +40,18 @@ const Library = (props: any) => {
 
     return(
       <div className="libraryContainer">
-           <button className="createClickableButton" onClick={switchToCreateClickable}> create a Icon</button>
+           <button className="createClickableButton" onClick={switchToCreateClickable}>
+            <h3 className="createIconWords">Create a Icon</h3>
+           </button>
             <> {AllIcons.map(function(key:any, index:any) {
               return(
                 <div key={index} className="flex library-item">
                   <button className="add-button-size add-button" onClick={() => addCity(key)}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
-                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                   </svg>
                   </button>
-                  <img src={key.iconimageurl} alt='N/A' className='thumbnail'></img>
+                    <img src={key.iconimageurl} alt='N/A' className='thumbnail'></img>
                 
                   <button className="add-button-size delete-button " onClick={() => deleteCity(key)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">

@@ -1,4 +1,4 @@
-const { getAllUsers, getUserByUserAndPassword, getUserById, createUser, updateUserWorldHistory } = require('../db/models/users');
+const { getAllUsers, getUserByUserAndPassword, getUserById, createUser, updateUserWorldHistory, getUserByUsername } = require('../db/models/users');
 const jwt = require('jsonwebtoken');
 const { getMapByUserAndName } = require('../db/models/maps');
 const secret = process.env.JWT_SECRET;
@@ -19,7 +19,14 @@ userRouter.post('/login', async (req,res,next) => {
     const {username, password} = req.body;
 
     try {
+        console.log(username,password)
         const user = await getUserByUserAndPassword(username, password)
+
+        if(user === undefined){
+            res.send(confirmation = {
+                message: 'username or password is incorrect'
+            })
+        }else{
         
         const token = jwt.sign({username: username, id: user.id}, secret)
 
@@ -30,7 +37,7 @@ userRouter.post('/login', async (req,res,next) => {
         }
 
         res.send(confirmation)
-
+        }
     } catch (error) {
         next(error)
     }
@@ -41,8 +48,10 @@ userRouter.get('/:userId/worldhistory', async (req,res,next) => {
         const {userId} = req.params
 
         const user = await getUserById(userId)
-
+        console.log('user',user)
+        
         const userWorldHistoryNames = user.worldhistory
+        
 
         let userWorldHistory = await Promise.all(userWorldHistoryNames.map(async (value) => {
 
@@ -88,9 +97,28 @@ userRouter.get('/me', async (req, res, next) => {
 })
 
 userRouter.post('/register',async (req,res,next) => {
-    const {username, password, email} = req.body;
+
+    try {
+
+    const {username, password, email, profileimageurl,worldhistory} = req.body;
+
+    const userNameIsTaken = await getUserByUsername(username)
     
-    const newUser = await createUser({username, password, email})
+    console.log('bhwdhb',userNameIsTaken)
+    if(userNameIsTaken !== undefined){
+        res.send(confirmation = {
+            message: "username is allready taken",
+        })
+    } else if(password.length < 8){
+        res.send(confirmation = {
+            message: "password must be longer than 8 characters",
+        })
+    } else if(!email.includes('@') || !email.includes('.com')){
+        res.send(confirmation = {
+            message: "must provide valid email address",
+        })
+    } else {
+    const newUser = await createUser({username, password, email,profileimageurl,worldhistory})
 
     const token = jwt.sign({
         username: newUser.username,
@@ -105,8 +133,12 @@ userRouter.post('/register',async (req,res,next) => {
             username: newUser.username
         }
     };
-    console.log('confirmation', confirmation)
+    
     res.send(confirmation);
+  }
+} catch (error) {
+    next(error)  
+}
 })
 
 module.exports = userRouter;

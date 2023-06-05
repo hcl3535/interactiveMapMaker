@@ -1,4 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+} 
 
+#root{
+  margin: 0;
+  padding: 0;
+}
 .App{
   display: flex;
   justify-content: space-between;
@@ -7,25 +15,47 @@
 .border{
   border: 5px solid black;
 }
+.mapSpace-size {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #27282d;
+  user-select: none;
+  overflow: hidden;
+  flex-grow: 1;
+  height: 95.7vh;
+  position: relative;
+}
 
-.container{
+.containers-container{
+  display: inline-block;
+  position: relative;
+  justify-content: center;
+  max-width: 90%;
+  max-height: 90%;
+  /* flex-grow: 1; */
+}
+
+.container {
   display: grid;
   position: relative;
-  grid-template-columns: repeat(24,minmax(min-content, 1fr));
-  grid-template-rows: repeat(24,minmax(min-content, .9fr));
+  grid-template-columns: repeat(24, minmax(min-content, 1fr));
+  grid-template-rows: repeat(24, minmax(min-content, 0.9fr));
+  box-shadow: 0 0 15vh darkgray;
+  /* flex-grow: 1; */
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.grid {
-  /* border: 1px solid black; */
-  /* z-index: 3; */
-} 
-
-.map {
-  max-width:100%;
+.map{
+  display: flex;
+  max-width: 100%;
+  width:100%;
+  max-height:85vh;
   height: auto;
   grid-area: 1/1/25/25;
-
 }
+
 .centered{
   display: flex;
   justify-content: center;
@@ -35,6 +65,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.align-items-centered{
+  justify-content: center;
 }
 
 .column{
@@ -46,8 +79,9 @@
   position: absolute;
   z-index: 10;
   user-select: none;
-  width:15%;
+  width:10%;
   height: auto;
+  
 }
 
 .city:hover {
@@ -55,6 +89,7 @@
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  cursor: pointer;
 }
 
  @keyframes hovered {
@@ -66,19 +101,10 @@
     scale:120%;
    }
  }
- 
- .mapSpace-size{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background-color: rgb(190, 190, 190);
-   user-select: none;
-   overflow:hidden;
-   flex-grow: 100;
-   height: 93vh;
-   position: relative;
-  }
 
+.city:active{
+  opacity: 70%;
+}
   
   .leftColumn {
     width:10%;
@@ -87,8 +113,10 @@
   
   .rightColumn {
     width:20vw;
-    height:93vh;
-    background-color: darkgray;
+    height:95.7vh;
+    background-image: linear-gradient(to bottom, #2f3034, #27282d 15%);
+    border-left: 4px solid black;
+    border-right: 4px solid black;
   }
 
   .libraryContainer{
@@ -118,15 +146,36 @@
    position: absolute;
    z-index: 1;
   }
+  .back-arrow:hover{
+    cursor: pointer;
+  }
 
   .expander {
     scale: 200%;
    align-self: flex-start;
-   left: 97%;
+   left: 95%;
    top: 2%;
    position: absolute;
    z-index: 1;
   }
+
+  .expander:hover{
+    cursor: pointer;
+  }
+
+  .city-delete {
+    scale: 400%;
+    align-self: flex-start;
+    left: 88%;
+    top: 94%;
+    position: absolute;
+    z-index: 3;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: .25vh;
+    padding-bottom: .25vh;
+  }
+
 
   .thumbnail{
     width: 7vw;
@@ -138,10 +187,13 @@
   }
 
   .library-item{
-    border: 2px solid grey;
-    background-color: rgb(153, 153, 153);
-    
+    background-image: linear-gradient(to bottom, #2f3034, #27282d 20%,#27282d 80%, #2f3034 100%);
+    justify-content: space-between;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 1vh;
   }
+  
 
   .dragging {
     opacity: 50%;
@@ -153,12 +205,30 @@
 
   .add-button-size{
     height:100%;
+    scale: 1.5;
     aspect-ratio: 1;
+    background-color: transparent;
+    border: none;
+  }
+  .add-button-size:hover{
+    animation-name: hoveredLibraryButtons;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+  }
+
+  @keyframes hoveredLibraryButtons {
+    0% {
+     scale:1.5;
+    }
+ 
+    100% {
+     scale:3;
+    }
   }
 
   .editing {
-    width:15%;
-    height: auto;
     position: absolute;
     z-index: 5;
     user-select: none;
@@ -166,24 +236,42 @@
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    /* top:50%;
-    left:50%; */
   }
 
+  .edit-arrow-left{
+    position: relative;
+    
+  }
   .preview{
     width:100%;
     max-height: 50%;
   }
 
+  .preview-window{
+    border: 2px solid black;
+    border-left: none;
+    aspect-ratio: 1/1;
+  }
+
   .createClickableButton{
     width:100%;
     height:4vh;
+    background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
+    border: none;
+  }
+
+  .createIconWords:hover{
+    cursor: pointer;
+    animation-name: hovered;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
 
   .profileInfo{
-    border: 5px solid black;
+    border-bottom: 4px solid black;
     display: flex;
-    background-color: rgb(190, 190, 190);
+    background-color: #27282d;
     height: 4vh;
     justify-content: flex-end;
   }
@@ -197,22 +285,32 @@
   .profileName{
     position: relative;
     height: 4vh;
-    margin-top: 0;
+    margin-top: .5vh;
     margin-right: 2vw;
+    
     }
 
   .profileHome{
     position: relative;
     height: 4vh;
-    margin-top: 0;
+    margin-left: 1vw;
+    margin-top: .5vh;
     margin-right: auto;
+    
   }  
+
+  .profileHome:hover{
+    cursor: pointer;
+  }
   .loginForm{
     display:flex;
     flex-direction: column;
-    width:50vw;
-    height: 50vh;
     background-color: rgb(190, 190, 190);
+    background-color: #27282d;
+    align-items: center;
+    flex-direction: column;
+    height: 95.7vh;
+    width:100%;
     }
 
   .loginForm > * {
@@ -221,15 +319,34 @@
 
   .navbarIcon{
     width:80%;
+    
   }
 
-.homePage{
-  background-color: rgb(190, 190, 190);
+  .navItem{
+    border-bottom: 4px solid black;
+  }
+
+  .navItem:hover{
+    cursor: pointer;
+  }
+.currentWorld{
+  width:100%;
+}  
+
+.worldSelectAndEditMode{
   display: flex;
-  justify-content: center;
+}
+
+.world-select {
+width:50%;
+}
+
+.homePage{
+  background-color: #27282d;
+  display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 95.7vh;
 }  
 
 .mapSelectorContainer{
@@ -240,7 +357,8 @@
 }
 
 .mapSelector{
-  max-height:33vh;
+  max-height:50vh;
+  background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
   border: 3px solid black;
   border-radius: 5%;
   aspect-ratio: 9/16;
@@ -251,12 +369,38 @@
 }
 
 .mapSelector > img {
-  height:100%;
+  height: 80%
+}
+
+.mapSelector:hover{
+  animation-name: hoveredMapSelectors;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+}
+
+@keyframes hoveredMapSelectors {
+  0% {
+   scale:1;
+  }
+
+  100% {
+   scale:1.1;
+  }
 }
 
 
 .register {
   margin:0px;
+}
+
+.register:hover{
+  cursor: pointer;
+  animation-name: hovered;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 .switch {
   position: relative;
@@ -280,7 +424,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #444548;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -292,17 +436,17 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: #27282d;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #444548;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #27282d;
 }
 
 input:checked + .slider:before {
@@ -321,7 +465,163 @@ input:checked + .slider:before {
 }
 
 .editmode {
-  float:right;
-  margin-right: 5%;
+  width: 50%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.select-box {
+  position: relative;
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+  font-size: 18px;
+  background-color: #27282d;
+  border: none;
+  cursor: pointer;
+  
+  &__current {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    
+    &:focus {
+      & + .select-box__list {
+        opacity: 1;
+        border:none;
+        
+
+        animation-name: none;
+        
+        .select-box__option {
+          cursor: pointer;
+          border: none;
+        }
+      }
+      
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+        border: none;
+      }
+    }
+  }
+  
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+    border: none;
+  }
+  
+  &__value {
+    display: flex;
+    border: none;
+    cursor: pointer;
+  }
+  
+  &__input {
+    display: none;
+    border: none;
+    cursor: pointer;
+    
+    &:checked + .select-box__input-text {
+      display: block;
+      border: none;
+    }
+  }
+  
+  &__input-text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  &__list {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    border: none;
+    cursor: pointer;
+    
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+  
+  }
+  
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: #27282d;
+    border: none;
+    cursor: pointer;
+    
+    &:hover,
+    &:focus {
+      color: #546c84;
+      background-color: #27282d;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+.option-item{
+  padding-left: 1vw;
+}
+
+.option-item:hover{
+  cursor: pointer;
+}
+
+.allMapsButton:hover{
+  cursor: pointer;
+}
+.login-button{
+  margin-top: 2vh;
+  background-color: #27282d;
+  border: none;
+}
+
+.login-button:hover{
+  cursor: pointer;
+    animation-name: hovered;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.upload-button{
+  margin-top: 2vh;
+  background-color: #27282d;
+  border: none;
+  margin-bottom: 2vh;
+  width:100%;
+}
+
+.newCity{
+  width:15%
+}

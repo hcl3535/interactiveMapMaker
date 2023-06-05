@@ -19,7 +19,7 @@ async function buildTables() {
           CREATE TABLE users (
             id SERIAL PRIMARY KEY,
             username VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255),
+            password TEXT,
             email VARCHAR(255) UNIQUE NOT NULL,
             profileimageurl VARCHAR(255),
             worldhistory VARCHAR ARRAY
@@ -41,7 +41,8 @@ async function buildTables() {
             iconx FLOAT,
             icony FLOAT,
             children VARCHAR ARRAY,
-            userid INTEGER REFERENCES users(id)
+            userid INTEGER REFERENCES users(id),
+            iconwidth FLOAT
           );
         `)
         
@@ -56,7 +57,7 @@ async function buildTables() {
       console.log("starting to create users")
 
       const usersToCreate = [
-        {'username':'hunter', password:'Cartman35',email:'hunterl3535@yahoo.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/72678382_2718600728191984_7548284394268524544_n.jpg', 'worldhistory' : ['dorphil','peentrap']},
+        {'username':'hunter', password:'Cartman35#',email:'hunterl3535@yahoo.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/72678382_2718600728191984_7548284394268524544_n.jpg', 'worldhistory' : ['dorphil','peentrap']},
         {'username':'autumn', password:'bleh', email:'aes.strange@gmail.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/61648932_2113245415465494_7449850590022074368_n.jpg','worldhistory' : []}
       ]
 
@@ -80,11 +81,11 @@ async function buildTables() {
 
 
       const mapsToCreate = [
-        {'initialmap': true,'name': 'dorphil', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/worldMap.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1},
-        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 14, 'icony': 3, 'children': ['shop'], 'userid': 1},
-        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 13, 'icony': 12, 'children': [], 'userid': 1},
-        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 5, 'icony': 10, 'children': [], 'userid': 1},
-        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': [], 'userid': 1},
+        {'initialmap': true,'name': 'dorphil', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/worldMap.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1, 'iconwidth': null},
+        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 14, 'icony': 3, 'children': ['shop'], 'userid': 1, 'iconwidth': 10},
+        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 13, 'icony': 12, 'children': [], 'userid': 1, 'iconwidth': 15},
+        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 5, 'icony': 10, 'children': [], 'userid': 1, 'iconwidth': 20},
+        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': [], 'userid': 1, 'iconwidth': null},
       ]
 
       await Promise.all(mapsToCreate.map(createMap))

@@ -7,11 +7,10 @@ const HomePage = (props:any) => {
 
     const {user, worldHistory, setWorldHistory,setIsExpanded, setActiveTab} = props;
 
-    
-
     let numberOfMapContainers = 5
     let mapContainers = []
     const navigate = useNavigate()
+    
 
     useEffect(() => {
 
@@ -24,6 +23,8 @@ const HomePage = (props:any) => {
       
         fetchData()
       },[user])
+      
+
 
     for (let i = 0; i < numberOfMapContainers;i++) {
       mapContainers.push(<MapSelector key={i} containerNumber={i} user={user} userWorlds={worldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>)
@@ -34,12 +35,12 @@ const HomePage = (props:any) => {
     }
 
     return (
-        <div className="homePage border">
+        <div className="homePage">
           <h1 className="centered">Recent Maps</h1>
           <div className="mapSelectorContainer">
             {mapContainers}
           </div>
-          <h3 onClick={goToAllMaps}>all Maps</h3>
+          <h1 className="allMapsButton" onClick={goToAllMaps}>all Maps</h1>
         </div>
     )
 }

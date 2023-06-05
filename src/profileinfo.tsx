@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProfileInfo = (props:any) => {
 
-    const {user, openOptions,token} = props;
+    const {user, openOptions,token, setNewCity,setActiveTab, setEditMode} = props;
 
     const navigate = useNavigate()
 
@@ -16,7 +16,10 @@ const ProfileInfo = (props:any) => {
     },[token])
 
     const goHome = () => {
-        navigate(`/`)
+      setNewCity(null)
+      setActiveTab('library')
+      setEditMode(false)
+      navigate(`/`)
     }
 
     const goToLogin = () => {

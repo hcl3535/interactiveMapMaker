@@ -58,14 +58,19 @@ const CreateWorld = (props: any) => {
     
 
     return(
-        <div className="column">
+        <div className="">
             <h1 className="">Create a World!</h1>
             <h1 className="">Name</h1>
             <input type='text' onChange={handleName}></input>
             <h1>map</h1>
-            <img className="preview" src={map}></img>
-            <input type='file' id="image-input" accept="image/png, image/jpg" ref={imageInput => makeRef(imageInput)}></input>
-            <button type='submit' onClick={createNewClickable}></button>
+            {map ?
+              <img className="preview" src={map}></img>
+              : <div className="preview-window flex vertical-centered">
+                  <h2 className="">upload image</h2>
+              </div>
+            }
+            <input className="upload-button" type='file' id="image-input" accept="image/png, image/jpg" ref={imageInput => makeRef(imageInput)}></input>
+            <button type='submit' onClick={createNewClickable}>submit</button>
         </div>
     )
 }

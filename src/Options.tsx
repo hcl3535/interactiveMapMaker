@@ -27,12 +27,12 @@ const Options = (props:any) => {
 
     return(
         <div>
-          <h1>Options</h1>
+          <h1 className="centered">Options</h1>
           {token ?
-            <h1 onClick={logOutUser}>log out</h1> :
+            <h1 className="option-item" onClick={logOutUser}>log out</h1> :
             <div>
-              <h1 onClick={logInUser}>log in</h1>
-              <h1 onClick={createUser}>create account</h1>
+              <h1 className="option-item" onClick={logInUser}>log in</h1>
+              <h1 className="option-item" onClick={createUser}>create account</h1>
             </div>
             
           }

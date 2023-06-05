@@ -1,4 +1,4 @@
-const { getAllUserWorldMaps, getMapByName, getMapByUserAndName, createMap, updateChildren, updateMap } = require('../db/models/maps');
+const { getAllUserWorldMaps, getMapByName, getMapByUserAndName, createMap, updateChildren, updateMap, deleteMap, updateCitySize } = require('../db/models/maps');
 
 const multer = require('multer')
 const upload = multer( { dest: 'uploads/' } )
@@ -14,10 +14,7 @@ const mapRouter = require('express').Router();
 mapRouter.get('/:userId/:name', async (req,res,next) => {
     try {
         const {userId, name} = req.params;
-        console.log(userId, name)
-
         const map = await getMapByUserAndName(userId,name)
-        console.log('api',map)
         res.send(map)
     } catch (error) {
         console.error(error)
@@ -59,7 +56,6 @@ mapRouter.post('/:userId',upload.single('image'), async (req,res,next) => {
         props.iconx = Number(props.iconx)
         props.icony = Number(props.icony)
         
-        console.log('props',props)
         const newMap = await createMap(props)
         await unlinkFile(file.path)
 
@@ -80,10 +76,8 @@ mapRouter.patch('/:mapId', async (req,res,next) => {
     try {
         const {city} = req.body;
         city.icon = city.icon.id
-        console.log('here', city)
 
         const updatedMap = await updateMap(city.id, city.iconx, city.icony)
-
         res.send(updatedMap)
 
     } catch (error) {
@@ -91,4 +85,45 @@ mapRouter.patch('/:mapId', async (req,res,next) => {
     }
 })
 
+mapRouter.delete('/:mapId', async (req, res, next) => {
+    try {
+        const {mapId} = req.params;
+        const deletedMap = await deleteMap(mapId)
+        res.send(deletedMap)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.patch('/removeChild/:parrentId', async (req,res,next) => {
+    try {
+        const {parrentId} = req.params;
+        const {childToRemove,parrentMap} = req.body
+        
+
+        const index = parrentMap.children.indexOf(childToRemove.name);
+        parrentMap.children.splice(index,1);
+
+        const updatedChildren = await updateChildren(parrentId, parrentMap.children)
+        
+        res.send(updatedChildren)
+        
+        
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.patch('/changeCitySize/:cityId', async (req, res, next) => {
+    try {
+        const {cityId} = req.params;
+        const {width} = req.body;
+
+        const updatedCity = await updateCitySize(cityId, width)
+        
+        res.send(updatedCity)
+    } catch (error) {
+        console.error(error)
+    }
+})
 module.exports = mapRouter;

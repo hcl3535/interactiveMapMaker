@@ -30,7 +30,7 @@ const CreateWorld = (props: any) => {
         formData.append('image',file)
         formData.append('fileProps',JSON.stringify(toAdd))
         
-        const newMap = await createMap(formData, user.id)
+        await createMap(formData, user.id)
     
         setActiveTab('library')
         navigate(`/map/${name}`)

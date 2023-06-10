@@ -80,6 +80,7 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
     <BrowserRouter>
       <ProfileInfo user={user} openOptions={openOptions} token={token} setNewCity={setNewCity} setActiveTab={setActiveTab} setEditMode={setEditMode}/>
       <Routes>
+          <Route path='/' element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>}/>
           <Route path="/login" element={<Login setToken={setToken} token={token}/>}/>
           <Route path="/register" element={<Register setToken={setToken}/>}/>
           <Route path="/map/:mapName" element={
@@ -92,7 +93,6 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
               </div>
             </div>
           }/>
-          <Route index element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>}/>
           <Route path="/allMaps" element={<AllMaps user={user} setActiveTab={setActiveTab} setIsExpanded={setIsExpanded}/>}/>
       </Routes>
     </BrowserRouter>

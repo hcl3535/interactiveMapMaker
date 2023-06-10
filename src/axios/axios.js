@@ -1,5 +1,12 @@
 import axios from 'axios';
-axios.defaults.baseURL = `http://localhost:4000/api`
+
+if(process.env.NODE_ENV === 'production'){
+    axios.defaults.baseURL = `https://interactivemapmaker.up.railway.app/api`
+} else {
+    axios.defaults.baseURL = `http://localhost:4000/api`
+}
+
+console.log(axios.defaults.baseURL)
 
 export async function getAPIHealth() {
     try {

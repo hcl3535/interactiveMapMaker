@@ -1,5 +1,6 @@
 {
   "name": "interactive_map_maker",
+  "homePage": "https://interactivemapmaker.up.railway.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

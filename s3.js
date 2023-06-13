@@ -31,7 +31,6 @@ exports.uploadIconFile = uploadIconFile
 //deletes a file from icon s3
 
 function deleteIconFile(key) {
-  console.log('key',key)
 
   const deleteParams = {
       Bucket: bucketName,

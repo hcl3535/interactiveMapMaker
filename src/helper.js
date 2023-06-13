@@ -6,6 +6,7 @@ if(!map){
   return
 }
     const childrenNames = map.children
+    console.log(map.children)
 
       let temp = []
       await Promise.all(childrenNames?.map( async (value,index) => {

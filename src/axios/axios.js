@@ -6,8 +6,6 @@ if(process.env.NODE_ENV === 'production'){
     axios.defaults.baseURL = `http://localhost:4000/api`
 }
 
-console.log(axios.defaults.baseURL)
-
 export async function getAPIHealth() {
     try {
         const {data} = await axios.get(`/api/health`);
@@ -104,6 +102,7 @@ export async function getIconsByUserId(id) {
 
 export async function getIconById(iconId) {
     try {
+        console.log('iconId',iconId)
         const {data} = await axios.get(`/icons/${iconId}`)
 
         return data
@@ -118,7 +117,6 @@ export async function uploadIcon(formData) {
           "Content-Type": "multipart/form-data",
         },
       })
-        console.log(data)
         return data
     } catch (error) {
         console.error(error)
@@ -154,7 +152,6 @@ export async function getMapByName(name,userId) {
 
 export async function createMap(formData, userid) {
     try {
-        console.log(formData)
         const {data} = await axios.post(`/maps/${userid}`,formData,{
             headers: {
               "Content-Type": "multipart/form-data",
@@ -202,7 +199,6 @@ export async function changeCitySize(city,width) {
     try {
 
         const {id} = city;
-        console.log(id, width)
         const {data} = await axios.patch(`maps/changeCitySize/${id}`,{width:width})
 
         return data

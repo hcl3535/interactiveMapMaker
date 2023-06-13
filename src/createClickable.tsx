@@ -4,14 +4,20 @@ import {createMap, getIconById } from "./axios/axios";
  
 const CreateClickable = (props: any) => {
 
-    const {currentMap, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing} = props;
+    const {currentMap,setNewCityWidth, newCityWidth,setLoading, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
     const [file, setFile] = useState<any>()
     const [width, setWidth] = useState(10)
+    const [message, setMessage] = useState('')
 
     const createNewClickable = async () => {
+
+      if(!name || !map){
+        setMessage('you must fill out all feilds')
+        return
+      }
 
         const dragable:any = document.querySelector('.editing')
         let y = Number(newCityLocation.style.gridRowEnd)
@@ -26,7 +32,7 @@ const CreateClickable = (props: any) => {
             icony: y, 
             children:[], 
             userid: user.id,
-            iconwidth: width
+            iconwidth: newCityWidth
         }
  
         const formData = new FormData();
@@ -34,18 +40,20 @@ const CreateClickable = (props: any) => {
         formData.append('fileProps',JSON.stringify(toAdd))
         formData.append('currentMap',JSON.stringify(currentMap))
 
+        setLoading(true)
         const newMap = await createMap(formData, user.id)
-
+        
         newMap.icon = await getIconById(newMap.icon)
-
+        
         let newChildren = children;
         newChildren.push(newMap)
         setChildren(newChildren)
-
+        
         dragable.classList.remove('editing')
         swapNewCity(null)
         switchActiveTab('library')
-
+        setLoading(false)
+        setNewCityWidth(10)
     }
 
     const handleName = (e: any) => {
@@ -75,16 +83,12 @@ const CreateClickable = (props: any) => {
     const decreeseIconSize = async () => {
         const currentEditingElement = document.querySelector<HTMLElement>('.currentlyEditing')!;
         let width: any = currentEditingElement.style.width
-        console.log(currentEditingElement)
         width = width.slice(0,-1)
         width = Number(width)
         width--
         currentEditingElement.style.width = `${width}%`
-        setWidth(width)
-
-        const copy = currentlyEditing
-        copy.iconwidth = width
-        setCurrentlyEditing(copy)
+        // setWidth(width)
+        setNewCityWidth(width)
       }
   
       const increeseIconSize = async () => {
@@ -94,16 +98,13 @@ const CreateClickable = (props: any) => {
         width = Number(width)
         width++
         currentEditingElement.style.width = `${width}%`
-        setWidth(width)
-
-        const copy = currentlyEditing
-        copy.iconwidth = width
-        setCurrentlyEditing(copy)
+        // setWidth(width)
+        setNewCityWidth(width)
       }
     
 
     return(
-        <div className="column">
+        <div className="column createClickable_container">
             <h1 className="">Add a clickable!</h1>
             <h1 className="">Name</h1>
             <input type='text' onChange={handleName}></input>
@@ -117,14 +118,17 @@ const CreateClickable = (props: any) => {
             <input className="upload-button" type='file' id="image-input" accept="image/png, image/jpg" ref={imageInput => makeRef(imageInput)}></input>
             <div onClick={decreeseIconSize}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
               </svg>
             </div>
             <div onClick={increeseIconSize}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
             </div>
+            <h2 className="centered">
+              {message}
+            </h2>
             <button className="upload-button" type='submit' onClick={createNewClickable}>
                 <div className="border">
                   <h2>submit</h2>

@@ -1,7 +1,12 @@
 const client = require('../client')
+const bcrypt = require('bcrypt');
+const SALT = 13;
 
 async function createUser (userInfo) {
     try {
+
+        const hashedPassword = await bcrypt.hash(userInfo.password, SALT);
+        userInfo.password = hashedPassword;
 
         const valueString = Object.keys(userInfo).map(
             (key, index) => `$${ index+1 }`
@@ -38,10 +43,13 @@ async function getAllUsers () {
 async function getUserByUserAndPassword (username, password) {
     try {
         const user = await getUserByUsername(username)
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log(passwordMatch)
         if(user === undefined){
             return user
         }
-        if(password === user.password){
+        if(passwordMatch){
             return user
         } else {
             throw new Error('username or password incorrect')

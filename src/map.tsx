@@ -4,7 +4,7 @@ import Grid from "./grid";
 
 const Map: any = (props: any) => {
 
-    const {currentMap, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props;
+    const {currentMap, newCityWidth, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props;
 
 
     // changing world history
@@ -39,7 +39,7 @@ const Map: any = (props: any) => {
             alt=""
             className="map"
           />
-          <Grid children={children} setChildren={setChildren} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} currentMap={currentMap} user={user} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing}/>
+          <Grid children={children} setChildren={setChildren} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} currentMap={currentMap} user={user} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} newCityWidth={newCityWidth}/>
         </div>
       </div>
     )

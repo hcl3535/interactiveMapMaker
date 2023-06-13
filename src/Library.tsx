@@ -6,6 +6,10 @@ const Library = (props: any) => {
     const {swapNewCity, switchActiveTab, user} = props;
 
     const [AllIcons, setAllIcons] = useState([])
+
+    useEffect(()=>{
+      swapNewCity(null)
+    },[])
     
     const addCity = (key: any) => {
       switchActiveTab('addClickable')

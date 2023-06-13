@@ -3,12 +3,13 @@ import { getChildren } from "./helper";
 import { useParams } from "react-router-dom";
 import { getMapByName } from "./axios/axios";
 import Map from "./map";
+import Loading from "./loading";
 
 
 
 export const MapSpace = (props) => { 
 
-    const {toggle, newCity, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props
+    const {toggle,loading, newCity,newCityWidth, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props
     
     const [history, setHistory] = useState([currentWorld])
     const {mapName} = useParams();
@@ -20,7 +21,6 @@ export const MapSpace = (props) => {
         const map = await getMapByName(mapName, user.id)
         setCurrentWorld(map)
         setCurrentMap(map)
-        console.log("here")
         const children = await getChildren(map, user)
         setChildren(children)
         }
@@ -74,13 +74,18 @@ export const MapSpace = (props) => {
     
     return(
         <div className="mapSpace-size">
+          {loading ?
+          <Loading/>
+          : null
+          }
+          <div className="fadeingBetweenMaps"/>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-left back-arrow" viewBox="0 0 16 16" onClick={handleBackButton}>
             <path fillRule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
           </svg>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list expander" viewBox="0 0 16 16" onClick={handleExpander}>
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg>
-          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setChildren={setChildren} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing}/>
+          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setChildren={setChildren} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} newCityWidth={newCityWidth}/>
           {editMode ? 
           <div className="city-delete" onDrop={handleDrop} onDragOver={handleDragOver}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16" >

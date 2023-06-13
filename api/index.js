@@ -1,4 +1,5 @@
 const apiRouter = require('express').Router();
+const jwt = require('jsonwebtoken');
 
 apiRouter.get('/', (req, res, next) => {
   res.send({

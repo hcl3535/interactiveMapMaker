@@ -38,6 +38,7 @@ iconRouter.get('/user/:userId',async (req,res,next) => {
 iconRouter.get('/:iconId', async (req,res,next) => {
     try {
         const {iconId} = req.params;
+        console.log('iconid',iconId)
 
         const icon = await getIconById(iconId)
         

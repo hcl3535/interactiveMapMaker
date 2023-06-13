@@ -28,6 +28,8 @@ function App() {
   const [editmode, setEditMode] = useState(false)
   const [newCityLocation, setNewCityLocation] = useState<any>(null)
   const [currentlyEditing, setCurrentlyEditing] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
+  const [newCityWidth, setNewCityWidth] = useState(10)
 
   
 
@@ -77,7 +79,7 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
 }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <ProfileInfo user={user} openOptions={openOptions} token={token} setNewCity={setNewCity} setActiveTab={setActiveTab} setEditMode={setEditMode}/>
       <Routes>
           <Route path='/' element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab}/>}/>
@@ -86,9 +88,9 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
           <Route path="/map/:mapName" element={
             <div className='root'>
               <div className='App'>
-                <MapSpace toggle={toggle} newCity={newCity} setNewCity={setNewCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing}/>
+                <MapSpace toggle={toggle} newCity={newCity} setNewCity={setNewCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} loading={loading} newCityWidth={newCityWidth}/>
                 <div>
-                  {isExpanded ? <RightColumn swapNewCity={swapNewCity} setNewCity={setNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap} setActiveTab={setActiveTab} activeTab={activeTab} setEditMode={setEditMode} editMode={editmode} newCityLocation={newCityLocation} currentlyEditing={currentlyEditing} setCurrentlyEditing={setCurrentlyEditing}/>  : null }
+                  {isExpanded ? <RightColumn swapNewCity={swapNewCity} setNewCity={setNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap} setActiveTab={setActiveTab} activeTab={activeTab} setEditMode={setEditMode} editMode={editmode} newCityLocation={newCityLocation} currentlyEditing={currentlyEditing} setCurrentlyEditing={setCurrentlyEditing} setLoading={setLoading} setNewCityWidth={setNewCityWidth} newCityWidth={newCityWidth}/>  : null }
                 </div>
               </div>
             </div>

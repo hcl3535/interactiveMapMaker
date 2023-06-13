@@ -6,7 +6,7 @@ import { getChildren } from "./helper";
 
 const Grid = (props:any) => {
     
-    const {children, setChildren,user, switchMaps,newCity,setNewCity,editMode,newCityLocation, setNewCityLocation, currentMap, setCurrentlyEditing, currentlyEditing} = props
+    const {children,newCityWidth, setChildren,user, switchMaps,newCity,setNewCity,editMode,newCityLocation, setNewCityLocation, currentMap, setCurrentlyEditing, currentlyEditing} = props
 
     const [grid, setGrid] = useState([])
     // const [newCityLocation, setNewCityLoaction] = useState<any>(null)
@@ -34,11 +34,16 @@ const Grid = (props:any) => {
 
     async function changeMap (clickedItem: any) {
       if(!editMode){
-      switchMaps(clickedItem)
+        switchMaps(clickedItem)
       } else {
-        
         setCurrentlyEditing(clickedItem)
       }
+    }
+
+    const removeFade = () => {
+      const fade = document.getElementsByClassName('fadeingBetweenMaps')
+      fade[0].classList.remove('fade')
+      fade[0].classList.remove('fadeReverse')
     }
 
     const dragOver = (e: any) => {
@@ -119,7 +124,7 @@ const Grid = (props:any) => {
                     src={newCity.iconimageurl}
                     alt=''
                     className="editing newCity currentlyEditing"
-                    style={{width:`15%`}}
+                    style={{width:`${newCityWidth}%`}}
                     onDragStart={(e) => handleDragStart(e)}
                     onDragEnd={ (e) => handleDragEndNewCity(newCity,e)}
                   >

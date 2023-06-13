@@ -5,7 +5,6 @@ const express = require('express');
 const server = express();
 
 
-server.use(express.static("public"));
 server.use(express.json());
 
 // enable cross-origin resource sharing to proxy api requests
@@ -31,6 +30,8 @@ server.use('/api', require('./api'));
 server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+// server.use(express.static("public"));
 
 // bring in the DB connection
 const { client } = require('./db');

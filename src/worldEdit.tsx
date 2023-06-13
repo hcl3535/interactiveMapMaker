@@ -5,7 +5,7 @@ import { getChildren } from "./helper";
 
 const WorldEdit = (props:any) => {
 
-    const {user, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing } = props;
+    const {user,setNewCity, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing } = props;
 
     const [userWorlds, setUserWorlds] = useState<any>()
 
@@ -18,6 +18,7 @@ const WorldEdit = (props:any) => {
           setEditMode(false)
         }
       
+        setNewCity(null)
         setCurrentlyEditing(null)
         fetchData()
       },[])

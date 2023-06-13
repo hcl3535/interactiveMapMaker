@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 const Options = (props:any) => {
 
-  const {setToken, token, setUser} = props;
+  const {setToken, token, setUser, setNewCity} = props;
   const navigate = useNavigate()
 
   useEffect(() => {
-
-  },[token])
+    setNewCity(null)
+  },[])
 
     const logOutUser = () => {
       setToken(null)

@@ -19,7 +19,6 @@ userRouter.post('/login', async (req,res,next) => {
     const {username, password} = req.body;
 
     try {
-        
         const user = await getUserByUserAndPassword(username, password)
 
         if(user === undefined){

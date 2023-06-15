@@ -7,9 +7,8 @@ const DB_NAME = 'interactiveMap';
 
 
 if(process.env.NODE_ENV === 'production'){
-  DB_URL = 'postgresql://postgres:SDst8e79BQYcL7OjQr8M@containers-us-west-76.railway.app:7135/railway'
+  DB_URL = process.env.DB_URL
 } else {
-  // DB_URL = 'postgresql://postgres:SDst8e79BQYcL7OjQr8M@containers-us-west-76.railway.app:7135/railway'
   DB_URL = `postgres://localhost:5432/${DB_NAME}`
 }
 

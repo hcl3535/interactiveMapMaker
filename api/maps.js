@@ -1,4 +1,4 @@
-const { getAllUserWorldMaps, getMapByName, getMapByUserAndName, createMap, updateChildren, updateMap, deleteMap, updateCitySize } = require('../db/models/maps');
+const { getAllUserWorldMaps, getMapByName, getMapByUserAndName, createMap, updateChildren, updateMap, deleteMap, updateCitySize, getMapById, getCommunityMaps, updateIfMapIsShared } = require('../db/models/maps');
 
 const multer = require('multer')
 const upload = multer( { dest: 'uploads/' } )
@@ -11,6 +11,48 @@ const { getIconbyIconImageUrl } = require('../db/models/icons');
 const unlinkFile = util.promisify(fs.unlink)
 const mapRouter = require('express').Router();
 
+mapRouter.get('/communityMaps', async(req,res,next) => {
+    try {
+        const maps = await getCommunityMaps()
+        res.send(maps)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.patch('/communityMaps', async(req,res,next) => {
+    try {
+        const {bool, worldId} = req.body;
+        
+        const changedMap = await updateIfMapIsShared(bool, worldId)
+        res.send(changedMap)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.get('/mapid/:mapId', async(req,res,next) => {
+    try {
+        const {mapId} = req.params;
+        const map = await getMapById(mapId)
+        res.send(map)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.get('/allMaps/:userId', async (req,res,next) => {
+    try {
+        const {userId} = req.params;
+
+        console.log('butthole')
+        const userWorldMaps = await getAllUserWorldMaps(userId)
+        
+        res.send(userWorldMaps)
+    } catch (error) {
+        console.error(error)
+    }
+})
 mapRouter.get('/:userId/:name', async (req,res,next) => {
     try {
         const {userId, name} = req.params;
@@ -21,17 +63,17 @@ mapRouter.get('/:userId/:name', async (req,res,next) => {
     }
 })
 
-mapRouter.get('/:userId', async (req,res,next) => {
+mapRouter.get('/:name', async (req,res,next) => {
     try {
-        const {userId} = req.params;
-
-        const userWorldMaps = await getAllUserWorldMaps(userId)
-        
-        res.send(userWorldMaps)
+        const {name} = req.params;
+        const map = await getMapByName(name)
+        res.send(map)
     } catch (error) {
         console.error(error)
     }
 })
+
+
 
 mapRouter.post('/:userId',upload.single('image'), async (req,res,next) => {
     try {

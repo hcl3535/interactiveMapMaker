@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const MapSelector = (props:any) => {
 
-    const {containerNumber, user, userWorlds, setIsExpanded, setActiveTab} = props;
+    const {containerNumber, user, userWorlds, setIsExpanded, setActiveTab,setTutorial, setTutorialStep} = props;
     
     const navigate = useNavigate()
 
@@ -13,6 +13,8 @@ const MapSelector = (props:any) => {
     const createNewWorld = () => {
       navigate(`/map/untitled`)
       setIsExpanded(true)
+      setTutorialStep(0)
+      setTutorial(true)
       setActiveTab('createWorld')
     }
     

@@ -6,7 +6,7 @@ import { getChildren } from "./helper";
 
 const Grid = (props:any) => {
     
-    const {children,newCityWidth, setChildren,user, switchMaps,newCity,setNewCity,editMode,newCityLocation, setNewCityLocation, currentMap, setCurrentlyEditing, currentlyEditing} = props
+    const {children,newCityWidth, setChildren,user, switchMaps,newCity,setNewCity,editMode,newCityLocation, setNewCityLocation, currentMap, setCurrentlyEditing, currentlyEditing, tutorialStep, setTutorialStep} = props
 
     const [grid, setGrid] = useState([])
     // const [newCityLocation, setNewCityLoaction] = useState<any>(null)
@@ -18,8 +18,8 @@ const Grid = (props:any) => {
 
     let grid:any = []
     
-    for(let row = 1; row < 25; row++){
-      for(let col = 1;col < 25; col++) {
+    for(let row = 1; row < 50; row++){
+      for(let col = 1;col < 50; col++) {
         grid.push({location: [row,col]})
       }
     }
@@ -35,6 +35,9 @@ const Grid = (props:any) => {
     async function changeMap (clickedItem: any) {
       if(!editMode){
         switchMaps(clickedItem)
+        if(tutorialStep === 6){
+          setTutorialStep(tutorialStep + 1)
+        }
       } else {
         setCurrentlyEditing(clickedItem)
       }
@@ -73,7 +76,7 @@ const Grid = (props:any) => {
           await deleteCity(city)
           const map = await removeChild(currentMap,city)
         
-          const children = await getChildren(map,user)
+          const children = await getChildren(map)
           setChildren(children)
           return
         } 
@@ -101,8 +104,6 @@ const Grid = (props:any) => {
       
       }
     }
-
-
     
     return (
       <>
@@ -142,7 +143,7 @@ const Grid = (props:any) => {
       
               
               if (matchedChild) {
-                console.log(matchedChild)
+                
                 if(editMode){
                   if(matchedChild.name === currentlyEditing?.name){
                     return (

@@ -3,7 +3,7 @@ import { deleteIcon, getIconsByUserId} from "./axios/axios";
 
 const Library = (props: any) => {
 
-    const {swapNewCity, switchActiveTab, user} = props;
+    const {swapNewCity, switchActiveTab, user, tutorialStep, setTutorialStep,currentMap} = props;
 
     const [AllIcons, setAllIcons] = useState([])
 
@@ -20,6 +20,9 @@ const Library = (props: any) => {
       }
       
       swapNewCity(newCity)
+      if(tutorialStep === 4){
+        setTutorialStep(tutorialStep + 1)
+      }
     }
 
     const deleteCity = async (key:any) => {
@@ -28,6 +31,9 @@ const Library = (props: any) => {
     }
 
     const switchToCreateClickable = () => {
+      if(tutorialStep === 2) {
+        setTutorialStep(tutorialStep + 1)
+      }
       switchActiveTab('createIcon')
     }
 
@@ -38,11 +44,15 @@ const Library = (props: any) => {
       setAllIcons(icons)
     }
 
-    fetchData()
+    if(user){
+      fetchData()
+    }
     },[])
 
     return(
       <div className="libraryContainer">
+        {user?.id === currentMap?.userid ?
+        <div>
            <button className="createClickableButton" onClick={switchToCreateClickable}>
             <h3 className="createIconWords">Create a Icon</h3>
            </button>
@@ -67,6 +77,8 @@ const Library = (props: any) => {
               )
             })}
             </>
+            </div>
+            : <h1>you must be the owner of the map to view library</h1>}
         </div>
     )
 }

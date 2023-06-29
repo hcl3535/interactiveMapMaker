@@ -11,6 +11,7 @@ const AllMaps = (props:any) => {
     useEffect( () => {
 
         const fetchData = async () => {
+            console.log(user?.id)
             setUserWorlds(await getAllUserWorlds(user?.id))
         }
 

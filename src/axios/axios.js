@@ -102,7 +102,6 @@ export async function getIconsByUserId(id) {
 
 export async function getIconById(iconId) {
     try {
-        console.log('iconId',iconId)
         const {data} = await axios.get(`/icons/${iconId}`)
 
         return data
@@ -134,7 +133,7 @@ export async function deleteIcon(iconId) {
 
 export async function getAllUserWorlds(userId) {
     try {
-        const {data} = await axios.get(`/maps/${userId}`)
+        const {data} = await axios.get(`/maps/allmaps/${userId}`)
         return data
     } catch (error) {
         console.log(error)
@@ -144,6 +143,42 @@ export async function getAllUserWorlds(userId) {
 export async function getMapByName(name,userId) {
     try {
         const {data} = await axios.get(`/maps/${userId}/${name}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getMapByNameTest(name) {
+    try {
+        const {data} = await axios.get(`/maps/${name}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getMapById(id) {
+    try {
+        const {data} = await axios.get(`/maps/mapid/${id}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getCommunityMaps(){
+    try {
+        const {data} = await axios.get(`/maps/communityMaps`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function updateIfMapIsShared(bool, worldId) {
+    try {
+        const {data} = await axios.patch(`/maps/communityMaps`,{bool:bool, worldId:worldId})
         return data
     } catch (error) {
         console.log(error)

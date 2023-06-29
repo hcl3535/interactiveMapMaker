@@ -42,7 +42,8 @@ async function buildTables() {
             icony FLOAT,
             children VARCHAR ARRAY,
             userid INTEGER REFERENCES users(id),
-            iconwidth FLOAT
+            iconwidth FLOAT,
+            communitymap BOOLEAN
           );
         `)
         
@@ -81,11 +82,11 @@ async function buildTables() {
 
 
       const mapsToCreate = [
-        {'initialmap': true,'name': 'dorphil', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/worldMap.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1, 'iconwidth': null},
-        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 14, 'icony': 3, 'children': ['shop'], 'userid': 1, 'iconwidth': 10},
-        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 13, 'icony': 12, 'children': [], 'userid': 1, 'iconwidth': 15},
-        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 5, 'icony': 10, 'children': [], 'userid': 1, 'iconwidth': 20},
-        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': [], 'userid': 1, 'iconwidth': null},
+        {'initialmap': true,'name': 'dorphil', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/worldMap.png','icon': null, 'iconx': null, 'icony': null, 'children': ['shriple', 'blurson'], 'userid': 1, 'iconwidth': null, 'communitymap': true},
+        {'initialmap': false,'name': 'shriple', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city1map.jpg', 'icon': 1, 'iconx': 14, 'icony': 3, 'children': ['shop'], 'userid': 1, 'iconwidth': 10,'communitymap': false},
+        {'initialmap': false, 'name': 'blurson', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/city2Map.jpg', 'icon': 2, 'iconx': 13, 'icony': 12, 'children': [], 'userid': 1, 'iconwidth': 15, 'communitymap': false},
+        {'initialmap': false, 'name': 'shop', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/shopMap.png', 'icon': 3, 'iconx': 5, 'icony': 10, 'children': [], 'userid': 1, 'iconwidth': 20, 'communitymap': false},
+        {'initialmap': true,'name': 'peentrap', 'mapurl': 'https://interactivemapmaps.s3.us-east-2.amazonaws.com/5UTeF1B.png','icon': null, 'iconx': null, 'icony': null, 'children': [], 'userid': 1, 'iconwidth': null, 'communitymap': true},
       ]
 
       await Promise.all(mapsToCreate.map(createMap))

@@ -3,7 +3,7 @@ import React from "react";
 
 const NavBar = (props:any) => {
  
-    const {switchActiveTab} = props;
+    const {switchActiveTab, tutorialStep, setTutorialStep} = props;
 
 
     const switchToLibrary = () => {
@@ -12,10 +12,16 @@ const NavBar = (props:any) => {
 
     const switchToOptions = () => {
       switchActiveTab("options")
+      if(tutorialStep === 13){
+        setTutorialStep(tutorialStep + 1)
+      }
     }
 
     const switchToWorldEdit = async () => {
       switchActiveTab('worldEdit')
+      if(tutorialStep === 10){
+        setTutorialStep(tutorialStep + 1)
+      }
     }
 
     const switchToAudio = async () => {

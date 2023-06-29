@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { changeCitySize, getAllUserWorlds, getMapByName } from "./axios/axios";
+import { changeCitySize, getAllUserWorlds, getMapByName, updateIfMapIsShared } from "./axios/axios";
 import { getChildren } from "./helper";
 
 const WorldEdit = (props:any) => {
 
-    const {user,setNewCity, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing } = props;
+    const {user,setNewCity,currentMap, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep } = props;
 
     const [userWorlds, setUserWorlds] = useState<any>()
 
@@ -20,7 +20,9 @@ const WorldEdit = (props:any) => {
       
         setNewCity(null)
         setCurrentlyEditing(null)
-        fetchData()
+        if(user){
+          fetchData()
+        }
       },[])
 
 
@@ -29,12 +31,19 @@ const WorldEdit = (props:any) => {
         navigate(`/map/${map.name}`)
         swapCurrentMap(map)
         
-        const children = await getChildren(map, user)
+        const children = await getChildren(map)
         setChildren(children)
     }  
 
     const toggleEditMode = (e:any) => {
       setEditMode(e.target.checked)
+      if(tutorialStep === 11 || tutorialStep === 12){
+        setTutorialStep(tutorialStep + 1)
+      }
+    }
+
+    const toggleMapSharing = async (e:any) => {
+      const updatedMap = await updateIfMapIsShared(e.target.checked, currentWorld.id)
     }
 
     const decreeseIconSize = async () => {
@@ -69,10 +78,12 @@ const WorldEdit = (props:any) => {
     }
 
     return(
-        <div >
+        <div>
           <h1 className="centered currentWorld">World Edit</h1>
           <div className="worldSelectAndEditMode">
             <div className="world-select">
+              {user?.id === currentMap.userid ?
+              <div>
               <h2 className="centered">current world</h2>
               <select className="select-box" name="worlds" value={currentWorld.name} onChange={changeWorld}>
               <> {userWorlds?.map(function(map:any,index:any) {
@@ -82,13 +93,25 @@ const WorldEdit = (props:any) => {
               })}
               </>
               </select>
+              </div>
+              : null  }
             </div>
           <div className="editmode">
+          {user?.id === currentMap.userid ?
+          <div>
             <h2 className="centered">edit mode</h2>
             <label className="switch centered">
               <input type="checkbox" className="centered" onClick={toggleEditMode}/>
               <span className="slider round centered"></span>
             </label>
+            
+            <h2 className="centered">share map</h2>
+            <label className="switch centered">
+              <input type="checkbox" className="centered" onChange={toggleMapSharing} checked={currentWorld.communitymap}/>
+              <span className="slider round centered"></span>
+            </label>
+            </div>
+           :null }
           </div>
           </div>
           {editMode ?

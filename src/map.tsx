@@ -4,11 +4,10 @@ import Grid from "./grid";
 
 const Map: any = (props: any) => {
 
-    const {currentMap, newCityWidth, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props;
-
+    const {currentMap, newCityWidth, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren,setWorldHistory, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing, tutorialStep, setTutorialStep} = props;
 
     // changing world history
-      
+    if(user?.id === currentMap?.userid){
       if(worldHistory){
       
     let historyIds = worldHistory.map((value:any) => {return value.id})
@@ -29,6 +28,7 @@ const Map: any = (props: any) => {
      updateUserWorldHistory(user.id, temphistory)
     }
   }
+} 
 
 
     return(
@@ -39,7 +39,7 @@ const Map: any = (props: any) => {
             alt=""
             className="map"
           />
-          <Grid children={children} setChildren={setChildren} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} currentMap={currentMap} user={user} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} newCityWidth={newCityWidth}/>
+          <Grid children={children} setChildren={setChildren} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} currentMap={currentMap} user={user} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} newCityWidth={newCityWidth} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep}/>
         </div>
       </div>
     )

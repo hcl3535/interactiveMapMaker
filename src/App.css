@@ -12,6 +12,7 @@ html, body {
 .App{
   display: flex;
   justify-content: space-between;
+  
 }
 
 .border{
@@ -25,8 +26,9 @@ html, body {
   user-select: none;
   overflow: hidden;
   flex-grow: 1;
-  height: 95.7vh;
+  height: 94.67vh;
   position: relative;
+  
 }
 
 .containers-container{
@@ -36,13 +38,14 @@ html, body {
   max-width: 90%;
   max-height: 90%;
   /* flex-grow: 1; */
+  
 }
 
 .container {
   display: grid;
   position: relative;
-  grid-template-columns: repeat(24, minmax(min-content, 1fr));
-  grid-template-rows: repeat(24, minmax(min-content, 0.9fr));
+  grid-template-columns: repeat(49, minmax(min-content, 1fr));
+  grid-template-rows: repeat(49, minmax(min-content, 0.9fr));
   box-shadow: 0 0 15vh darkgray;
   /* flex-grow: 1; */
   max-width: 100%;
@@ -55,7 +58,7 @@ html, body {
   width:100%;
   max-height:85vh;
   height: auto;
-  grid-area: 1/1/25/25;
+  grid-area: 1/1/50/50;
 }
 
 .centered{
@@ -115,14 +118,14 @@ html, body {
   
   .rightColumn {
     width:20vw;
-    height:95.7vh;
+    height:94.7vh;
     background-image: linear-gradient(to bottom, #2f3034, #27282d 15%);
     border-left: 4px solid black;
     border-right: 4px solid black;
   }
 
   .libraryContainer{
-    overflow: hidden;
+    overflow: auto;
     height: 100%
   }
   
@@ -273,7 +276,7 @@ html, body {
     border-bottom: 4px solid black;
     display: flex;
     background-color: #27282d;
-    height: 4vh;
+    height: 5vh;
     justify-content: flex-end;
   }
 
@@ -310,7 +313,7 @@ html, body {
     background-color: #27282d;
     align-items: center;
     flex-direction: column;
-    height: 95.7vh;
+    height: 94.7vh;
     width:100%;
     }
 
@@ -347,7 +350,6 @@ width:50%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 95.7vh;
 }  
 
 .mapSelectorContainer{
@@ -364,7 +366,7 @@ width:50%;
   border-radius: 5%;
   aspect-ratio: 9/16;
   margin: 1%;
-  max-width: 20%;
+  width: 15vw;
   text-align: center;
   overflow: hidden;
 }
@@ -638,24 +640,23 @@ input:checked + .slider:before {
   left:50%;
 }
 
-.fadeingBetweenMaps{
+ /* .fadeingBetweenMaps{
   width: 100%;
   height:100%;
   background-color: black;
-  /* z-index: 7; */
   position:absolute;
   opacity: 0%;
-}
+} */
 
-.fade{
+/* .fade{
   animation-name: increeseOpacityFade;
   animation-duration: .5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   z-index: 9;
-}
+} */
 
-@keyframes increeseOpacityFade {
+/* @keyframes increeseOpacityFade {
   0% {
    opacity: 0%;
   }
@@ -663,12 +664,110 @@ input:checked + .slider:before {
   100%{
     opacity: 100%;
   }
-}
+} */
 
-.fadeReverse{
+/* .fadeReverse{
   animation-name: increeseOpacityFade;
   animation-duration: .5s;
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
   z-index: 9;
+}  */
+
+.tutorial_box_low{
+  border: 2px solid black;
+  width:50%;
+  height:25%;
+  position: absolute;
+  z-index: 10;
+  background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
+  top:70%;
+}
+.tutorial_box_middle{
+  border: 2px solid black;
+  width:50%;
+  height:25%;
+  position: absolute;
+  z-index: 10;
+  background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
+  top:35%;
+}
+
+.spaceBetween{
+  justify-content: space-between;
+}
+
+.padding-4{
+  padding: 4rem;
+}
+
+.communityMapsContainer{
+  width:50vw;
+  height:30vh;
+  overflow: hidden;
+  display: flex;
+}
+.communityMapHolder{
+  flex-grow: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.communityMap{
+  height: 85%;
+}
+
+.tickerBox{
+  display:flex;
+  width:10vw;
+  justify-content: space-between;
+}
+
+.ticker{
+  border:2px solid black;
+  width:1vw;
+  height:1vw;
+  margin-top: 1vw;
+}
+
+.bigTicker{
+  border:2px solid black;
+  width:1.3vw;
+  height:1.3vw;
+  margin-top: 1vw;
+  background-color: black;
+}
+
+.communityMapButton{
+  background-color: transparent;
+  border: none;
+  width: 10%;
+}
+.communityMapButton > div{
+  border: 3px solid black;
+  border-radius: .5rem;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.communityMapButton > div:hover{
+  animation-name: hoveredfeaturedMapButton;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+}
+
+@keyframes hoveredfeaturedMapButton {
+  0% {
+   scale:1;
+  }
+
+  100% {
+   scale:1.1;
+  }
 }

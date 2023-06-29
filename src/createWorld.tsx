@@ -6,7 +6,7 @@ import { createMap} from "./axios/axios";
  
 const CreateWorld = (props: any) => {
 
-    const {user,setActiveTab} = props;
+    const {user,setActiveTab, tutorialStep, setTutorialStep} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
@@ -34,6 +34,7 @@ const CreateWorld = (props: any) => {
     
         setActiveTab('library')
         navigate(`/map/${name}`)
+        if(tutorialStep === 1) setTutorialStep(tutorialStep + 1)
 
     }
 

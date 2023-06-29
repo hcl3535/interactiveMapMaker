@@ -4,20 +4,27 @@ import {createMap, getIconById } from "./axios/axios";
  
 const CreateClickable = (props: any) => {
 
-    const {currentMap,setNewCityWidth, newCityWidth,setLoading, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing} = props;
+    const {currentMap,setNewCityWidth, newCityWidth,setLoading, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
     const [file, setFile] = useState<any>()
     const [width, setWidth] = useState(10)
     const [message, setMessage] = useState('')
+    const [tooBig, setTooBig] = useState(false)
 
     const createNewClickable = async () => {
-
+      
       if(!name || !map){
         setMessage('you must fill out all feilds')
         return
       }
+      if(tooBig){
+        console.log(tooBig)
+        return
+      }
+    
+      console.log('hello')
 
         const dragable:any = document.querySelector('.editing')
         let y = Number(newCityLocation.style.gridRowEnd)
@@ -40,6 +47,7 @@ const CreateClickable = (props: any) => {
         formData.append('fileProps',JSON.stringify(toAdd))
         formData.append('currentMap',JSON.stringify(currentMap))
 
+        console.log('should start loading')
         setLoading(true)
         const newMap = await createMap(formData, user.id)
         
@@ -54,6 +62,9 @@ const CreateClickable = (props: any) => {
         switchActiveTab('library')
         setLoading(false)
         setNewCityWidth(10)
+        if(tutorialStep === 5){
+          setTutorialStep(tutorialStep + 1)
+        }
     }
 
     const handleName = (e: any) => {
@@ -66,8 +77,15 @@ const CreateClickable = (props: any) => {
         reader.addEventListener('load', () => {
             setMap(reader.result)
         })
-        
+        if(imageInput?.files?.[0].size > 15000000){
+          setMessage('file size must be smaller than 15mb')
+          setTooBig(true)
+        } else{
+          setMessage('')
+          setTooBig(false)
+        }
         setFile(imageInput?.files?.[0])
+        console.log(imageInput?.files?.[0].size)
         reader.readAsDataURL(imageInput?.files?.[0])
 
         

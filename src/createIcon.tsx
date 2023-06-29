@@ -3,7 +3,7 @@ import { uploadIcon } from "./axios/axios";
 
 const CreateIcon = (props:any) => {
 
-    const {user, switchActiveTab,setLoading} = props;
+    const {user, switchActiveTab,setLoading, tutorialStep, setTutorialStep} = props;
 
     const [icon, setIcon] = useState<any>('')
     const [file, setFile] = useState<any>()
@@ -40,6 +40,9 @@ const CreateIcon = (props:any) => {
         
         switchActiveTab('library')
         setLoading(false)
+        if(tutorialStep === 3){
+          setTutorialStep(tutorialStep + 1)
+        }
       }
 
       const cancelCreatIcon = () => {

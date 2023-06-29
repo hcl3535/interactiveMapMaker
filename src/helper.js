@@ -1,21 +1,22 @@
-import {getIconById, getMapByName} from './axios/axios';
+import {getIconById, getMapByName, getMapByNameTest} from './axios/axios';
 
-export async function getChildren(map, userInfo) {
 
-if(!map){
-  return
-}
-    const childrenNames = map.children
-    console.log(map.children)
+export async function getChildren(map) {
 
-      let temp = []
-      await Promise.all(childrenNames?.map( async (value,index) => {
-        const map = await getMapByName(value,userInfo.id)
-        const icon = await getIconById(map.icon)
-        map.icon = icon
-        temp.push(map)
-      }))
+  if(!map){
+    return
+  }
+      const childrenNames = map.children
       
-      return temp
-    
-}      
+  
+        let temp = []
+        await Promise.all(childrenNames?.map( async (value,index) => {
+          const map = await getMapByNameTest(value)
+          const icon = await getIconById(map.icon)
+          map.icon = icon
+          temp.push(map)
+        }))
+        
+        return temp
+      
+  }      

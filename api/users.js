@@ -140,4 +140,15 @@ userRouter.post('/register',async (req,res,next) => {
 }
 })
 
+userRouter.get('/:userId', async (req,res,next) => {
+    try {
+        const {userId} = req.params;
+
+        const user = await getUserById(userId)
+        res.send(user)
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = userRouter;

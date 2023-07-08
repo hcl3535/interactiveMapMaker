@@ -79,6 +79,8 @@ async function getUserById(id) {
   FROM users
   WHERE id = $1
   `,[id])
+
+  delete user.password
   return user
 }
 

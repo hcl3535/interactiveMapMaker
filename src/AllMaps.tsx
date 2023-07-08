@@ -11,7 +11,6 @@ const AllMaps = (props:any) => {
     useEffect( () => {
 
         const fetchData = async () => {
-            console.log(user?.id)
             setUserWorlds(await getAllUserWorlds(user?.id))
         }
 
@@ -19,7 +18,7 @@ const AllMaps = (props:any) => {
     },[user])
 
     return(
-        <div className="homePage">
+        <div className="allMaps">
             <h1>All Maps</h1>
             <div className="mapSelectorContainer">
         {userWorlds?

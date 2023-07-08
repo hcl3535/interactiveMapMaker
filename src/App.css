@@ -3,6 +3,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 } 
 
 #root{
@@ -273,9 +274,9 @@ html, body {
   }
 
   .profileInfo{
-    border-bottom: 4px solid black;
+    /* border-bottom: 4px solid black; */
     display: flex;
-    background-color: #27282d;
+    /* background-color: #27282d; */
     height: 5vh;
     justify-content: flex-end;
   }
@@ -328,6 +329,7 @@ html, body {
 
   .navItem{
     border-bottom: 4px solid black;
+    border-top: 4px solid black;
   }
 
   .navItem:hover{
@@ -343,14 +345,7 @@ html, body {
 
 .world-select {
 width:50%;
-}
-
-.homePage{
-  background-color: #27282d;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}  
+} 
 
 .mapSelectorContainer{
   display: flex;
@@ -603,6 +598,10 @@ input:checked + .slider:before {
 .allMapsButton:hover{
   cursor: pointer;
 }
+
+.allMaps{
+  height:100vh;
+}
 .login-button{
   margin-top: 2vh;
   background-color: #27282d;
@@ -701,27 +700,90 @@ input:checked + .slider:before {
   padding: 4rem;
 }
 
+/* .communityMapsContainerContainer{
+border: 2px solid red;
+position: relative;
+isolation: isolate;
+} */
+/* .communityMapsContainerContainer ::after{
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: #27282d;
+  opacity: .1;
+  } */
+
+  #root{
+    background-color: rgba(91, 90, 90, 0.04);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    isolation: isolate;
+    /* opacity: .04; */
+  } 
+
+  #root ::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: rgba(91, 90, 90, 0.04);
+    }
+
+  
 .communityMapsContainer{
-  width:50vw;
-  height:30vh;
+  width:96vw;
+  height:91vh;
   overflow: hidden;
   display: flex;
+  margin-left: 4rem;
+  /* border: 2px solid red; */
+  
 }
 .communityMapHolder{
-  flex-grow: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  width:70vw;
+  flex-direction: column;
+  /* border: 2px solid red; */
+ 
 }
 
 .communityMap{
-  height: 85%;
+  width: 70vw;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: 4rem;
+}
+
+.communityMapFade{
+  animation-name: fadeCommunityMap;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+}
+
+@keyframes fadeCommunityMap {
+  0% {
+   opacity: 100%;
+  }
+
+  50% {
+    opacity: 0%;
+  }
+
+  100% {
+   opacity: 100%;
+  }
 }
 
 .tickerBox{
   display:flex;
   width:10vw;
+  margin-bottom: 1vh;
   justify-content: space-between;
 }
 
@@ -738,20 +800,24 @@ input:checked + .slider:before {
   height:1.3vw;
   margin-top: 1vw;
   background-color: black;
+  box-shadow: 0 0 10px grey;
 }
 
 .communityMapButton{
   background-color: transparent;
   border: none;
-  width: 10%;
+  margin-left: 1rem;
+  margin-bottom: 1%;
 }
 .communityMapButton > div{
   border: 3px solid black;
   border-radius: .5rem;
-  height: 30%;
+  height: 50%;
+  width: 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #27282d;
 }
 
 .communityMapButton > div:hover{
@@ -770,4 +836,32 @@ input:checked + .slider:before {
   100% {
    scale:1.1;
   }
+}
+
+.communityMapInfo > span{ 
+  display: flex;
+  flex-direction: row;
+  margin-left: 2rem;
+}
+.communityMapInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+  margin-right: 4rem;
+  margin-left: 1rem;
+  flex-grow: 1;
+  /* border: 4px solid black; */
+  /* background-color: rgba(66, 65, 65, 0.5); */
+  /* border-radius: 1rem; */
+  height:90%
+}
+
+a:link{
+  color: black;
+}
+a:visited{
+  color:black;
+}
+a{
+  text-decoration: none;
 }

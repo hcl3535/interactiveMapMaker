@@ -25,6 +25,15 @@ export async function getAllUsers() {
     }
 }
 
+export async function getUserById(userId) {
+    try {
+        const {data} = await axios.get(`/users/${userId}`)
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export async function getWorldHistoryByUserId(userId) {
     try {
         

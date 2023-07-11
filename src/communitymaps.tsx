@@ -132,7 +132,7 @@ const CommunityMaps = (props: any) => {
             </div>  
             <span>
               <h1>
-                world:
+                World:
               </h1>
               <h1>
                 {communityMaps[currentCommunityMapIndex].name}

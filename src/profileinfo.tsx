@@ -32,7 +32,7 @@ const ProfileInfo = (props:any) => {
 
     return(
         <div className="profileInfo">
-            <h1 className="profileName" onClick={goHome}>home</h1>
+            <h1 className="profileName" onClick={goHome}>Home</h1>
           {user ?
           <div className="flex">
             <a href="#recentMaps">

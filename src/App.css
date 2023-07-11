@@ -854,9 +854,10 @@ isolation: isolate;
 .communityMapInfo > span{ 
   display: flex;
   flex-direction: row;
-  margin-left: 2rem;
+  margin-left: 20%;
   z-index: 1;
-  justify-content: center;
+  justify-content: start;
+  
 }
 
 .communityMapInfo > span:last-child{
@@ -872,7 +873,6 @@ isolation: isolate;
 .communityMapLabel {
   display: flex;
   flex-direction: row;
-  margin-left: 2rem;
   z-index: 1;
   justify-content: center;
   font-size: 1.3rem;

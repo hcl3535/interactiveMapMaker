@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCommunityMaps, getUserById } from "./axios/axios";
 import CommunityMapTicker from "./communityTicker";
+import scrollPaper from './Photos/scroll-paper-clip-art-png-favpng-BXdFwnWdSVKHYrXpvU1bPLpN3-removebg-preview.png'
 
 const CommunityMaps = (props: any) => {
 
@@ -73,6 +74,7 @@ const CommunityMaps = (props: any) => {
     }
 
     const incrementComunityMapIndex = () => {
+      console.log('here')
 
       if(currentCommunityMapIndex === communityMaps.length -1){
         setCurrentCommunityMapIndex(0)
@@ -114,15 +116,16 @@ const CommunityMaps = (props: any) => {
                 {tickers}
               </div>
             </div>
-              <button className="communityMapButton" type='submit' onClick={incrementComunityMapIndex}>
-            <div className="">
+              <button className="communityMapButton" >
+            <div className="" onClick={incrementComunityMapIndex}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
             </div>
           </button>
           <div className="communityMapInfo">
-            <div className="centered">
+            <img src={scrollPaper}></img>
+            <div className="communityMapLabel">
               <h1>
                 Community Map
               </h1>

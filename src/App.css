@@ -278,7 +278,13 @@ html, body {
     display: flex;
     /* background-color: #27282d; */
     height: 5vh;
+    background-image: url('./Photos/header.jpg');
+    background-size: 100vw;
     justify-content: flex-end;
+    position: fixed;
+    width: 100vw;
+    z-index: 5;
+    border-bottom: 2px solid black;
   }
 
   .profilePic{
@@ -292,7 +298,8 @@ html, body {
     height: 4vh;
     margin-top: .5vh;
     margin-right: 2vw;
-    
+    z-index: 3;
+    cursor: pointer;
     }
 
   .profileHome{
@@ -301,7 +308,7 @@ html, body {
     margin-left: 1vw;
     margin-top: .5vh;
     margin-right: auto;
-    
+    cursor: pointer;
   }  
 
   .profileHome:hover{
@@ -733,11 +740,15 @@ isolation: isolate;
 
   
 .communityMapsContainer{
-  width:96vw;
+  width:96%;
   height:91vh;
   overflow: hidden;
   display: flex;
+  margin-top: 2rem;
   margin-left: 4rem;
+  margin-right: 4rem;
+  justify-content: center;
+  /* align-items: center; */
   /* border: 2px solid red; */
   
 }
@@ -745,17 +756,18 @@ isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width:70vw;
+  width:60%;
   flex-direction: column;
   /* border: 2px solid red; */
  
 }
 
 .communityMap{
-  width: 70vw;
+  width: 100%;
   overflow: hidden;
   cursor: pointer;
   margin-top: 4rem;
+  z-index: 3;
 }
 
 .communityMapFade{
@@ -782,7 +794,7 @@ isolation: isolate;
 
 .tickerBox{
   display:flex;
-  width:10vw;
+  width:20%;
   margin-bottom: 1vh;
   justify-content: space-between;
 }
@@ -808,6 +820,7 @@ isolation: isolate;
   border: none;
   margin-left: 1rem;
   margin-bottom: 1%;
+  z-index: 2;
 }
 .communityMapButton > div{
   border: 3px solid black;
@@ -842,7 +855,30 @@ isolation: isolate;
   display: flex;
   flex-direction: row;
   margin-left: 2rem;
+  z-index: 1;
+  justify-content: center;
 }
+
+.communityMapInfo > span:last-child{
+  margin-bottom: 30%;
+}
+
+.communityMapInfo > img {
+  position: absolute;
+  /* z-index: 0; */
+  width:30vw;
+}
+
+.communityMapLabel {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2rem;
+  z-index: 1;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+
 .communityMapInfo {
   display: flex;
   flex-direction: column;
@@ -850,6 +886,7 @@ isolation: isolate;
   margin-right: 4rem;
   margin-left: 1rem;
   flex-grow: 1;
+  justify-content: center;
   /* border: 4px solid black; */
   /* background-color: rgba(66, 65, 65, 0.5); */
   /* border-radius: 1rem; */

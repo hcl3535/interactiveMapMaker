@@ -8,14 +8,20 @@ html, body {
   font-family: 'Pirata One', cursive;
 } 
 
+.root{
+  margin-top: 5vh;
+}
+
 #root{
   margin: 0;
   padding: 0;
+  background-image: url('./Photos/worldMap.png')
 }
+
 .App{
   display: flex;
   justify-content: space-between;
-  
+  z-index: 1;
 }
 
 .border{
@@ -29,7 +35,7 @@ html, body {
   user-select: none;
   overflow: hidden;
   flex-grow: 1;
-  height: 94.67vh;
+  height: 95vh;
   position: relative;
   
 }
@@ -53,6 +59,10 @@ html, body {
   /* flex-grow: 1; */
   max-width: 100%;
   max-height: 100%;
+}
+
+.audio{
+  z-index: 1;
 }
 
 .map{
@@ -121,21 +131,23 @@ html, body {
   
   .rightColumn {
     width:20vw;
-    height:94.7vh;
-    background-image: linear-gradient(to bottom, #2f3034, #27282d 15%);
+    height:95vh;
+    background-image: url('./Photos/header.jpg');
     border-left: 4px solid black;
     border-right: 4px solid black;
   }
 
   .libraryContainer{
     overflow: auto;
-    height: 100%
+    height: 100%;
+    z-index: 1;
   }
   
   .navBar {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
   }
 
   .navBar > div {
@@ -150,7 +162,7 @@ html, body {
    scale: 200%;
    align-self: flex-start;
    left: 2%;
-   top: 2%;
+   top: 5%;
    position: absolute;
    z-index: 10;
   }
@@ -162,7 +174,7 @@ html, body {
     scale: 200%;
    align-self: flex-start;
    left: 95%;
-   top: 2%;
+   top: 5%;
    position: absolute;
    z-index: 10;
   }
@@ -195,11 +207,12 @@ html, body {
   }
 
   .library-item{
-    background-image: linear-gradient(to bottom, #2f3034, #27282d 20%,#27282d 80%, #2f3034 100%);
+    /* background-image: linear-gradient(to bottom, #2f3034, #27282d 20%,#27282d 80%, #2f3034 100%); */
     justify-content: space-between;
     padding-left: 1vw;
     padding-right: 1vw;
     padding-top: 1vh;
+    border-bottom: 2px solid black;
   }
   
 
@@ -263,7 +276,7 @@ html, body {
   .createClickableButton{
     width:100%;
     height:4vh;
-    background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
+    background-image: url('./Photos/header.jpg');
     border: none;
   }
 
@@ -333,7 +346,6 @@ html, body {
 
   .navbarIcon{
     width:80%;
-    
   }
 
   .navItem{
@@ -354,7 +366,12 @@ html, body {
 
 .world-select {
 width:50%;
+
 } 
+
+.worldEdit{
+  z-index: 1;
+}
 
 .mapSelectorContainer{
   display: flex;
@@ -447,9 +464,10 @@ width:50%;
   position: absolute;
   width: 100%;
   height: 55%;
-  z-index: 0;
   overflow: hidden;
 }
+
+
 
 
 .register {
@@ -485,7 +503,7 @@ width:50%;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #444548;
+  background-image: url('./Photos/header.jpg');
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -537,9 +555,8 @@ input:checked + .slider:before {
   display: block;
   width: 70%;
   margin: 0 auto;
-  font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
   font-size: 18px;
-  background-color: #27282d;
+  background-image: url('./Photos/header.jpg');
   border: none;
   cursor: pointer;
   
@@ -650,6 +667,10 @@ input:checked + .slider:before {
   }
 }
 
+.options{
+  z-index: 1;
+}
+
 .option-item{
   padding-left: 1vw;
 }
@@ -663,8 +684,20 @@ input:checked + .slider:before {
 }
 
 .allMaps{
-  height:100vh;
+  margin-top: 5vh;
+  height:95vh;
+  display: flex;
+  z-index: 1;
+  justify-content: center;
 }
+
+.allMapBackground{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  overflow: hidden;
+}
+
 .login-button{
   margin-top: 2vh;
   background-color: #27282d;
@@ -773,7 +806,6 @@ input:checked + .slider:before {
   position: relative;
   height:100%;
   overflow: hidden;
-  
 } 
 
 #root::before{
@@ -888,6 +920,7 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   background-color: #27282d;
+  background-image: url('./Photos/header.jpg');
 }
 
 .communityMapButton > div:hover{
@@ -912,9 +945,9 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: row;
   margin-left: 20%;
-  z-index: 0;
   justify-content: start;
   font-size: 1.2rem;
+  z-index: 1;
 }
 
 .communityMapInfo > span:last-child{

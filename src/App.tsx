@@ -82,7 +82,7 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
 
   return (
     <BrowserRouter >
-      <ProfileInfo user={user} openOptions={openOptions} token={token} setNewCity={setNewCity} setActiveTab={setActiveTab} setEditMode={setEditMode}/>
+      <ProfileInfo user={user} openOptions={openOptions} token={token} setNewCity={setNewCity} setActiveTab={setActiveTab} setEditMode={setEditMode} setIsExpanded={setIsExpanded} setTutorialStep={setTutorialStep} setTutorial={setTutorial}/>
       <Routes>
           <Route path='/' element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab} setTutorial={setTutorial} setTutorialStep={setTutorialStep}/>}/>
           <Route path="/login" element={<Login setToken={setToken} token={token}/>}/>

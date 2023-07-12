@@ -9,7 +9,9 @@ const Audio = (props:any) => {
       },[])
 
     return(
-        <h2>coming soon</h2>
+        <div className="audio">
+          <h2>coming soon</h2>
+        </div>
     )
 }
 

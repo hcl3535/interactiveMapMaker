@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getAllUserWorlds } from "./axios/axios";
 import MapSelector from "./mapSelectors";
+import recentMapBackground from "./Photos/recent map bac kground.png"
 
 const AllMaps = (props:any) => {
 
     const {user, setIsExpanded, setActiveTab} = props;
 
     const [userWorlds, setUserWorlds] = useState([]);
+
+    let mapContainers = [];
 
     useEffect( () => {
 
@@ -17,15 +20,24 @@ const AllMaps = (props:any) => {
         fetchData()
     },[user])
 
+    if(userWorlds[0]){
+    userWorlds.forEach((world, idx) => {
+        mapContainers.push(<MapSelector key={idx} containerNumber={idx + 1} user={user} userWorlds={userWorlds} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab} />)
+    })
+}
+
     return(
         <div className="allMaps">
-            <h1>All Maps</h1>
             <div className="mapSelectorContainer">
-        {userWorlds?
-        userWorlds.map((value:any, key:any) => {return(
-            <MapSelector key={key} user={user} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab} userWorlds={userWorlds} containerNumber={key + 1}/>
-        )}):
-        <></>}
+            <h1 className="centered" id="recentMaps">All Maps</h1>
+            <img
+              src={recentMapBackground}
+              alt=""
+              className="allMapBackground"
+              />
+            <div className="mapSelectorCartHolder">
+            {mapContainers}
+            </div>
           </div>
         </div>
     )

@@ -8,6 +8,7 @@ const WorldEdit = (props:any) => {
     const {user,setNewCity,currentMap, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep } = props;
 
     const [userWorlds, setUserWorlds] = useState<any>()
+    const [sharing, setSharing] = useState(currentWorld.communitymap)
 
     const navigate = useNavigate()
 
@@ -43,7 +44,8 @@ const WorldEdit = (props:any) => {
     }
 
     const toggleMapSharing = async (e:any) => {
-      const updatedMap = await updateIfMapIsShared(e.target.checked, currentWorld.id)
+      setSharing(e.target.checked)
+      await updateIfMapIsShared(e.target.checked, currentWorld.id)
     }
 
     const decreeseIconSize = async () => {
@@ -78,7 +80,7 @@ const WorldEdit = (props:any) => {
     }
 
     return(
-        <div>
+        <div className="worldEdit">
           <h1 className="centered currentWorld">World Edit</h1>
           <div className="worldSelectAndEditMode">
             <div className="world-select">
@@ -107,7 +109,7 @@ const WorldEdit = (props:any) => {
             
             <h2 className="centered">share map</h2>
             <label className="switch centered">
-              <input type="checkbox" className="centered" onChange={toggleMapSharing} checked={currentWorld.communitymap}/>
+              <input type="checkbox" className="centered" onChange={toggleMapSharing} checked={sharing}/>
               <span className="slider round centered"></span>
             </label>
             </div>

@@ -26,7 +26,7 @@ const Options = (props:any) => {
     }
 
     return(
-        <div>
+        <div className="options">
           <h1 className="centered">Options</h1>
           {token ?
             <h1 className="option-item" onClick={logOutUser}>log out</h1> :

@@ -50,7 +50,7 @@ const CreateIcon = (props:any) => {
       }
 
     return (
-        <form onSubmit={createNewIcon}>
+        <form onSubmit={createNewIcon} className="createIcon">
           <h1>create a Icon</h1>
           {icon ?
               <img className="preview" src={icon} alt=""></img>

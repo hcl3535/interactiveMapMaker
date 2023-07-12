@@ -59,7 +59,7 @@ const CreateWorld = (props: any) => {
     
 
     return(
-        <div className="">
+        <div className="createWorld">
             <h1 className="">Create a World!</h1>
             <h1 className="">Name</h1>
             <input type='text' onChange={handleName}></input>

@@ -267,6 +267,10 @@ html, body {
     max-height: 20%;
   }
 
+  .createWorld{
+    z-index: 1;
+  }
+
   .preview-window{
     border: 2px solid black;
     border-left: none;
@@ -667,6 +671,10 @@ input:checked + .slider:before {
   }
 }
 
+
+.createIcon{
+  z-index: 1;
+}
 .options{
   z-index: 1;
 }
@@ -714,10 +722,11 @@ input:checked + .slider:before {
 
 .upload-button{
   margin-top: 2vh;
-  background-color: #27282d;
   border: none;
   margin-bottom: 2vh;
   width:100%;
+  background-image: url('./Photos/header.jpg');
+  cursor: pointer;
 }
 
 .newCity{
@@ -727,6 +736,7 @@ input:checked + .slider:before {
 .createClickable_container{
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 1;
 }
 
 .loading{

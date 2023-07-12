@@ -4,6 +4,7 @@ import MapSelector from "./mapSelectors";
 import { useNavigate } from "react-router-dom";
 import CommunityMapTicker from "./communityTicker";
 import CommunityMaps from "./communitymaps";
+import recentMapBackground from "./Photos/recent map bac kground.png"
 
 const HomePage = (props:any) => {
 
@@ -13,7 +14,7 @@ const HomePage = (props:any) => {
     const [currentCommunityMapIndex, setCurrentCommunityMapIndex] = useState(0)
     const [stopMapSwitching, setStopMapSwitching] = useState(false)
 
-    let numberOfMapContainers = 5
+    let numberOfMapContainers = 4
     let mapContainers = []
     let tickers = []
     const navigate = useNavigate()
@@ -43,9 +44,16 @@ const HomePage = (props:any) => {
         <div className="homePage" id="homepage">
           <div>
           <CommunityMaps/>
-          <h1 className="centered" id="recentMaps">Recent Maps</h1>
           <div className="mapSelectorContainer">
+            <h1 className="centered" id="recentMaps">Recent Maps</h1>
+            <img
+              src={recentMapBackground}
+              alt=""
+              className="recentMapBackground"
+              />
+            <div className="mapSelectorCartHolder">
             {mapContainers}
+            </div>
           </div>
           </div>
         </div>

@@ -1,9 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: 'Pirata One', cursive;
 } 
 
 #root{
@@ -283,7 +285,7 @@ html, body {
     justify-content: flex-end;
     position: fixed;
     width: 100vw;
-    z-index: 5;
+    z-index: 6;
     border-bottom: 2px solid black;
   }
 
@@ -356,9 +358,33 @@ width:50%;
 
 .mapSelectorContainer{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5%;
+  margin-top: 10vh;
+}
+
+
+
+.mapSelectorCartHolder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 7vh;
+  z-index: 4;
+}
+
+#recentMaps{
+  font-size: 3rem;
+  z-index: 1;
+}
+
+.mapSelectorHolder{
+  margin-left: 7rem;
+  margin-right: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }
 
 .mapSelector{
@@ -371,10 +397,32 @@ width:50%;
   width: 15vw;
   text-align: center;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: end;
 }
 
 .mapSelector > img {
-  height: 80%
+  height: 100%;
+  position: absolute;
+}
+.bannerContainer{
+  display:flex;
+  justify-content: center;
+}
+
+.worldName{
+  z-index: 1;
+  margin-bottom: 6.5rem;
+  position: absolute;
+}
+
+.banner{
+  position: absolute;
+  width:25%;
+  margin-left: 1rem;
+  
 }
 
 .mapSelector:hover{
@@ -393,6 +441,14 @@ width:50%;
   100% {
    scale:1.1;
   }
+}
+
+.recentMapBackground{
+  position: absolute;
+  width: 100%;
+  height: 55%;
+  z-index: 0;
+  overflow: hidden;
 }
 
 
@@ -707,36 +763,33 @@ input:checked + .slider:before {
   padding: 4rem;
 }
 
-/* .communityMapsContainerContainer{
-border: 2px solid red;
-position: relative;
-isolation: isolate;
-} */
-/* .communityMapsContainerContainer ::after{
-  content: "";
+.communityMapsContainerContainer{
+
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height:100%;
+  overflow: hidden;
+  
+} 
+
+#root::before{
+  content: ' ';
+  display: block;
   position: absolute;
-  z-index: -1;
-  inset: 0;
-  background-color: #27282d;
-  opacity: .1;
-  } */
-
-  #root{
-    background-color: rgba(91, 90, 90, 0.04);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    isolation: isolate;
-    /* opacity: .04; */
-  } 
-
-  #root ::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    background-color: rgba(91, 90, 90, 0.04);
-    }
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background-color: rgb(95, 94, 94);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
 
   
 .communityMapsContainer{
@@ -759,6 +812,7 @@ isolation: isolate;
   width:60%;
   flex-direction: column;
   /* border: 2px solid red; */
+  
  
 }
 
@@ -767,7 +821,7 @@ isolation: isolate;
   overflow: hidden;
   cursor: pointer;
   margin-top: 4rem;
-  z-index: 3;
+  z-index: 5;
 }
 
 .communityMapFade{
@@ -797,6 +851,7 @@ isolation: isolate;
   width:20%;
   margin-bottom: 1vh;
   justify-content: space-between;
+  align-items: center;
 }
 
 .ticker{
@@ -804,6 +859,7 @@ isolation: isolate;
   width:1vw;
   height:1vw;
   margin-top: 1vw;
+  z-index: 1;
 }
 
 .bigTicker{
@@ -813,6 +869,7 @@ isolation: isolate;
   margin-top: 1vw;
   background-color: black;
   box-shadow: 0 0 10px grey;
+  z-index: 1;
 }
 
 .communityMapButton{
@@ -820,7 +877,7 @@ isolation: isolate;
   border: none;
   margin-left: 1rem;
   margin-bottom: 1%;
-  z-index: 2;
+  z-index: 4;
 }
 .communityMapButton > div{
   border: 3px solid black;
@@ -855,9 +912,9 @@ isolation: isolate;
   display: flex;
   flex-direction: row;
   margin-left: 20%;
-  z-index: 1;
+  z-index: 0;
   justify-content: start;
-  
+  font-size: 1.2rem;
 }
 
 .communityMapInfo > span:last-child{
@@ -866,16 +923,16 @@ isolation: isolate;
 
 .communityMapInfo > img {
   position: absolute;
-  /* z-index: 0; */
+  
   width:30vw;
 }
 
 .communityMapLabel {
   display: flex;
   flex-direction: row;
-  z-index: 1;
+  z-index: 3;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
 }
 
 
@@ -890,7 +947,7 @@ isolation: isolate;
   /* border: 4px solid black; */
   /* background-color: rgba(66, 65, 65, 0.5); */
   /* border-radius: 1rem; */
-  height:90%
+  height:90%;
 }
 
 a:link{
@@ -902,3 +959,4 @@ a:visited{
 a{
   text-decoration: none;
 }
+

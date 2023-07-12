@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import banner from "./Photos/banner.png"
 
 
 const MapSelector = (props:any) => {
@@ -40,21 +41,26 @@ const MapSelector = (props:any) => {
           ) 
     }
 
-    if(containerNumber === 0){
-      return(
-        <div className="mapSelector" onClick={createNewWorld}>
-          <h1>create New Map</h1>
-        </div>
-      )
-    }
+    // if(containerNumber === 0){
+    //   return(
+    //     <div className="mapSelector" onClick={createNewWorld}>
+    //       <h1 className="worldName">create New Map</h1>
+    //     </div>
+    //   )
+    // }
 
     if(!world) return <></>
 
     return(
+      <div className="mapSelectorHolder">
         <div className="mapSelector" onClick={goToClickedWorld}>
-          <h1 className="worldName">{world?.name}</h1>
           <img src={world?.mapurl} alt=''></img>
-        </div>
+          <div className="bannerContainer">
+          </div>
+          </div>
+            <h1 className="worldName">{world?.name}</h1>
+            <img src={banner} alt="" className="banner"></img>
+        </div>  
     )
 }
 

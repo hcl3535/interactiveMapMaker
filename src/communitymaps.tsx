@@ -124,7 +124,7 @@ const CommunityMaps = (props: any) => {
             </div>
           </button>
           <div className="communityMapInfo">
-            <img src={scrollPaper}></img>
+            <img src={scrollPaper} className="communit"></img>
             <div className="communityMapLabel">
               <h1>
                 Community Map
@@ -132,10 +132,10 @@ const CommunityMaps = (props: any) => {
             </div>  
             <span>
               <h1>
-                World:
+                World: 
               </h1>
               <h1>
-                {communityMaps[currentCommunityMapIndex].name}
+              &nbsp; {communityMaps[currentCommunityMapIndex].name}
               </h1>
             </span>
             <span>
@@ -143,7 +143,7 @@ const CommunityMaps = (props: any) => {
                 Creater:
               </h1>
               <h1>
-                {communityMaps[currentCommunityMapIndex].owner}
+              &nbsp;  {communityMaps[currentCommunityMapIndex].owner}
               </h1>
             </span>
           </div> 

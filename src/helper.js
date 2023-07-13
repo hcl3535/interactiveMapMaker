@@ -7,6 +7,7 @@ export async function getChildren(map) {
     return
   }
       const childrenNames = map.children
+      console.log(childrenNames)
       
   
         let temp = []

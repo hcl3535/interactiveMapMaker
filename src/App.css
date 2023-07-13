@@ -264,7 +264,8 @@ html, body {
     
   }
   .preview{
-    max-height: 20%;
+    max-height: 30vh;
+    overflow: hidden;
   }
 
   .createWorld{

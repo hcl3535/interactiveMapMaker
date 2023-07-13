@@ -37,7 +37,7 @@ const Register = (props:any) => {
     }
 
     return (
-        <form className="" onSubmit={submitHandler}>
+        <form className="register" onSubmit={submitHandler}>
             <div className="loginForm">
               <h1 className="centered">Register</h1>
                 <h2 className="centered">username</h2>

@@ -346,6 +346,7 @@ html, body {
 
   .loginForm > * {
     width:25vw;
+
   }
 
   .navbarIcon{
@@ -475,16 +476,17 @@ width:50%;
 
 
 .register {
-  margin:0px;
+  margin-top: 5vh;
+  z-index: 1;
 }
 
-.register:hover{
+/* .register:hover{
   cursor: pointer;
   animation-name: hovered;
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-}
+} */
 .switch {
   position: relative;
   display: inline-block;
@@ -712,12 +714,18 @@ input:checked + .slider:before {
   border: none;
 }
 
-.login-button:hover{
+/* .login-button:hover{
   cursor: pointer;
     animation-name: hovered;
     animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+} */
+
+.login{
+  z-index: 1;
+  height: 95vh;
+  margin-top: 5vh;
 }
 
 .upload-button{

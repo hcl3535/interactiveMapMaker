@@ -39,7 +39,7 @@ const Login = (props:any) => {
     }
 
     return (
-        <form className="" onSubmit={submitHandler}>
+        <form className="login" onSubmit={submitHandler}>
             <div className="loginForm">
               <h1 className="centered">Log in</h1>
                 <h2 className="centered">username</h2>

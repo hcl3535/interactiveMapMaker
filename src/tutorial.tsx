@@ -27,7 +27,7 @@ const Tutorial = (props: any) => {
             break; 
         case 5:
             tutorialLocation = 'tutorial_box_low'
-            directions = 'Drag and drop that icon anywhere on you map. Name your clickable and upload the image that you want the icon to bring you to. Use the arrows to increese or decreese the size of the icon. Click submit when complete. WARNING larger images will take longer to upload.'
+            directions = 'Drag and drop that icon anywhere on you map. Name your clickable and upload the image that you want the icon to bring you to. Click submit when complete. WARNING larger images will take longer to upload.'
             break; 
         case 6:
             tutorialLocation = 'tutorial_box_low'

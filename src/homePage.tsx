@@ -44,6 +44,7 @@ const HomePage = (props:any) => {
         <div className="homePage" id="homepage">
           <div>
           <CommunityMaps/>
+          {user?
           <div className="mapSelectorContainer">
             <h1 className="centered" id="recentMaps">Recent Maps</h1>
             <img
@@ -55,6 +56,7 @@ const HomePage = (props:any) => {
             {mapContainers}
             </div>
           </div>
+          :null}
           </div>
         </div>
     )

@@ -337,8 +337,6 @@ html, body {
   .loginForm{
     display:flex;
     flex-direction: column;
-    background-color: rgb(190, 190, 190);
-    background-color: #27282d;
     align-items: center;
     flex-direction: column;
     height: 94.7vh;
@@ -385,6 +383,8 @@ width:50%;
   justify-content: center;
   align-items: center;
   margin-top: 10vh;
+  /* max-width: 1860px; */
+  
 }
 
 
@@ -395,6 +395,7 @@ width:50%;
   align-items: center;
   margin-bottom: 7vh;
   z-index: 4;
+  overflow-wrap: normal;
 }
 
 #recentMaps{
@@ -437,15 +438,14 @@ width:50%;
 
 .worldName{
   z-index: 1;
-  margin-bottom: 6.5rem;
+  margin-bottom: 11vh;
   position: absolute;
 }
 
 .banner{
   position: absolute;
-  width:25%;
+  width:25vw;
   margin-left: 1rem;
-  
 }
 
 .mapSelector:hover{
@@ -468,7 +468,7 @@ width:50%;
 
 .recentMapBackground{
   position: absolute;
-  width: 100%;
+  width: 95vw;
   height: 55%;
   overflow: hidden;
 }
@@ -476,9 +476,23 @@ width:50%;
 
 
 
-.register {
-  margin-top: 5vh;
+.registerButton {
+  margin-top: .5vh;
   z-index: 1;
+  cursor: pointer;
+}
+
+.loginLabel{
+  z-index: 1;
+  margin-top: 20vh;
+}
+
+.loginForm > h2,input,button {
+  z-index: 1;
+}
+
+.loginForm > input{
+  max-width: 400px;
 }
 
 /* .register:hover{
@@ -710,9 +724,9 @@ input:checked + .slider:before {
 }
 
 .login-button{
-  margin-top: 2vh;
-  background-color: #27282d;
+  background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 /* .login-button:hover{
@@ -727,6 +741,7 @@ input:checked + .slider:before {
   z-index: 1;
   height: 95vh;
   margin-top: 5vh;
+  
 }
 
 .upload-button{
@@ -789,22 +804,55 @@ input:checked + .slider:before {
 }  */
 
 .tutorial_box_low{
-  border: 2px solid black;
   width:50%;
   height:25%;
   position: absolute;
-  z-index: 10;
-  background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
+  z-index: 2;
   top:70%;
 }
+
 .tutorial_box_middle{
-  border: 2px solid black;
   width:50%;
   height:25%;
   position: absolute;
-  z-index: 10;
-  background-image: linear-gradient(to bottom, #2f3034, #27282d 25%,#27282d 75%, #2f3034 100%);
+  z-index: 2;
   top:35%;
+}
+
+.tutorialBackground{
+  position: absolute;
+  z-index: 1;
+  height: 35vh;
+  width:100%;
+}
+.tutorialDirections{
+  width: 60%;
+}
+.tutorialInstructions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.tutorialInstructions > h2{
+  z-index: 1;
+}
+
+.tutorial-button{
+  width: 10vw;
+  background-image: url('./Photos/header.jpg');
+
+}
+
+.tutorialButtonHolder {
+  width:120%;
+  justify-content: space-between;
+}
+
+.tutorialContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .spaceBetween{
@@ -816,7 +864,11 @@ input:checked + .slider:before {
 }
 
 .communityMapsContainerContainer{
-
+ max-width: 2548px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
 }
 
 #root{
@@ -852,15 +904,16 @@ input:checked + .slider:before {
   margin-left: 4rem;
   margin-right: 4rem;
   justify-content: center;
+  
   /* align-items: center; */
-  /* border: 2px solid red; */
+  
   
 }
 .communityMapHolder{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width:60%;
+  width:50vw;
   flex-direction: column;
   /* border: 2px solid red; */
   
@@ -911,6 +964,7 @@ input:checked + .slider:before {
   height:1vw;
   margin-top: 1vw;
   z-index: 1;
+  background-image: url('./Photos/header.jpg');
 }
 
 .bigTicker{
@@ -918,7 +972,7 @@ input:checked + .slider:before {
   width:1.3vw;
   height:1.3vw;
   margin-top: 1vw;
-  background-color: black;
+  background-image: url('./Photos/header.jpg');
   box-shadow: 0 0 10px grey;
   z-index: 1;
 }
@@ -942,6 +996,12 @@ input:checked + .slider:before {
   background-image: url('./Photos/header.jpg');
 }
 
+.homePage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .communityMapButton > div:hover{
   animation-name: hoveredfeaturedMapButton;
     animation-duration: .5s;
@@ -963,7 +1023,7 @@ input:checked + .slider:before {
 .communityMapInfo > span{ 
   display: flex;
   flex-direction: row;
-  margin-left: 20%;
+  margin-left: 6vw;
   justify-content: start;
   font-size: 1.2rem;
   z-index: 1;
@@ -975,7 +1035,7 @@ input:checked + .slider:before {
 
 .communityMapInfo > img {
   position: absolute;
-  
+  max-width: 750px;
   width:30vw;
 }
 
@@ -985,6 +1045,8 @@ input:checked + .slider:before {
   z-index: 3;
   justify-content: center;
   font-size: 1.6rem;
+  margin-top: 5vh;
+  margin-left: 7vw;
 }
 
 
@@ -992,7 +1054,6 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   margin-top: 5vh;
-  margin-right: 4rem;
   margin-left: 1rem;
   flex-grow: 1;
   justify-content: center;
@@ -1010,5 +1071,13 @@ a:visited{
 }
 a{
   text-decoration: none;
+}
+
+
+.loginPic{
+  position: absolute;
+  max-height: 95vh;
+  width:40vw;
+  max-width: 1000px;
 }
 

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import scroll from './Photos/recent map bac kground.png'
+
 const Tutorial = (props: any) => {
 
     const {setTutorial, tutorialStep, setTutorialStep} = props;
@@ -76,34 +78,37 @@ const Tutorial = (props: any) => {
     return(
         
         <div className={tutorialLocation}>
+            <div className="tutorialContainer">
+            <img src={scroll} className="tutorialBackground"></img>
             { tutorialStep === 0 ?
-            <div>
+            <div className="tutorialInstructions">
             <h2 className="centered">would you like to start the tutorial?</h2>
-            <div className="flex align-items-centered">
-              <button className="upload-button">
-                <div className="border" onClick={() => {setTutorialStep(tutorialStep + 1)}}>
+            <div className="flex align-items-centered tutorialButtonHolder">
+              <button className="tutorial-button">
+                <div className="" onClick={() => {setTutorialStep(tutorialStep + 1)}}>
                   <h2>yes</h2>
                 </div>
               </button>
-              <button className="upload-button">
-                <div className="border" onClick={() => {setTutorial(false)}}>
+              <button className="tutorial-button">
+                <div className="" onClick={() => {setTutorial(false)}}>
                   <h2>no</h2>
                 </div>
               </button>
             </div>
             </div>
             : 
-            <div>
-                <h2>{directions}</h2>
+            <div className="tutorialInstructions">
+                <h2 className="tutorialDirections">{directions}</h2>
                 { tutorialStep === 7 || tutorialStep === 14 ?
                 <button className="upload-button">
-                  <div className="border" onClick={() => {setTutorialStep(tutorialStep + 1)}}>
+                  <div className="" onClick={() => {setTutorialStep(tutorialStep + 1)}}>
                   <h2>next</h2>
                   </div>
                 </button>
                 : null}
             </div>
             }
+            </div>
         </div>
     )
 }

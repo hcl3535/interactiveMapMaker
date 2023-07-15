@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logInUser } from "./axios/axios";
+import scroll from "./Photos/scroll-paper-clip-art-png-favpng-BXdFwnWdSVKHYrXpvU1bPLpN3-removebg-preview.png"
 
 const Login = (props:any) => {
 
@@ -41,7 +42,7 @@ const Login = (props:any) => {
     return (
         <form className="login" onSubmit={submitHandler}>
             <div className="loginForm">
-              <h1 className="centered">Log in</h1>
+              <h1 className="centered loginLabel">Log in</h1>
                 <h2 className="centered">username</h2>
                 <input
                 type='text'
@@ -62,7 +63,8 @@ const Login = (props:any) => {
                 <h2>Log In</h2>    
                 </button>
                 <h2 className="centered">dont have an account?</h2>
-                <h2 className="centered register" onClick={goToRegister}>Register</h2>
+                <h2 className="centered registerButton" onClick={goToRegister}>Register</h2>
+                <img className="loginPic" src={scroll}/>
             </div>
         </form>
     )

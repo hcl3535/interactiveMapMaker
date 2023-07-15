@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "./axios/axios";
 
+import scroll from "./Photos/scroll-paper-clip-art-png-favpng-BXdFwnWdSVKHYrXpvU1bPLpN3-removebg-preview.png"
+
 const Register = (props:any) => {
     const {setToken} = props;
 
@@ -37,9 +39,9 @@ const Register = (props:any) => {
     }
 
     return (
-        <form className="register" onSubmit={submitHandler}>
+        <form className="login" onSubmit={submitHandler}>
             <div className="loginForm">
-              <h1 className="centered">Register</h1>
+              <h1 className="centered loginLabel">Register</h1>
                 <h2 className="centered">username</h2>
                 <input
                 type='text'
@@ -65,6 +67,7 @@ const Register = (props:any) => {
                 >
                   <h2>Register</h2>    
                 </button>
+                <img className="loginPic" src={scroll}/>
             </div>
         </form>
     )

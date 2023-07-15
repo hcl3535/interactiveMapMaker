@@ -19,14 +19,20 @@ const ProfileInfo = (props:any) => {
       setNewCity(null)
       setActiveTab('library')
       setEditMode(false)
+      setTutorial(false)
+      setTutorialStep(0)
       navigate(`/`)
     }
 
     const goToLogin = () => {
+      setTutorial(false)
+      setTutorialStep(0)
         navigate('/login')
     }
 
     const goToAllMaps = () => {
+      setTutorial(false)
+      setTutorialStep(0)
       navigate('/allMaps')
     }
 

@@ -1,4 +1,4 @@
-import { forEachTrailingCommentRange } from 'typescript';
+
 import {deleteIcon, deleteMapByIconId, getIconById, getMapByName, getMapByNameTest, updateChildrenOfMapsContainingDeletedMaps} from './axios/axios';
 
 

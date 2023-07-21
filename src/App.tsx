@@ -10,7 +10,7 @@ import Register from './register';
 import { getChildren } from './helper';
 import HomePage from './homePage';
 import AllMaps from './AllMaps';
-import Message from './Message';
+
 
 function App() {
 

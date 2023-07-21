@@ -44,6 +44,20 @@ async function getAllUserWorldMaps(userId) {
     }
 }
 
+async function getAllUserMaps(userId) {
+    try {
+        const {rows} = await client.query(`
+            SELECT *
+            FROM maps
+            WHERE userid = $1
+        `,[userId])
+        
+        return rows
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 async function getMapByUserAndName(userId,name) {
     try {
         const {rows: [map]} = await client.query(`
@@ -156,6 +170,19 @@ async function deleteMap(mapId){
     }
 }
 
+async function deleteAllMapsByIconId(id){
+    try {
+        const {rows: deletedMaps} = await client.query(`
+          DELETE FROM maps
+          WHERE icon = $1
+          RETURNING *
+        `,[id])
+        return deletedMaps
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 async function getCommunityMaps() {
     try {
         const {rows} = await client.query(`
@@ -184,5 +211,7 @@ module.exports = {
   getMapById,
   getMapByName,
   getCommunityMaps,
-  updateIfMapIsShared
+  updateIfMapIsShared,
+  deleteAllMapsByIconId,
+  getAllUserMaps
 }

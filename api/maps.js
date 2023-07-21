@@ -1,4 +1,4 @@
-const { getAllUserWorldMaps, getMapByName, getMapByUserAndName, createMap, updateChildren, updateMap, deleteMap, updateCitySize, getMapById, getCommunityMaps, updateIfMapIsShared } = require('../db/models/maps');
+const { getAllUserWorldMaps, getMapByName, getMapByUserAndName, createMap, updateChildren, updateMap, deleteMap, updateCitySize, getMapById, getCommunityMaps, updateIfMapIsShared, deleteAllMapsByIconId, getAllUserMaps } = require('../db/models/maps');
 
 const multer = require('multer')
 const upload = multer( { dest: 'uploads/' } )
@@ -26,6 +26,48 @@ mapRouter.patch('/communityMaps', async(req,res,next) => {
         
         const changedMap = await updateIfMapIsShared(bool, worldId)
         res.send(changedMap)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.delete('/mapIconId/:id', async (req,res,next) => {
+    try {
+        const {id} = req.params;
+
+        
+        
+        const deletedMaps = await deleteAllMapsByIconId(id)
+        res.send(deletedMaps)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+mapRouter.patch(`/removeChildrenIfDeleted`, async (req,res,next) => {
+    try {
+        const {deletedMaps} = req.body;
+        const userId = deletedMaps.userid
+        console.log(deletedMaps)
+        if(!deletedMaps.children[0]){
+            res.send()
+            next()
+        }
+        
+        const userWorldMaps = await getAllUserMaps(userId)
+
+        const hasChild = userWorldMaps.filter((map) => {
+          return(map.children.includes(deletedMaps.name.toString()))
+        })
+
+        const newChildren = hasChild[0].children.filter((child)=>{
+            return (child !== deletedMaps.name.toString())
+        })
+
+        const updatedMap = await updateChildren(hasChild[0].id,newChildren)
+
+        res.send(updatedMap)
+    
     } catch (error) {
         console.error(error)
     }

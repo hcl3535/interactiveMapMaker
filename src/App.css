@@ -20,7 +20,8 @@ html, body {
 
 .App{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
@@ -1081,3 +1082,28 @@ a{
   max-width: 1000px;
 }
 
+.message{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  width:300px;
+  flex-direction: column;
+}
+
+.messageImg{
+  position: absolute;
+}
+
+.messageMessage{
+  z-index: 11;
+}
+
+.messageButtons{
+  z-index: 11;
+  display: flex;
+}
+.messageButtons > button {
+  width:150px;
+}

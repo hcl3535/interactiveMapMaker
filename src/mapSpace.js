@@ -5,12 +5,13 @@ import { getMapByName, getMapByNameTest } from "./axios/axios";
 import Map from "./map";
 import Loading from "./loading";
 import Tutorial from "./tutorial";
+import Message from "./Message";
 
 
 
 export const MapSpace = (props) => { 
 
-    const {toggle,loading,tutorial, setTutorial, tutorialStep, setTutorialStep, newCity,newCityWidth, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing} = props
+    const {toggle,loading,tutorial, iconToDelete,setTutorial, tutorialStep, setTutorialStep, newCity,newCityWidth, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing, message, setMessage} = props
     
     const [history, setHistory] = useState([currentWorld])
     const [isOwner, setIsOwner] = useState(false)
@@ -93,6 +94,10 @@ export const MapSpace = (props) => {
         <div className="mapSpace-size">
           {loading ?
             <Loading/>
+            : null
+          }
+          {message ?
+            <Message message={message} iconToDelete={iconToDelete} setMessage={setMessage}/>
             : null
           }
           {

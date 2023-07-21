@@ -140,6 +140,16 @@ export async function deleteIcon(iconId) {
     }
 }
 
+export async function deleteMapByIconId(iconId) {
+    try {
+        const {data} = await axios.delete(`maps/mapIconId/${iconId}`)
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
 export async function getAllUserWorlds(userId) {
     try {
         const {data} = await axios.get(`/maps/allmaps/${userId}`)
@@ -148,6 +158,7 @@ export async function getAllUserWorlds(userId) {
         console.log(error)
     }
 }
+
 
 export async function getMapByName(name,userId) {
     try {
@@ -170,6 +181,15 @@ export async function getMapByNameTest(name) {
 export async function getMapById(id) {
     try {
         const {data} = await axios.get(`/maps/mapid/${id}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function updateChildrenOfMapsContainingDeletedMaps(deletedMaps) {
+    try {
+        const {data} = await axios.patch(`/maps/removeChildrenIfDeleted`, {deletedMaps: deletedMaps})
         return data
     } catch (error) {
         console.log(error)

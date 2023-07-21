@@ -68,9 +68,9 @@ iconRouter.delete('/:iconId', async (req,res,next) => {
         const {iconId} = req.params;
         const icon = await getIconById(iconId)
 
-        await deleteIconFile(icon[0].s3key)
+        await deleteIconFile(icon.s3key)
 
-        deleteIconById(iconId)
+        await deleteIconById(iconId)
 
         res.send()
     } catch (error) {

@@ -27,9 +27,8 @@ const CreateClickable = (props: any) => {
       console.log('hello')
 
         const dragable:any = document.querySelector('.editing')
-        let y = Number(newCityLocation.style.gridRowEnd)
-        let x = Number(newCityLocation.style.gridColumnEnd)
-        
+        let y = Number(newCityLocation?.style.gridRowEnd) | 1
+        let x = Number(newCityLocation?.style.gridColumnEnd) | 1
         
         const toAdd = {
             initialmap: false, 

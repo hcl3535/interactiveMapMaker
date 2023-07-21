@@ -95,7 +95,7 @@ const CommunityMaps = (props: any) => {
     }
 
     for(const idx in communityMaps){
-      tickers.push(<CommunityMapTicker currentCommunityMapIndex={currentCommunityMapIndex} tickerIdx={Number(idx)} />)
+      tickers.push(<CommunityMapTicker currentCommunityMapIndex={currentCommunityMapIndex} tickerIdx={Number(idx)} key={idx} />)
     }
 
     return (

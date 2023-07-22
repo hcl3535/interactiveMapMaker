@@ -1,5 +1,5 @@
 
-import {deleteIcon, deleteMapByIconId, getIconById, getMapByName, getMapByNameTest, updateChildrenOfMapsContainingDeletedMaps} from './axios/axios';
+import {deleteIcon, deleteMap, deleteMapByIconId, deleteMapById, getIconById, getMapByName, getMapByNameTest, updateChildrenOfMapsContainingDeletedMaps} from './axios/axios';
 
 
 export async function getChildren(map) {
@@ -36,4 +36,25 @@ export async function getChildren(map) {
     
   
     await deleteIcon(icon.id)
+
+    return
+  }
+
+  export async function deleteWorld(world) {
+    console.log(world)
+    recusivelyFindAndDeleteMaps(world)
+    return
+  }
+
+  async function recusivelyFindAndDeleteMaps(map){
+
+    if(map.children[0]){
+      for(const child of map.children){
+        const childMap = await getMapByNameTest(child)
+        await recusivelyFindAndDeleteMaps(childMap)
+      }
+    }
+    console.log(map)
+    await deleteMapById(map.id)
+    return
   }

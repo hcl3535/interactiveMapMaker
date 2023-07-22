@@ -178,6 +178,15 @@ export async function getMapByNameTest(name) {
     }
 }
 
+export async function deleteMapById(mapId){
+  try {
+    const {data} = await axios.delete(`/maps/${mapId}`)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function getMapById(id) {
     try {
         const {data} = await axios.get(`/maps/mapid/${id}`)

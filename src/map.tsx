@@ -4,7 +4,7 @@ import Grid from "./grid";
 
 const Map: any = (props: any) => {
 
-    const {currentMap, newCityWidth, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren,setWorldHistory, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing, tutorialStep, setTutorialStep} = props;
+    const {currentMap, newCityWidth, switchMaps, newCity, setNewCity, currentWorld ,children, setChildren,setWorldHistory, worldHistory,user, editMode, setEditMode , newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing, tutorialStep, setTutorialStep,rerender} = props;
 
     // changing world history
     if(user?.id === currentMap?.userid){

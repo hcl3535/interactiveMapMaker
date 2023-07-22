@@ -3,9 +3,9 @@ import { deleteIcon, getIconsByUserId} from "./axios/axios";
 
 const Library = (props: any) => {
 
-    const {swapNewCity,setIconToDelete,setMessage, switchActiveTab, user, tutorialStep, setTutorialStep,currentMap} = props;
+    const {swapNewCity,allIcons, setAllIcons,setIconToDelete,setLoading,setMessage, switchActiveTab, user, tutorialStep, setTutorialStep,currentMap} = props;
 
-    const [AllIcons, setAllIcons] = useState([])
+    
 
     useEffect(()=>{
       swapNewCity(null)
@@ -26,9 +26,10 @@ const Library = (props: any) => {
     }
 
     const handleDeleteButton = async (key:any) => {
+      setLoading(true)
       setMessage('Are you sure you want to delete this icon? If it is used in any maps those clickables will be deleted.')
       setIconToDelete(key)
-      // await deleteIcon(key.id)
+
     }
 
     const switchToCreateClickable = () => {
@@ -50,6 +51,8 @@ const Library = (props: any) => {
     }
     },[])
 
+    console.log(allIcons)
+
     return(
       <div className="libraryContainer">
         {user?.id === currentMap?.userid ?
@@ -57,7 +60,7 @@ const Library = (props: any) => {
            <button className="createClickableButton" onClick={switchToCreateClickable}>
             <h3 className="createIconWords">Create a Icon</h3>
            </button>
-            <> {AllIcons.map(function(key:any, index:any) {
+            <> {allIcons.map(function(key:any, index:any) {
               return(
                 <div key={index} className="flex library-item">
                   <button className="add-button-size add-button" onClick={() => addCity(key)}>

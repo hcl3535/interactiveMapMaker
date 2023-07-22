@@ -11,7 +11,7 @@ import Message from "./Message";
 
 export const MapSpace = (props) => { 
 
-    const {toggle,loading,tutorial, iconToDelete,setTutorial, tutorialStep, setTutorialStep, newCity,newCityWidth, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing, message, setMessage} = props
+    const {toggle,loading,setAllIcons,allIcons,setRerender,setLoading,tutorial, iconToDelete,setTutorial, tutorialStep, setTutorialStep, newCity,newCityWidth, setNewCity,mapDictionary, currentWorld, currentMap, children, setCurrentMap,setChildren,user,setCurrentWorld, worldHistory, setWorldHistory, editMode, setEditMode, newCityLocation, setNewCityLocation, setCurrentlyEditing, currentlyEditing, message, setMessage,rerender} = props
     
     const [history, setHistory] = useState([currentWorld])
     const [isOwner, setIsOwner] = useState(false)
@@ -97,7 +97,7 @@ export const MapSpace = (props) => {
             : null
           }
           {message ?
-            <Message message={message} iconToDelete={iconToDelete} setMessage={setMessage}/>
+            <Message message={message} iconToDelete={iconToDelete} setMessage={setMessage} setLoading={setLoading} setRerender={setRerender} currentWorld={currentWorld} setChildren={setChildren} children={children} setAllIcons={setAllIcons} allIcons={allIcons}/>
             : null
           }
           {
@@ -112,7 +112,7 @@ export const MapSpace = (props) => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list expander" viewBox="0 0 16 16" onClick={handleExpander}>
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg>
-          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setChildren={setChildren} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} newCityWidth={newCityWidth} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep}/>
+          <Map currentMap={currentMap} switchMaps={switchMaps} newCity={newCity} setNewCity={setNewCity} mapDictionary={mapDictionary} currentWorld={currentWorld} children={children} worldHistory={worldHistory} setWorldHistory={setWorldHistory} user={user} editMode={editMode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setChildren={setChildren} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} newCityWidth={newCityWidth} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep} rerender={rerender}/>
           {editMode ? 
           <div className="city-delete" onDrop={handleDrop} onDragOver={handleDragOver}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16" >

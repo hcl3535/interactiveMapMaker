@@ -62,7 +62,7 @@ async function buildTables() {
         {'username':'autumn', password:'bleh', email:'aes.strange@gmail.com', profileimageurl:'https://interactivemapprofileimages.s3.us-east-2.amazonaws.com/61648932_2113245415465494_7449850590022074368_n.jpg','worldhistory' : []}
       ]
 
-      await Promise.all(usersToCreate.map(createUser))
+      await Promise.all(usersToCreate.map(await createUser))
       
       console.log('all users',await getAllUsers())
 

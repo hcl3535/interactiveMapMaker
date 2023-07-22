@@ -5,7 +5,7 @@ import { getChildren } from "./helper";
 
 const WorldEdit = (props:any) => {
 
-    const {user,setNewCity,currentMap, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep } = props;
+    const {user,setNewCity,setMessage,currentMap, swapCurrentMap,setChildren, currentWorld, setEditMode, editMode,currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep } = props;
 
     const [userWorlds, setUserWorlds] = useState<any>()
     const [sharing, setSharing] = useState(currentWorld.communitymap)
@@ -79,6 +79,11 @@ const WorldEdit = (props:any) => {
       setCurrentlyEditing(copy)
     }
 
+
+    const deleteWorld = async () => {
+      setMessage('Are you sure you want to delete this world? This is permanate and will delete all the clickables on it.')
+    }
+
     return(
         <div className="worldEdit">
           <h1 className="centered currentWorld">World Edit</h1>
@@ -100,7 +105,7 @@ const WorldEdit = (props:any) => {
             </div>
           <div className="editmode">
           {user?.id === currentMap.userid ?
-          <div>
+          <div >
             <h2 className="centered">edit mode</h2>
             <label className="switch centered">
               <input type="checkbox" className="centered" onClick={toggleEditMode}/>
@@ -140,6 +145,13 @@ const WorldEdit = (props:any) => {
             </div>
           :
           null}
+          <div className="deleteWorldButtonContainer">
+            <button className="deleteWorldButton" type='submit' onClick={deleteWorld}>
+              <div className="border">
+                <h2>Delete World</h2>
+              </div>
+            </button>
+          </div>
         </div>
     )
 }

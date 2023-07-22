@@ -376,6 +376,9 @@ width:50%;
 
 .worldEdit{
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height:100%;
 }
 
 .mapSelectorContainer{
@@ -1106,4 +1109,16 @@ a{
 }
 .messageButtons > button {
   width:150px;
+}
+
+.deleteWorldButton{
+  background-image: url('./Photos/header.jpg');
+  width: 100%;
+}
+
+.deleteWorldButtonContainer{
+  display: flex;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 1vh;
 }

@@ -35,6 +35,13 @@ function App() {
   const [tutorialStep, setTutorialStep] = useState(0)
   const [message, setMessage] = useState('')
   const [iconToDelete, setIconToDelete] = useState(null)
+  const [rerender, setRerender] = useState(false)
+  const [allIcons, setAllIcons] = useState([])
+
+  useEffect(() => {
+    setRerender(false)
+    console.log('here')
+    },[rerender])
 
   
 
@@ -93,9 +100,9 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
           <Route path="/map/:mapName" element={
             <div className='root'>
               <div className='App'>
-                <MapSpace toggle={toggle} newCity={newCity} setNewCity={setNewCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} loading={loading} newCityWidth={newCityWidth} tutorial={tutorial} setTutorial={setTutorial} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep} message={message} setMessage={setMessage} iconToDelete={iconToDelete}/>
+                <MapSpace toggle={toggle} newCity={newCity} setNewCity={setNewCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} loading={loading} newCityWidth={newCityWidth} tutorial={tutorial} setTutorial={setTutorial} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep} message={message} setMessage={setMessage} iconToDelete={iconToDelete} setLoading={setLoading} setRerender={setRerender} rerender={rerender} setAllIcons={setAllIcons} allIcons={allIcons}/>
                 <div>
-                  {isExpanded ? <RightColumn swapNewCity={swapNewCity} setNewCity={setNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap} setActiveTab={setActiveTab} activeTab={activeTab} setEditMode={setEditMode} editMode={editmode} newCityLocation={newCityLocation} currentlyEditing={currentlyEditing} setCurrentlyEditing={setCurrentlyEditing} setLoading={setLoading} setNewCityWidth={setNewCityWidth} newCityWidth={newCityWidth} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep} setMessage={setMessage} setIconToDelete={setIconToDelete} iconToDelete={iconToDelete}/>  : null }
+                  {isExpanded ? <RightColumn swapNewCity={swapNewCity} setNewCity={setNewCity} currentMap={currentMap} setToken={setToken} token={token} setUser={setUser} user={user} swapCurrentMap={swapCurrentMap} setChildren={setChildren} children={children} currentWorld={currentWorld} setCurrentMap={setCurrentMap} setActiveTab={setActiveTab} activeTab={activeTab} setEditMode={setEditMode} editMode={editmode} newCityLocation={newCityLocation} currentlyEditing={currentlyEditing} setCurrentlyEditing={setCurrentlyEditing} setLoading={setLoading} setNewCityWidth={setNewCityWidth} newCityWidth={newCityWidth} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep} setMessage={setMessage} setIconToDelete={setIconToDelete} iconToDelete={iconToDelete} allIcons={allIcons} setAllIcons={setAllIcons}/>  : null }
                 </div>
               </div>
             </div>

@@ -11,8 +11,8 @@ const DB_NAME = 'interactiveMap';
 if(process.env.NODE_ENV === 'production'){
   DB_URL = process.env.DATABASE_URL
 } else {
-  DB_URL = process.env.DATABASE_URL
-  // DB_URL = `postgres://localhost:5432/${DB_NAME}`
+  // DB_URL = process.env.DATABASE_URL
+  DB_URL = `postgres://localhost:5432/${DB_NAME}`
 }
 
 console.log("DBURL",DB_URL)

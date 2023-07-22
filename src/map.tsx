@@ -11,19 +11,23 @@ const Map: any = (props: any) => {
       if(worldHistory){
       
     let historyIds = worldHistory.map((value:any) => {return value.id})
+
+    console.log(historyIds)
   
     if(historyIds[0] === currentWorld?.id || !currentWorld){
   
     } else {
      let temphistory = worldHistory
      temphistory = temphistory.map((value:any) => {
-      return value.name
+      return value.id
     })
-    if(temphistory.includes(currentWorld.name)) {
-       temphistory = temphistory.filter((name: any) => name !== currentWorld.name)
+    if(temphistory.includes(currentWorld.id)) {
+       temphistory = temphistory.filter((id: any) => id !== currentWorld.id)
       }
-     temphistory.unshift(currentWorld.name)
+     temphistory.unshift(currentWorld.id)
      if(temphistory.length > 10) temphistory.pop()
+
+     console.log(temphistory)
 
      updateUserWorldHistory(user.id, temphistory)
     }

@@ -1122,3 +1122,9 @@ a{
   margin-top: auto;
   margin-bottom: 1vh;
 }
+
+.editmodeContainer{
+  height:100%;
+  display:flex;
+  flex-direction: column;
+}

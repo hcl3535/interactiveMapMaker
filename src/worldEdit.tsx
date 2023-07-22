@@ -87,6 +87,8 @@ const WorldEdit = (props:any) => {
     return(
         <div className="worldEdit">
           <h1 className="centered currentWorld">World Edit</h1>
+          {user?.id === currentMap.userid ?
+          <div className="editmodeContainer">
           <div className="worldSelectAndEditMode">
             <div className="world-select">
               {user?.id === currentMap.userid ?
@@ -103,8 +105,9 @@ const WorldEdit = (props:any) => {
               </div>
               : null  }
             </div>
+          
           <div className="editmode">
-          {user?.id === currentMap.userid ?
+          <div>
           <div >
             <h2 className="centered">edit mode</h2>
             <label className="switch centered">
@@ -118,9 +121,20 @@ const WorldEdit = (props:any) => {
               <span className="slider round centered"></span>
             </label>
             </div>
-           :null }
+            
           </div>
           </div>
+           </div>
+           
+          <div className="deleteWorldButtonContainer">
+            <button className="deleteWorldButton" type='submit' onClick={deleteWorld}>
+              <div className="border">
+                <h2>Delete World</h2>
+              </div>
+            </button>
+          </div>
+          </div>
+          :null }
           {editMode ?
           currentlyEditing ?
           <div>
@@ -145,13 +159,7 @@ const WorldEdit = (props:any) => {
             </div>
           :
           null}
-          <div className="deleteWorldButtonContainer">
-            <button className="deleteWorldButton" type='submit' onClick={deleteWorld}>
-              <div className="border">
-                <h2>Delete World</h2>
-              </div>
-            </button>
-          </div>
+          
         </div>
     )
 }

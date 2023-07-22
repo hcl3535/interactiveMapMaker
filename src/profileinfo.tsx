@@ -37,7 +37,7 @@ const ProfileInfo = (props:any) => {
     }
 
     const createNewWorld = () => {
-      navigate(`/map/untitled`)
+      navigate(`/map/0`)
       setIsExpanded(true)
       setTutorialStep(0)
       setTutorial(true)

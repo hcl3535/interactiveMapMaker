@@ -57,11 +57,11 @@ mapRouter.patch(`/removeChildrenIfDeleted`, async (req,res,next) => {
         const userWorldMaps = await getAllUserMaps(userId)
 
         const hasChild = userWorldMaps.filter((map) => {
-          return(map.children.includes(deletedMaps.name.toString()))
+          return(map.children.includes(deletedMaps.id))
         })
 
         const newChildren = hasChild[0].children.filter((child)=>{
-            return (child !== deletedMaps.name.toString())
+            return (child !== deletedMaps.id)
         })
 
         const updatedMap = await updateChildren(hasChild[0].id,newChildren)
@@ -141,11 +141,13 @@ mapRouter.post('/:userId',upload.single('image'), async (req,res,next) => {
         props.icony = Number(props.icony)
         
         const newMap = await createMap(props)
+        console.log(newMap)
         await unlinkFile(file.path)
 
         if(currentMap){
         const curMap = JSON.parse(currentMap)
-        curMap.children.push(newMap.name)
+        console.log(newMap.id)
+        curMap.children.push(newMap.id)
 
         await updateChildren(curMap.id,curMap.children)
         }
@@ -183,9 +185,12 @@ mapRouter.patch('/removeChild/:parrentId', async (req,res,next) => {
     try {
         const {parrentId} = req.params;
         const {childToRemove,parrentMap} = req.body
+
+        console.log('childtoremove',childToRemove)
+        console.log('delete from',parrentMap)
         
 
-        const index = parrentMap.children.indexOf(childToRemove.name);
+        const index = parrentMap.children.indexOf(childToRemove.id);
         parrentMap.children.splice(index,1);
 
         const updatedChildren = await updateChildren(parrentId, parrentMap.children)

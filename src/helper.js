@@ -1,27 +1,46 @@
 
-import {deleteIcon, deleteMap, deleteMapByIconId, deleteMapById, getIconById, getMapByName, getMapByNameTest, updateChildrenOfMapsContainingDeletedMaps} from './axios/axios';
+import {deleteIcon, deleteMap, deleteMapByIconId, deleteMapById, getIconById, getMapById, getMapByName, getMapByNameTest, updateChildrenOfMapsContainingDeletedMaps} from './axios/axios';
 
 
-export async function getChildren(map) {
+// export async function getChildren(map) {
 
-  if(!map){
-    return
-  }
-      const childrenNames = map.children
-      console.log(childrenNames)
+//   if(!map){
+//     return
+//   }
+//       const childrenNames = map.children
       
-  
-        let temp = []
-        await Promise.all(childrenNames?.map( async (value,index) => {
-          const map = await getMapByNameTest(value)
-          const icon = await getIconById(map.icon)
-          map.icon = icon
-          temp.push(map)
-        }))
+//         let temp = []
+//         await Promise.all(childrenNames?.map( async (value,index) => {
+//           const map = await getMapByNameTest(value)
+//           const icon = await getIconById(map.icon)
+//           map.icon = icon
+//           temp.push(map)
+//         }))
         
-        return temp
+//         return temp
       
-  }      
+//   }   
+  
+  export async function getChildren(map) {
+
+    if(!map){
+      return
+    }
+        const childrenIds = map.children
+        
+          let temp = []
+          await Promise.all(childrenIds?.map( async (value,index) => {
+            // const map = await getMapByNameTest(value)
+            const map = await getMapById(value)
+            const icon = await getIconById(map.icon)
+            map.icon = icon
+            temp.push(map)
+          }))
+          
+          return temp
+        
+    } 
+  
 
   export async function deleteCity(icon){
     console.log(icon)
@@ -41,7 +60,7 @@ export async function getChildren(map) {
   }
 
   export async function deleteWorld(world) {
-    console.log(world)
+  
     recusivelyFindAndDeleteMaps(world)
     return
   }
@@ -54,7 +73,7 @@ export async function getChildren(map) {
         await recusivelyFindAndDeleteMaps(childMap)
       }
     }
-    console.log(map)
+    
     await deleteMapById(map.id)
     return
   }

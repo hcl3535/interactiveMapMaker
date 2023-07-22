@@ -97,7 +97,7 @@ const swapCurrentMap:React.FC = (currentMap: any):any => {
           <Route path='/' element={<HomePage user={user} worldHistory={worldHistory} setWorldHistory={setWorldHistory} setIsExpanded={setIsExpanded} setActiveTab={setActiveTab} setTutorial={setTutorial} setTutorialStep={setTutorialStep}/>}/>
           <Route path="/login" element={<Login setToken={setToken} token={token}/>}/>
           <Route path="/register" element={<Register setToken={setToken}/>}/>
-          <Route path="/map/:mapName" element={
+          <Route path="/map/:mapId" element={
             <div className='root'>
               <div className='App'>
                 <MapSpace toggle={toggle} newCity={newCity} setNewCity={setNewCity} swapCurrentMap={swapCurrentMap} currentWorld={currentWorld} currentMap={currentMap} children={children} setCurrentMap={setCurrentMap} setChildren={setChildren} user={user} setCurrentWorld={setCurrentWorld} worldHistory={worldHistory} setWorldHistory={setWorldHistory} editMode={editmode} setEditMode={setEditMode} newCityLocation={newCityLocation} setNewCityLocation={setNewCityLocation} setCurrentlyEditing={setCurrentlyEditing} currentlyEditing={currentlyEditing} loading={loading} newCityWidth={newCityWidth} tutorial={tutorial} setTutorial={setTutorial} tutorialStep={tutorialStep} setTutorialStep={setTutorialStep} message={message} setMessage={setMessage} iconToDelete={iconToDelete} setLoading={setLoading} setRerender={setRerender} rerender={rerender} setAllIcons={setAllIcons} allIcons={allIcons}/>

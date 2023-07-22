@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getChildren} from "./helper";
 import { useParams } from "react-router-dom";
-import { getMapByName, getMapByNameTest } from "./axios/axios";
+import { getMapById, getMapByName, getMapByNameTest } from "./axios/axios";
 import Map from "./map";
 import Loading from "./loading";
 import Tutorial from "./tutorial";
@@ -15,31 +15,24 @@ export const MapSpace = (props) => {
     
     const [history, setHistory] = useState([currentWorld])
     const [isOwner, setIsOwner] = useState(false)
-    const {mapName} = useParams();
+    const {mapId} = useParams();
 
     
     useEffect(() => {
 
       const fetchData = async () => {
-        
 
-        // if(mapName && user){
-        // const map = await getMapByName(mapName, user.id)
-        // setCurrentWorld(map)
-        // setCurrentMap(map)
-        // const children = await getChildren(map)
-        // setChildren(children)
-        // } else{
-          const map = await getMapByNameTest(mapName)
+          const map = await getMapById(mapId)
+          console.log(map)
           setCurrentWorld(map)
           setCurrentMap(map)
           const children = await getChildren(map)
           setChildren(children)
-        // }
+
       }
     
       fetchData()
-    },[user, mapName])
+    },[user, mapId])
     
 
     const switchMaps = async (clicked, fromHistory) => {

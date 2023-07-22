@@ -35,7 +35,7 @@ const AllMaps = (props:any) => {
               alt=""
               className="allMapBackground"
               />
-            <div className="mapSelectorCartHolder">
+            <div className="mapSelectorCartHolderAllMap">
             {mapContainers}
             </div>
           </div>

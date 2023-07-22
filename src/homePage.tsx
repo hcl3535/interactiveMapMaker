@@ -24,7 +24,7 @@ const HomePage = (props:any) => {
 
         const fetchData = async () => {
           if(!user) return
-  
+          console.log(await getWorldHistoryByUserId(user?.id))
           setWorldHistory(await getWorldHistoryByUserId(user?.id))
           
         }

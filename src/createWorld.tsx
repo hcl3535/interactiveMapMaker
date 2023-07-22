@@ -30,10 +30,10 @@ const CreateWorld = (props: any) => {
         formData.append('image',file)
         formData.append('fileProps',JSON.stringify(toAdd))
         
-        await createMap(formData, user.id)
+        const newMap = await createMap(formData, user.id)
     
         setActiveTab('library')
-        navigate(`/map/${name}`)
+        navigate(`/map/${newMap.id}`)
         if(tutorialStep === 1) setTutorialStep(tutorialStep + 1)
 
     }

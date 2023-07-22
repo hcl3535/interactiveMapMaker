@@ -70,7 +70,8 @@ const CommunityMaps = (props: any) => {
     }
 
     const goToClickedWorld = (map) => {
-      navigate(`/map/${map.name}`)
+      console.log(map.id)
+      navigate(`/map/${map.id}`)
     }
 
     const incrementComunityMapIndex = () => {

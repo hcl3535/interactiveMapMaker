@@ -1,6 +1,6 @@
 const { getAllUsers, getUserByUserAndPassword, getUserById, createUser, updateUserWorldHistory, getUserByUsername } = require('../db/models/users');
 const jwt = require('jsonwebtoken');
-const { getMapByUserAndName } = require('../db/models/maps');
+const { getMapByUserAndName, getMapById } = require('../db/models/maps');
 const secret = process.env.JWT_SECRET;
 
 const userRouter = require('express').Router();
@@ -49,12 +49,11 @@ userRouter.get('/:userId/worldhistory', async (req,res,next) => {
         const user = await getUserById(userId)
         
         
-        const userWorldHistoryNames = user.worldhistory
-        
+        const userWorldHistoryIds = user.worldhistory
 
-        let userWorldHistory = await Promise.all(userWorldHistoryNames.map(async (value) => {
-
-            return(await getMapByUserAndName(userId, value))
+        let userWorldHistory = await Promise.all(userWorldHistoryIds.map(async (value) => {
+            console.log(value)
+            return(await getMapById(value))
         }))
 
         res.send(userWorldHistory)

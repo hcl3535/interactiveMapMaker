@@ -20,7 +20,7 @@ const MapSelector = (props:any) => {
     }
     
     const goToClickedWorld = () => {
-      navigate(`/map/${world.name}`)
+      navigate(`/map/${world.id}`)
     }
     
     const goToLogin = () => {

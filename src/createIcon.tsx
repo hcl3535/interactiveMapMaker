@@ -8,6 +8,7 @@ const CreateIcon = (props:any) => {
     const [icon, setIcon] = useState<any>('')
     const [file, setFile] = useState<any>()
     const [message, setMessage] = useState('')
+    const [tooBig, setTooBig] = useState(false)
 
     const makeRef = (imageInput: HTMLInputElement | null) => {
         imageInput?.addEventListener('change',function () {
@@ -16,6 +17,13 @@ const CreateIcon = (props:any) => {
               
               setIcon(reader.result)
           })
+          if(imageInput?.files?.[0].size > 15000000){
+            setMessage('file size must be smaller than 15mb')
+            setTooBig(true)
+          } else{
+            setMessage('')
+            setTooBig(false)
+          }
           setFile(imageInput?.files?.[0])
           reader.readAsDataURL(imageInput?.files?.[0])
           
@@ -28,6 +36,11 @@ const CreateIcon = (props:any) => {
 
         if(!icon){
           setMessage('you must fill out all feilds')
+          return
+        }
+        
+        if(tooBig){
+          console.log(tooBig)
           return
         }
 

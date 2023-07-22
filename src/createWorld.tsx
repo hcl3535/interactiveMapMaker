@@ -11,10 +11,21 @@ const CreateWorld = (props: any) => {
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
     const [file, setFile] = useState<any>()
+    const [message, setMessage] = useState('')
+    const [tooBig, setTooBig] = useState(false)
 
     const navigate = useNavigate()
 
     const createNewClickable = async () => {
+
+        if(!name || !map){
+            setMessage('you must fill out all feilds')
+            return
+          }
+          if(tooBig){
+            console.log(tooBig)
+            return
+          }
         
         const toAdd = {
             initialmap: true, 
@@ -48,7 +59,13 @@ const CreateWorld = (props: any) => {
         reader.addEventListener('load', () => {
             setMap(reader.result)
         })
-        
+        if(imageInput?.files?.[0].size > 15000000){
+          setMessage('file size must be smaller than 15mb')
+          setTooBig(true)
+        } else{
+          setMessage('')
+          setTooBig(false)
+        }
         setFile(imageInput?.files?.[0])
         reader.readAsDataURL(imageInput?.files?.[0])
 
@@ -71,6 +88,9 @@ const CreateWorld = (props: any) => {
               </div>
             }
             <input className="upload-button" type='file' id="image-input" accept="image/png, image/jpg" ref={imageInput => makeRef(imageInput)}></input>
+            <h2 className="centered">
+              {message}
+            </h2>
             <button type='submit' onClick={createNewClickable}>submit</button>
         </div>
     )

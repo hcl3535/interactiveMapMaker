@@ -126,15 +126,8 @@ const WorldEdit = (props:any) => {
           </div>
            </div>
            
-          <div className="deleteWorldButtonContainer">
-            <button className="deleteWorldButton" type='submit' onClick={deleteWorld}>
-              <div className="border">
-                <h2>Delete World</h2>
-              </div>
-            </button>
-          </div>
-          </div>
-          :null }
+          
+          
           {editMode ?
           currentlyEditing ?
           <div>
@@ -159,7 +152,15 @@ const WorldEdit = (props:any) => {
             </div>
           :
           null}
-          
+          <div className="deleteWorldButtonContainer">
+            <button className="deleteWorldButton" type='submit' onClick={deleteWorld}>
+              <div className="border">
+                <h2>Delete World</h2>
+              </div>
+            </button>
+          </div>
+          </div>
+          :null }
         </div>
     )
 }

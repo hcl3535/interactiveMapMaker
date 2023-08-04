@@ -123,6 +123,8 @@ mapRouter.post('/:userId',upload.single('image'), async (req,res,next) => {
         const {fileProps,currentMap} = req.body;
         const file = req.file
 
+        
+
         const result = await uploadMapFile(file)
         
         const props = JSON.parse(fileProps)
@@ -149,7 +151,8 @@ mapRouter.post('/:userId',upload.single('image'), async (req,res,next) => {
         console.log(newMap.id)
         curMap.children.push(newMap.id)
 
-        await updateChildren(curMap.id,curMap.children)
+        const children = await updateChildren(curMap.id,curMap.children)
+        console.log('children',children)
         }
         
         res.send(newMap)

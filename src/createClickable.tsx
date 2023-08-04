@@ -4,7 +4,7 @@ import {createMap, getIconById } from "./axios/axios";
  
 const CreateClickable = (props: any) => {
 
-    const {currentMap,setNewCityWidth, newCityWidth,setLoading, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep} = props;
+    const {currentMap,setNewCityWidth,setCurrentMap, newCityWidth,setLoading, setNewCity,swapNewCity, switchActiveTab, user, setChildren,children,newCityLocation, currentlyEditing, setCurrentlyEditing, tutorialStep, setTutorialStep} = props;
 
     const [name, setName] = useState('')
     const [map, setMap] = useState<any>('')
@@ -23,8 +23,6 @@ const CreateClickable = (props: any) => {
         console.log(tooBig)
         return
       }
-    
-      console.log('hello')
 
         const dragable:any = document.querySelector('.editing')
         let y = Number(newCityLocation?.style.gridRowEnd) | 1
@@ -46,9 +44,16 @@ const CreateClickable = (props: any) => {
         formData.append('fileProps',JSON.stringify(toAdd))
         formData.append('currentMap',JSON.stringify(currentMap))
 
-        console.log('should start loading')
+        
         setLoading(true)
         const newMap = await createMap(formData, user.id)
+
+        
+console.log(newMap.id)
+
+        const tempCurrMap = currentMap;
+        tempCurrMap.children.push(newMap.id)
+        setCurrentMap(tempCurrMap)
         
         newMap.icon = await getIconById(newMap.icon)
         

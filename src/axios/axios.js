@@ -189,7 +189,6 @@ export async function deleteMapById(mapId){
 
 export async function getMapById(id) {
     try {
-        console.log(id)
         const {data} = await axios.get(`/maps/mapid/${id}`)
         return data
     } catch (error) {

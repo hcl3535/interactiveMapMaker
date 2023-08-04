@@ -40,7 +40,6 @@ function App() {
 
   useEffect(() => {
     setRerender(false)
-    console.log('here')
     },[rerender])
 
   

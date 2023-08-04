@@ -23,7 +23,6 @@ export const MapSpace = (props) => {
       const fetchData = async () => {
 
           const map = await getMapById(mapId)
-          console.log(map)
           setCurrentWorld(map)
           setCurrentMap(map)
           const children = await getChildren(map)

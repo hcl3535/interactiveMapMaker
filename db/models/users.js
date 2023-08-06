@@ -22,6 +22,11 @@ async function createUser (userInfo) {
         RETURNING *;
         `,Object.values(userInfo));
 
+        delete newUser.password;
+        delete newUser.email;
+        console.log('newUser',newUser)
+
+
         return newUser
     } catch (error) {
         console.log(error)
@@ -34,6 +39,15 @@ async function getAllUsers () {
         SELECT *
         FROM users;
         `)
+
+        for(let user of rows){
+
+            
+            delete user.password;
+            delete user.email;
+        }
+        console.log("user mofo",rows)
+
         return rows
     } catch (error) {
         console.log(error)
@@ -42,10 +56,19 @@ async function getAllUsers () {
 
 async function getUserByUserAndPassword (username, password) {
     try {
-        const user = await getUserByUsername(username)
+        const {rows: [user] } = await client.query(`
+        SELECT *
+        FROM users
+        WHERE username = $1
+        `, [username])
 
         const passwordMatch = await bcrypt.compare(password, user.password);
-        console.log(passwordMatch)
+
+        delete user.password;
+        delete user.email;
+
+        console.log('heheheh',user)
+        
         if(user === undefined){
             return user
         }
@@ -67,6 +90,10 @@ async function getUserByUsername (username) {
         FROM users
         WHERE username = $1
         `, [username])
+
+        delete user.password;
+        delete user.email;
+
         return user
     } catch (error) {
         console.log(error)
@@ -81,6 +108,7 @@ async function getUserById(id) {
   `,[id])
 
   delete user.password
+  delete user.email
   return user
 }
 
@@ -91,6 +119,9 @@ async function updateUserWorldHistory(id, newWorldHistory){
     SET worldhistory = $2
     WHERE id = $1
     `,[id, newWorldHistory])
+
+    delete user.password
+    delete user.email
     
     return user
 }

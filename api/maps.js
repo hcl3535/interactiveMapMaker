@@ -154,6 +154,8 @@ mapRouter.post('/:userId',upload.single('image'), async (req,res,next) => {
         const children = await updateChildren(curMap.id,curMap.children)
         console.log('children',children)
         }
+
+        
         
         res.send(newMap)
     } catch (error) {

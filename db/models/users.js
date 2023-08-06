@@ -113,15 +113,20 @@ async function getUserById(id) {
 }
 
 async function updateUserWorldHistory(id, newWorldHistory){
+
     
     const {rows: [user]} = await client.query(`
     UPDATE users
     SET worldhistory = $2
     WHERE id = $1
+    RETURNING *
     `,[id, newWorldHistory])
-
+    
     delete user.password
     delete user.email
+    
+    console.log('bruh',id, newWorldHistory)
+    console.log(user)
     
     return user
 }

@@ -23,7 +23,7 @@ import {deleteIcon, deleteMap, deleteMapByIconId, deleteMapById, getIconById, ge
   
   export async function getChildren(map) {
 
-    console.log(map)
+    console.log("map",map)
 
     if(!map){
       return
@@ -32,9 +32,11 @@ import {deleteIcon, deleteMap, deleteMapByIconId, deleteMapById, getIconById, ge
         
           let temp = []
           await Promise.all(childrenIds?.map( async (value,index) => {
-            // const map = await getMapByNameTest(value)
+            console.log("child",value)
             const map = await getMapById(value)
+            console.log("childmap",map)
             const icon = await getIconById(map.icon)
+            console.log("icon",icon)
             map.icon = icon
             temp.push(map)
           }))

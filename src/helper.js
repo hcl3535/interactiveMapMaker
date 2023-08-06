@@ -23,6 +23,8 @@ import {deleteIcon, deleteMap, deleteMapByIconId, deleteMapById, getIconById, ge
   
   export async function getChildren(map) {
 
+    console.log(map)
+
     if(!map){
       return
     }
